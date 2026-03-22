@@ -4,101 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nyanmeshi JAPAN | Coming Soon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Modern Japanese & Latin Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #e63946; 
-            --bg-color: #fdfcfb;
-            --text-color: #2b2d42;
+            --brand-red: #ff7675; /* Soft red from the logo's sun */
+            --ink-black: #1a1a1a; /* Sumi ink black */
+            --paper-white: #ffffff;
+            --soft-grey: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            background-color: var(--paper-white);
+            color: var(--ink-black);
+            font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Top Left Header */
+        header {
+            padding: 40px 60px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .logo-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-img {
+            max-width: 180px;
+            height: auto;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Fallback style if image is missing */
+            min-height: 100px;
+            background: #eee;
+            border-radius: 8px;
+        }
+        
+        /* Using your uploaded image reference */
+        .logo-img[src="nyanmeshi_logo.jpg"] {
+            background: transparent;
+        }
+
+        .logo-container:hover .logo-img {
+            transform: rotate(-3deg) scale(1.1);
+        }
+
+        /* Central Content Area */
+        main {
+            flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Subtle background wash effect */
+        main::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 118, 117, 0.05) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
             text-align: center;
+            max-width: 700px;
+            animation: fadeInScale 1.2s ease-out;
         }
 
-        .container {
-            padding: 20px;
-            max-width: 600px;
-            animation: fadeIn 1.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .logo {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
+        .status-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--brand-red);
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 8px;
         }
 
-        .logo span {
-            color: var(--primary-color);
+        .status-tag::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background-color: var(--brand-red);
+            opacity: 0.5;
         }
 
         h1 {
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-            color: #8d99ae;
-        }
-
-        .status-badge {
-            background: #fff1f2;
-            color: var(--primary-color);
-            padding: 8px 24px;
-            border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: clamp(2rem, 5vw, 3.2rem);
             font-weight: 600;
-            display: inline-block;
-            margin-bottom: 25px;
-            border: 1px solid #ffccd5;
-            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #4a4e69;
+        .entity-name {
+            font-size: 0.95rem;
             font-weight: 300;
+            color: #7f8c8d;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
         }
 
+        .description {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 300;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .japanese-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            display: block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* Footer */
         footer {
-            position: absolute;
-            bottom: 40px;
-            width: 100%;
-            font-size: 0.75rem;
-            color: #adb5bd;
-            letter-spacing: 0.5px;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #bdc3c7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-line {
+            height: 1px;
+            flex-grow: 0.1;
+            background: #eee;
+            margin: 0 20px;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from { transform: scale(0.98); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header { padding: 30px; text-align: center; }
+            footer { padding: 30px; flex-direction: column; gap: 10px; text-align: center; }
+            .footer-line { display: none; }
+            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="status-badge">Preparing Something Delicious</div>
-        <div class="logo">NYAN<span>MESHI</span></div>
-        <h1>Nyanmeshi JAPAN PTE. LTD.</h1>
-        
-        <p>Our digital home is currently under construction.<br> 
-        Bringing authentic Japanese flavors to Singapore soon.</p>
-    </div>
+    <header>
+        <div class="logo-container">
+            <!-- Ensure nyanmeshi_logo.jpg is in your GitHub repo root -->
+            <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img">
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-content">
+            <span class="status-tag">Under Construction</span>
+            <h1>Something delicious is brewing.</h1>
+            <div class="entity-name">Nyanmeshi JAPAN PTE. LTD.</div>
+            
+            <p class="description">
+                Bringing authentic Japanese culinary experiences and artisanal flavors to Singapore.
+                <span class="japanese-text">本物の日本の味をシンガポールへ。まもなく公開。</span>
+            </p>
+        </div>
+    </main>
 
     <footer>
-        &copy; 2026 NYANMESHI JAPAN PTE. LTD.
+        <div>&copy; 2026 Nyanmeshi JAPAN PTE. LTD.</div>
+        <div class="footer-line"></div>
+        <div>Singapore</div>
     </footer>
 
 </body>
