@@ -6,7 +6,7 @@
     <title>Nyanmeshi JAPAN PTE. LTD. | Authentic Japanese Culinary Events</title>
     
     <!-- Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Leaflet CSS for Interactive Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -14,11 +14,12 @@
     <style>
         :root {
             --brand-red: #ff7675;
-            --brand-red-dark: #e66767;
-            --ink-black: #1a1a1a;
+            --brand-red-dark: #d63031;
+            --ink-black: #0a0a0a;
+            --charcoal: #2d3436;
             --paper-white: #ffffff;
-            --soft-grey: #f8f9fa;
-            --border-grey: #eaeaea;
+            --soft-grey: #fcfcfc;
+            --border-grey: #f0f0f0;
         }
 
         * {
@@ -30,10 +31,16 @@
 
         body {
             background-color: var(--paper-white);
-            color: var(--ink-black);
+            color: var(--charcoal);
             font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--ink-black);
+            font-weight: 600;
         }
 
         /* --- Navigation --- */
@@ -41,260 +48,353 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 10px 5%; 
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 15px 5%; 
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: var(--ink-black);
         }
 
         .logo-img {
-            max-width: 90px; 
+            max-width: 85px; 
             height: auto;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .logo-container:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--ink-black);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding-bottom: 4px;
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--brand-red);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--brand-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding-left: 30px;
+            border-left: 1px solid var(--border-grey);
+        }
+
+        .nav-socials a, .footer-socials a {
+            color: var(--ink-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-socials svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.3s ease, fill 0.3s ease;
+        }
+
+        .nav-socials a:hover svg {
+            fill: var(--brand-red);
+            transform: translateY(-2px);
         }
 
         /* --- Hero Section --- */
         .hero {
-            padding: 150px 5% 100px;
-            background: linear-gradient(135deg, var(--soft-grey) 0%, var(--paper-white) 100%);
+            padding: 180px 5% 120px;
+            background: radial-gradient(circle at center top, rgba(255, 255, 255, 1) 0%, rgba(248, 249, 250, 0.6) 100%);
             text-align: center;
             position: relative;
         }
 
-        .hero::after {
+        .hero::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 118, 117, 0.08) 0%, rgba(255,255,255,0) 70%);
-            top: 10%;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--brand-red));
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 0;
+            opacity: 0.3;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 6px 16px;
-            background: rgba(255, 118, 117, 0.1);
+            padding: 6px 20px;
+            border: 1px solid rgba(255, 118, 117, 0.3);
             color: var(--brand-red-dark);
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 strong {
+            font-weight: 600;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 30px;
-            max-width: 600px;
+            font-size: 1.15rem;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 300;
         }
 
         /* --- Story & Vision Section --- */
         .story-section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             background-color: var(--paper-white);
             text-align: center;
+            position: relative;
         }
 
         .story-content {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
-        .story-content h2 {
-            font-size: 2rem;
+        .section-subtitle {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--brand-red);
+            font-weight: 600;
             margin-bottom: 15px;
+            display: block;
         }
 
-        .story-content h3 {
-            color: var(--brand-red);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
+        .story-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            letter-spacing: -0.5px;
         }
 
         .story-content p {
-            font-size: 1.05rem;
-            color: #444;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            margin-bottom: 25px;
             text-align: justify;
             text-justify: inter-word;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: var(--brand-red);
+            margin: 40px auto;
+            opacity: 0.5;
         }
 
         /* --- Services / About --- */
         .section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .section-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .section-header .divider {
-            width: 50px;
-            height: 3px;
-            background: var(--brand-red);
-            margin: 0 auto;
+            font-size: 2.4rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .service-card {
             background: var(--paper-white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-grey);
+            padding: 50px 40px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.04);
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--brand-red);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border-color: transparent;
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
         }
 
         .service-icon {
-            font-size: 2rem;
-            color: var(--brand-red);
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
         }
 
         .service-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .service-card p {
             font-size: 0.95rem;
-            color: #666;
+            color: #777;
+            font-weight: 300;
         }
 
         /* --- Map Section --- */
         .map-section {
             background: var(--soft-grey);
-            padding: 80px 0;
+            padding: 100px 0;
+            border-top: 1px solid var(--border-grey);
+            border-bottom: 1px solid var(--border-grey);
         }
 
         .map-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 5%;
             text-align: center;
         }
 
         #singapore-map {
-            height: 500px;
+            height: 550px;
             width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            border: 2px solid var(--paper-white);
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
             z-index: 1;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            background: var(--paper-white);
         }
 
         .map-caption {
             font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
+            color: #888;
+            margin-bottom: 25px;
+            font-style: italic;
         }
 
         .map-cta {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
             color: var(--ink-black);
             background: var(--paper-white);
-            padding: 10px 24px;
+            padding: 14px 32px;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             border: 1px solid var(--border-grey);
         }
 
         .map-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             border-color: var(--brand-red);
+            color: var(--brand-red-dark);
         }
 
         .map-cta svg {
             width: 20px;
             height: 20px;
-            fill: var(--brand-red);
+            fill: currentColor;
         }
 
         /* --- Partners Section --- */
         .partners-section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             text-align: center;
             background: var(--paper-white);
         }
@@ -304,107 +404,147 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 80px;
-            margin-top: 40px;
+            gap: 100px;
+            margin-top: 50px;
         }
 
         .partner-logo-img {
-            max-height: 80px;
+            max-height: 75px;
             width: auto;
-            filter: grayscale(100%);
-            opacity: 0.6;
-            transition: all 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .partner-logo-img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
+            transform: scale(1.08);
         }
 
-        /* --- Footer --- */
+        /* --- Premium Footer --- */
         footer {
             background: var(--ink-black);
-            color: #aaa;
-            padding: 80px 5% 40px;
-            text-align: center;
+            color: rgba(255,255,255,0.7);
+            padding: 80px 5% 30px;
+            font-weight: 300;
         }
 
-        .footer-content {
+        .footer-grid {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
-        .footer-info {
-            max-width: 500px;
-        }
-
-        .footer-info p {
-            font-size: 0.9rem;
-            margin: 8px 0;
-        }
-
-        .footer-contact {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .footer-contact .inquiry-text {
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: -5px;
-        }
-
-        .footer-contact a {
-            color: var(--brand-red);
-            text-decoration: none;
+        .footer-col h4 {
+            color: var(--paper-white);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
             font-weight: 500;
+        }
+
+        .footer-col p {
             font-size: 0.95rem;
-            transition: opacity 0.3s;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-jp-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 15px;
+        }
+
+        .footer-contact-list {
+            list-style: none;
+        }
+
+        .footer-contact-list li {
+            margin-bottom: 15px;
+        }
+
+        .footer-contact-list a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
-        .footer-contact a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
+        .footer-contact-list a:hover {
+            color: var(--brand-red);
         }
 
-        .email-icon {
+        .footer-contact-list svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
         }
 
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--paper-white);
+            transition: all 0.3s ease;
+        }
+
+        .footer-socials a svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer-socials a:hover {
+            border-color: var(--brand-red);
+            background: var(--brand-red);
+            transform: translateY(-3px);
+        }
+
         .copyright {
-            font-size: 0.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 30px;
-            color: #666;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
         }
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            nav { justify-content: center; }
-            .hero h1 { font-size: 2.2rem; }
-            #singapore-map { height: 350px; }
-            .partner-flex { gap: 40px; }
-            .partner-logo-img { max-height: 60px; }
+            .nav-content { display: none; }
+            nav { padding: 15px 5%; justify-content: center; }
+            .hero { padding: 150px 5% 80px; }
+            .hero h1 { font-size: 2.4rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .footer-contact-list a { justify-content: center; }
+            .footer-socials { justify-content: center; }
+            .partner-flex { gap: 50px; }
+            #singapore-map { height: 400px; }
         }
     </style>
 </head>
@@ -415,19 +555,33 @@
         <a href="#" class="logo-container">
             <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img">
         </a>
-        <div class="nav-links">
-            <a href="#about">Our Story</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#locations">Our Footprint</a>
-            <a href="#partners">Partners</a>
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="#about">Our Story</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#locations">Footprint</a>
+                <a href="#partners">Partners</a>
+            </div>
+            <!-- Header Socials -->
+            <div class="nav-socials">
+                <a href="https://wa.me/6598615103" target="_blank" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/nyanmeshi_japan" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/nyanmeshijp" target="_blank" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
-            <span class="hero-badge">Singapore's Premier Japanese F&B Pop-ups</span>
-            <h1>Bringing Authentic Japanese Flavors to Every Corner.</h1>
+            <span class="hero-badge">Singapore's Premier Japanese Pop-ups</span>
+            <h1>Bringing <strong>Authentic Japanese</strong> Flavors to Every Corner.</h1>
             <p>From prestigious department stores to lively local Pasar Malams, Nyanmeshi JAPAN coordinates unforgettable culinary experiences across the island.</p>
         </div>
     </header>
@@ -435,8 +589,8 @@
     <!-- Our Story & Vision -->
     <section id="about" class="story-section">
         <div class="story-content">
-            <h2>Our Story & Vision</h2>
-            <h3>Japanese Authenticity, Singaporean Foundation.</h3>
+            <span class="section-subtitle">Our Heritage</span>
+            <h2>Japanese Authenticity,<br>Singaporean Foundation.</h2>
             <p>
                 Nyanmeshi JAPAN was founded with a mission to bring the vibrant, authentic atmosphere of a Japanese <em>Matsuri</em> (festival) to the doorsteps of local communities. 
             </p>
@@ -446,13 +600,13 @@
             <p>
                 Our vision is to be the most reliable bridge between Japanese culinary traditions and the local community, providing our partners with seamless, high-performance F&B solutions that shoppers love.
             </p>
-            <div class="divider" style="width: 50px; height: 3px; background: var(--brand-red); margin: 30px auto 0;"></div>
         </div>
     </section>
 
     <!-- Services / Expertise grid -->
     <section id="expertise" class="section">
         <div class="section-header">
+            <span class="section-subtitle">What We Do</span>
             <h2>Our Expertise</h2>
             <div class="divider"></div>
         </div>
@@ -475,13 +629,14 @@
         </div>
     </section>
 
-    <!-- Interactive Map Section (Reverted to specific locations version) -->
+    <!-- Interactive Map Section -->
     <section id="locations" class="map-section">
         <div class="map-container">
             <div class="section-header">
+                <span class="section-subtitle">Where To Find Us</span>
                 <h2>Our Island-wide Footprint</h2>
                 <div class="divider"></div>
-                <p style="margin-top: 15px; color: #666;">Catch us at premium malls and local heartlands. Here is where we've set up shop.</p>
+                <p style="margin-top: 15px; color: #777; font-weight: 300;">Catch us at premium malls and local heartlands. Here is where we've set up shop.</p>
             </div>
             
             <div id="singapore-map"></div>
@@ -498,32 +653,57 @@
     <!-- Partners Section -->
     <section id="partners" class="partners-section">
         <div class="section-header">
+            <span class="section-subtitle">Collaborations</span>
             <h2>Official Partners & Sponsors</h2>
             <div class="divider"></div>
         </div>
         <div class="partner-flex">
+            <!-- Logos display in full color now -->
             <img src="otafuku.webp" alt="Otafuku Logo" class="partner-logo-img">
             <img src="Isetan.png" alt="Isetan Logo" class="partner-logo-img">
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Premium Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <p><strong>Nyanmeshi JAPAN PTE. LTD.</strong></p>
-                <p>Singapore based Japanese F&B Event Specialists.</p>
-                <p style="font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; margin-top: 10px; color: #777;">催事・イベント企画、シンガポール全土での日本食ブース出店。</p>
+        <div class="footer-grid">
+            <!-- Brand Column -->
+            <div class="footer-col">
+                <h4>Nyanmeshi JAPAN PTE. LTD.</h4>
+                <p>Singapore based Japanese F&B Event Specialists, bridging authentic culinary traditions with local communities.</p>
+                <p class="footer-jp-text">催事・イベント企画、シンガポール全土での日本食ブース出店。</p>
             </div>
 
-            <div class="footer-contact">
-                <span class="inquiry-text">For business inquiries & event bookings:</span>
-                <a href="mailto:emi.maekawa@nyanmeshi.com">
-                    <svg class="email-icon" viewBox="0 0 24 24">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                    emi.maekawa@nyanmeshi.com
-                </a>
+            <!-- Contact Column -->
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <a href="mailto:emi.maekawa@nyanmeshi.com">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            emi.maekawa@nyanmeshi.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/6598615103" target="_blank">
+                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                            +65 98615103
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Column -->
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/nyanmeshi_japan" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/nyanmeshijp" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="copyright">
@@ -547,7 +727,7 @@
 
             var brandIcon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<div style='background-color:#ff7675; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);'></div>",
+                html: "<div style='background-color:#d63031; width:14px; height:14px; border-radius:50%; border:3px solid white; box-shadow: 0 4px 10px rgba(214, 48, 49, 0.4);'></div>",
                 iconSize: [20, 20],
                 iconAnchor: [10, 10]
             });
@@ -574,7 +754,7 @@
             ];
 
             locations.forEach(function(loc) {
-                var popupContent = `<strong>${loc.name}</strong><br><span style="color:#666; font-size:0.85rem;">Event Venue</span>`;
+                var popupContent = `<div style="text-align:center;"><strong>${loc.name}</strong><br><span style="color:#777; font-size:0.8rem; margin-top:4px; display:inline-block;">Event Venue</span></div>`;
                 L.marker([loc.lat, loc.lng], {icon: brandIcon})
                  .bindPopup(popupContent)
                  .addTo(map);
