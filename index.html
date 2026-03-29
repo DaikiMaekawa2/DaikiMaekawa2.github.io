@@ -3,213 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyanmeshi JAPAN | Coming Soon</title>
-    <!-- Modern Japanese & Latin Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <title>Nyanmeshi JAPAN PTE. LTD. | Authentic Japanese Culinary Events</title>
+    
+    <!-- Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
     <style>
         :root {
-            --brand-red: #ff7675; /* Soft red from the logo's sun */
-            --ink-black: #1a1a1a; /* Sumi ink black */
+            --brand-red: #ff7675;
+            --brand-red-dark: #e66767;
+            --ink-black: #1a1a1a;
             --paper-white: #ffffff;
             --soft-grey: #f8f9fa;
+            --border-grey: #eaeaea;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--paper-white);
             color: var(--ink-black);
             font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Top Left Header */
-        header {
-            padding: 40px 60px;
-            animation: slideDown 0.8s ease-out;
-        }
-
-        .logo-container {
-            display: inline-block;
-            position: relative;
-        }
-
-        .logo-img {
-            max-width: 180px;
-            height: auto;
-            display: block;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            /* Fallback style if image is missing */
-            min-height: 100px;
-            background: #eee;
-            border-radius: 8px;
-        }
-        
-        /* Using your uploaded image reference */
-        .logo-img[src="nyanmeshi_logo.jpg"] {
-            background: transparent;
-        }
-
-        .logo-container:hover .logo-img {
-            transform: rotate(-3deg) scale(1.1);
-        }
-
-        /* Central Content Area */
-        main {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            position: relative;
-        }
-
-        /* Subtle background wash effect */
-        main::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 118, 117, 0.05) 0%, rgba(255,255,255,0) 70%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 700px;
-            animation: fadeInScale 1.2s ease-out;
-        }
-
-        .status-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--brand-red);
-            margin-bottom: 24px;
-            position: relative;
-            padding-bottom: 8px;
-        }
-
-        .status-tag::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 25%;
-            width: 50%;
-            height: 1px;
-            background-color: var(--brand-red);
-            opacity: 0.5;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .entity-name {
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: #7f8c8d;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        .description {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #444;
-            font-weight: 300;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .japanese-text {
-            font-family: 'Noto Sans JP', sans-serif;
-            display: block;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #999;
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px 60px;
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 5%; /* Reduced from 15px */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.7rem;
-            color: #bdc3c7;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .footer-line {
-            height: 1px;
-            flex-grow: 0.1;
-            background: #eee;
-            margin: 0 20px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--ink-black);
+        }
+
+        .logo-img {
+            max-width: 90px; /* Reduced from 120px */
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink-black);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-red);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 150px 5% 100px;
+            background: linear-gradient(135deg, var(--soft-grey) 0%, var(--paper-white) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 118, 117, 0.08) 0%, rgba(255,255,255,0) 70%);
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255, 118, 117, 0.1);
+            color: var(--brand-red-dark);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Services / About --- */
+        .section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .section-header .divider {
+            width: 50px;
+            height: 3px;
+            background: var(--brand-red);
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--paper-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-grey);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--brand-red);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* --- Map Section --- */
+        .map-section {
+            background: var(--soft-grey);
+            padding: 80px 0;
+        }
+
+        .map-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        #singapore-map {
+            height: 500px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 2px solid var(--paper-white);
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        .map-caption {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .map-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ink-black);
+            background: var(--paper-white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-grey);
+        }
+
+        .map-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-color: var(--brand-red);
+        }
+
+        .map-cta svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-red);
+        }
+
+        /* --- Partners Section --- */
+        .partners-section {
+            padding: 80px 5%;
+            text-align: center;
+            background: var(--paper-white);
+        }
+
+        .partner-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 80px;
+            margin-top: 40px;
+        }
+
+        .partner-logo-img {
+            max-height: 80px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo-img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--ink-black);
+            color: #aaa;
+            padding: 80px 5% 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info {
+            max-width: 500px;
+        }
+
+        .footer-info p {
+            font-size: 0.9rem;
+            margin: 8px 0;
+        }
+
+        .footer-contact {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-contact .inquiry-text {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: -5px;
+        }
+
+        .footer-contact a {
+            color: var(--brand-red);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+
+        .footer-contact a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            color: #666;
         }
 
         /* Animations */
-        @keyframes slideDown {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInScale {
-            from { transform: scale(0.98); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 768px) {
-            header { padding: 30px; text-align: center; }
-            footer { padding: 30px; flex-direction: column; gap: 10px; text-align: center; }
-            .footer-line { display: none; }
-            h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            nav { justify-content: center; }
+            .hero h1 { font-size: 2.2rem; }
+            #singapore-map { height: 350px; }
+            .partner-flex { gap: 40px; }
+            .partner-logo-img { max-height: 60px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <!-- Ensure nyanmeshi_logo.jpg is in your GitHub repo root -->
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo-container">
             <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="#about">About Us</a>
+            <a href="#locations">Our Footprint</a>
+            <a href="#partners">Partners</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Singapore's Premier Japanese F&B Pop-ups</span>
+            <h1>Bringing Authentic Japanese Flavors to Every Corner.</h1>
+            <p>From prestigious department stores to lively local Pasar Malams, Nyanmeshi JAPAN coordinates unforgettable culinary experiences across the island.</p>
         </div>
     </header>
 
-    <main>
-        <div class="hero-content">
-            <span class="status-tag">Under Construction</span>
-            <h1>Something delicious is brewing.</h1>
-            <div class="entity-name">Nyanmeshi JAPAN PTE. LTD.</div>
-            
-            <p class="description">
-                Bringing authentic Japanese culinary experiences and artisanal flavors to Singapore.
-                <span class="japanese-text">本物の日本の味をシンガポールへ。まもなく公開。</span>
-            </p>
+    <!-- Services / About -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>Our Expertise</h2>
+            <div class="divider"></div>
         </div>
-    </main>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎌</div>
+                <h3>F&B Event Coordination</h3>
+                <p>Comprehensive planning and execution for Japanese food festivals, ensuring authentic cultural and culinary representation.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎪</div>
+                <h3>Temporary Boothing</h3>
+                <p>Agile and professional mobile kitchen setups tailored for short-term fairs, pop-ups, and outdoor community events.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🍜</div>
+                <h3>Pasar Malam Exclusives</h3>
+                <p>Bridging traditional Japanese street food with Singapore's vibrant night market culture, moving across heartland locations.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- Interactive Map Section -->
+    <section id="locations" class="map-section">
+        <div class="map-container">
+            <div class="section-header">
+                <h2>Our Island-wide Footprint</h2>
+                <div class="divider"></div>
+                <p style="margin-top: 15px; color: #666;">Catch us at premium malls and local heartlands. Here is where we've set up shop.</p>
+            </div>
+            
+            <div id="singapore-map"></div>
+            
+            <p class="map-caption">📍 Red markers indicate past and active booth locations. Check our social media for our next stop!</p>
+            
+            <a href="https://www.instagram.com/nyanmeshi_japan/" target="_blank" class="map-cta">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Follow @nyanmeshi_japan on Instagram
+            </a>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="partners-section">
+        <div class="section-header">
+            <h2>Trusted By The Best</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="partner-flex">
+            <img src="otafuku.webp" alt="Otafuku Logo" class="partner-logo-img">
+            <img src="Isetan.png" alt="Isetan Logo" class="partner-logo-img">
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div>&copy; 2026 Nyanmeshi JAPAN PTE. LTD.</div>
-        <div class="footer-line"></div>
-        <div>Singapore</div>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p><strong>Nyanmeshi JAPAN PTE. LTD.</strong></p>
+                <p>Singapore based Japanese F&B Event Specialists.</p>
+                <p style="font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; margin-top: 10px; color: #777;">催事・イベント企画、シンガポール全土での日本食ブース出店。</p>
+            </div>
+
+            <div class="footer-contact">
+                <span class="inquiry-text">For business inquiries & event bookings:</span>
+                <a href="mailto:emi.maekawa@nyanmeshi.com">emi.maekawa@nyanmeshi.com</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Nyanmeshi JAPAN PTE. LTD. All Rights Reserved.
+        </div>
     </footer>
 
+    <!-- Leaflet JS for Interactive Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var map = L.map('singapore-map', {
+                scrollWheelZoom: false 
+            }).setView([1.3521, 103.8198], 11);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            var brandIcon = L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div style='background-color:#ff7675; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);'></div>",
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+
+            var locations = [
+                { name: "Catholic Junior College", lat: 1.3303, lng: 103.8341 },
+                { name: "Boon Lay Shopping Center", lat: 1.3458, lng: 103.7126 },
+                { name: "Whampoa Drive Market & Food Centre", lat: 1.3232, lng: 103.8546 },
+                { name: "Panasonic Singapore", lat: 1.3174, lng: 103.9443 },
+                { name: "Causeway Point", lat: 1.4361, lng: 103.7859 },
+                { name: "Marine Terrace MRT", lat: 1.3056, lng: 103.9135 },
+                { name: "Keat Hong Plaza (Chua Chu Kang Ave 4)", lat: 1.3837, lng: 103.7466 },
+                { name: "Toa Payoh Library (@600 Toa Payoh)", lat: 1.3323, lng: 103.8488 },
+                { name: "Blk 290a Compassvale Crescent", lat: 1.3965, lng: 103.8992 },
+                { name: "Mei De Coffeeshop", lat: 1.3500, lng: 103.8500 }, 
+                { name: "Yuhua Market & Hawker Centre", lat: 1.3429, lng: 103.7371 },
+                { name: "Changi Japanese Primary School", lat: 1.3216, lng: 103.9616 },
+                { name: "Compass One", lat: 1.3920, lng: 103.8953 },
+                { name: "Gardens By the Bay", lat: 1.2816, lng: 103.8636 },
+                { name: "Blk 205 Bedok North Street 1", lat: 1.3250, lng: 103.9300 },
+                { name: "Boon Lay Community Centre", lat: 1.3392, lng: 103.7107 },
+                { name: "Isetan Scotts", lat: 1.3060, lng: 103.8317 },
+                { name: "Takashimaya Shopping Centre (Ngee Ann City)", lat: 1.3023, lng: 103.8349 }
+            ];
+
+            locations.forEach(function(loc) {
+                var popupContent = `<strong>${loc.name}</strong><br><span style="color:#666; font-size:0.85rem;">Event Venue</span>`;
+                L.marker([loc.lat, loc.lng], {icon: brandIcon})
+                 .bindPopup(popupContent)
+                 .addTo(map);
+            });
+        });
+    </script>
 </body>
 </html>
