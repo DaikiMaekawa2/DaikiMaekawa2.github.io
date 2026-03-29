@@ -43,7 +43,7 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 10px 5%; /* Reduced from 15px */
+            padding: 10px 5%; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,7 +59,7 @@
         }
 
         .logo-img {
-            max-width: 90px; /* Reduced from 120px */
+            max-width: 90px; 
             height: auto;
             transition: transform 0.3s ease;
         }
@@ -139,6 +139,39 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* --- Story & Vision Section --- */
+        .story-section {
+            padding: 80px 5%;
+            background-color: var(--paper-white);
+            text-align: center;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .story-content h3 {
+            color: var(--brand-red);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .story-content p {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         /* --- Services / About --- */
@@ -335,11 +368,20 @@
             font-weight: 500;
             font-size: 0.95rem;
             transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .footer-contact a:hover {
             opacity: 0.8;
             text-decoration: underline;
+        }
+
+        .email-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
 
         .copyright {
@@ -374,7 +416,8 @@
             <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img">
         </a>
         <div class="nav-links">
-            <a href="#about">About Us</a>
+            <a href="#about">Our Story</a>
+            <a href="#expertise">Expertise</a>
             <a href="#locations">Our Footprint</a>
             <a href="#partners">Partners</a>
         </div>
@@ -389,8 +432,26 @@
         </div>
     </header>
 
-    <!-- Services / About -->
-    <section id="about" class="section">
+    <!-- Our Story & Vision -->
+    <section id="about" class="story-section">
+        <div class="story-content">
+            <h2>Our Story & Vision</h2>
+            <h3>Japanese Authenticity, Singaporean Foundation.</h3>
+            <p>
+                Nyanmeshi JAPAN was founded with a mission to bring the vibrant, authentic atmosphere of a Japanese <em>Matsuri</em> (festival) to the doorsteps of local communities. 
+            </p>
+            <p>
+                As a Japanese-managed firm based in Singapore, we understand that trust is built through consistency and quality. We don't just set up food booths; we create cultural touchpoints. By maintaining the rigorous operational standards expected in Japan, we ensure that every event—from high-end department store fairs to bustling heartland markets—is executed with precision and <em>Omotenashi</em> (hospitality).
+            </p>
+            <p>
+                Our vision is to be the most reliable bridge between Japanese culinary traditions and the local community, providing our partners with seamless, high-performance F&B solutions that shoppers love.
+            </p>
+            <div class="divider" style="width: 50px; height: 3px; background: var(--brand-red); margin: 30px auto 0;"></div>
+        </div>
+    </section>
+
+    <!-- Services / Expertise grid -->
+    <section id="expertise" class="section">
         <div class="section-header">
             <h2>Our Expertise</h2>
             <div class="divider"></div>
@@ -414,7 +475,7 @@
         </div>
     </section>
 
-    <!-- Interactive Map Section -->
+    <!-- Interactive Map Section (Reverted to specific locations version) -->
     <section id="locations" class="map-section">
         <div class="map-container">
             <div class="section-header">
@@ -437,7 +498,7 @@
     <!-- Partners Section -->
     <section id="partners" class="partners-section">
         <div class="section-header">
-            <h2>Trusted By The Best</h2>
+            <h2>Official Partners & Sponsors</h2>
             <div class="divider"></div>
         </div>
         <div class="partner-flex">
@@ -457,7 +518,12 @@
 
             <div class="footer-contact">
                 <span class="inquiry-text">For business inquiries & event bookings:</span>
-                <a href="mailto:emi.maekawa@nyanmeshi.com">emi.maekawa@nyanmeshi.com</a>
+                <a href="mailto:emi.maekawa@nyanmeshi.com">
+                    <svg class="email-icon" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    emi.maekawa@nyanmeshi.com
+                </a>
             </div>
         </div>
         <div class="copyright">
