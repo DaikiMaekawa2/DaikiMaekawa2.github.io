@@ -143,7 +143,7 @@
 
         /* --- Hero Section --- */
         .hero {
-            padding: 180px 5% 120px;
+            padding: 180px 5% 80px;
             background: radial-gradient(circle at center top, rgba(255, 255, 255, 1) 0%, rgba(248, 249, 250, 0.6) 100%);
             text-align: center;
             position: relative;
@@ -205,9 +205,41 @@
             font-weight: 300;
         }
 
+        /* --- Trust Bar (New Enhancement) --- */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            padding: 25px 0;
+            border-top: 1px solid var(--border-grey);
+            border-bottom: 1px solid var(--border-grey);
+            animation: fadeIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .trust-item svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--brand-red);
+        }
+
         /* --- Story & Vision Section --- */
         .story-section {
-            padding: 100px 5%;
+            padding: 60px 5% 100px;
             background-color: var(--paper-white);
             text-align: center;
             position: relative;
@@ -336,19 +368,21 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .service-card {
             background: var(--paper-white);
-            padding: 50px 40px;
+            padding: 50px 30px;
             border-radius: 4px;
             border: 1px solid rgba(0,0,0,0.04);
             text-align: center;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card::after {
@@ -476,10 +510,11 @@
             max-height: 75px;
             width: auto;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* Removed grayscale per user request */
         }
 
         .partner-logo-img:hover {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         /* --- Premium Footer --- */
@@ -602,8 +637,9 @@
         @media (max-width: 768px) {
             .nav-content { display: none; }
             nav { padding: 15px 5%; justify-content: center; }
-            .hero { padding: 150px 5% 80px; }
+            .hero { padding: 150px 5% 40px; }
             .hero h1 { font-size: 2.4rem; }
+            .trust-bar { flex-direction: column; gap: 20px; padding: 25px 5%; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .footer-contact-list a { justify-content: center; }
             .footer-socials { justify-content: center; }
@@ -615,7 +651,6 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <a href="#" class="logo-container">
             <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img">
@@ -627,7 +662,6 @@
                 <a href="#expertise">Expertise</a>
                 <a href="#locations">Footprint</a>
             </div>
-            <!-- Header Socials -->
             <div class="nav-socials">
                 <a href="https://wa.me/6598615103" target="_blank" aria-label="WhatsApp">
                     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
@@ -642,16 +676,30 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
             <span class="hero-badge">Singapore's Premier Japanese Pop-ups</span>
             <h1>Bringing <strong>Authentic Japanese</strong> Flavors to Every Corner.</h1>
-            <p>From prestigious department stores to lively local Pasar Malams, Nyanmeshi JAPAN is your specialist partner for coordinating unforgettable culinary experiences and sourcing premium Japanese tenants across the island.</p>
+            <p>From prestigious department stores to high-traffic bank roadshows and lively local Pasar Malams, Nyanmeshi JAPAN is your specialist partner for coordinating unforgettable culinary experiences.</p>
         </div>
     </header>
 
-    <!-- Our Story & Vision -->
+    <!-- Trust Bar (New Corporate Enhancement) -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            SFA Compliant Operations
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c-.96 1.66-2.49 2.93-4.33 3.56C5.35 8.45 5.81 7.25 6.13 6zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+            Bilingual Tenant Liaison
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            Direct Japan Network
+        </div>
+    </div>
+
     <section id="about" class="story-section">
         <div class="story-content">
             <span class="section-subtitle">Our Heritage</span>
@@ -660,7 +708,7 @@
                 Nyanmeshi JAPAN was founded with a mission to bring the vibrant, authentic atmosphere of a Japanese <em>Matsuri</em> (festival) to the doorsteps of local communities. 
             </p>
             <p>
-                As a Japanese-managed firm based in Singapore, our core team possesses extensive experience in curating authentic Japanese content. We don't just set up food booths; we act as a specialized content engine. By sourcing high-quality tenants directly from Japan, vetting authentic regional products, and maintaining rigorous operational standards, we ensure that every event is executed with precision and <em>Omotenashi</em> (hospitality).
+                As a Japanese-managed firm based in Singapore, our core team acts as a specialized content engine. By sourcing high-quality tenants directly from Japan, vetting authentic regional products, and maintaining rigorous operational standards, we ensure that every event is executed with precision and <em>Omotenashi</em> (hospitality).
             </p>
             <p>
                 Our vision is to be the most reliable bridge between Japanese culinary traditions and event organizers, providing our partners with seamless, high-performance F&B solutions that shoppers love.
@@ -668,7 +716,6 @@
         </div>
     </section>
 
-    <!-- Portfolio Gallery Section (Integrated) -->
     <section id="projects" class="gallery-section">
         <div class="section-header">
             <span class="section-subtitle">Portfolio</span>
@@ -677,9 +724,16 @@
         </div>
         <div class="gallery-grid">
             <div class="gallery-item">
+                <img src="bank_roadshow.jpg" alt="Bank Roadshow Activation">
+                <div class="gallery-overlay">
+                    <h4>OCBC & Maybank Roadshows</h4>
+                    <p>Agile one-day activations to drive customer engagement during promotions.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
                 <img src="Isetan_booth.jpeg" alt="Isetan Booth Activation">
                 <div class="gallery-overlay">
-                    <h4>Isetan Scotts & Westgate</h4>
+                    <h4>Isetan Scotts</h4>
                     <p>Strategic tenant management for premium retail environments.</p>
                 </div>
             </div>
@@ -711,17 +765,9 @@
                     <p>Sourcing high-performing live stations and unique regional concepts.</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <img src="sample_japanese_product_we_can_source_(amazake).jpeg" alt="Retail Sourcing">
-                <div class="gallery-overlay">
-                    <h4>Strategic Sourcing</h4>
-                    <p>Wellness-focused product sourcing like Amazake for retail pop-ups.</p>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Services / Expertise grid (UPDATED TO REFLECT EVENT COORDINATION & SOURCING) -->
     <section id="expertise" class="section">
         <div class="section-header">
             <span class="section-subtitle">What We Do</span>
@@ -730,36 +776,35 @@
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">🏮</div>
-                <h3>Event Operations & Coordination</h3>
-                <p>Comprehensive planning and agile mobile kitchen setups for Japanese food festivals, bridging the gap between local event organizers and authentic Japanese content.</p>
+                <div class="service-icon">🎌</div>
+                <h3>F&B Event Coordination</h3>
+                <p>Comprehensive planning and execution for Japanese food festivals, ensuring authentic cultural and culinary representation.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🤝</div>
-                <h3>Tenant Sourcing & Liaison</h3>
-                <p>Leveraging our extensive network to curate high-performing Japanese live stations, handling bilingual vendor coordination and strict SFA compliance.</p>
+                <div class="service-icon">🎪</div>
+                <h3>Temporary Boothing & Sourcing</h3>
+                <p>Agile mobile kitchen setups and direct access to regional Japanese tenants and authentic products, serving as your specialized content engine.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🍶</div>
-                <h3>Authentic Product Curation</h3>
-                <p>Direct access to regional Japanese cooperatives, acting as a dedicated sourcing agent for unique, premium retail products and wellness-focused specialties.</p>
+                <div class="service-icon">🍜</div>
+                <h3>Pasar Malam Exclusives</h3>
+                <p>Bridging traditional Japanese street food with Singapore's vibrant night market culture, moving across heartland locations.</p>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Map Section -->
     <section id="locations" class="map-section">
         <div class="map-container">
             <div class="section-header">
                 <span class="section-subtitle">Where To Find Us</span>
                 <h2>Our Island-wide Footprint</h2>
                 <div class="divider"></div>
-                <p style="margin-top: 15px; color: #777; font-weight: 300;">Catch us at premium malls and local heartlands. Here is where we've set up shop.</p>
+                <p style="margin-top: 15px; color: #777; font-weight: 300;">From corporate roadshows to premium malls and heartlands. Here is where we've been active.</p>
             </div>
             
             <div id="singapore-map"></div>
             
-            <p class="map-caption">📍 Red markers indicate past and active booth locations. Check our social media for our next stop!</p>
+            <p class="map-caption">📍 Red markers indicate past and active booth locations. Markers include bank roadshows and food festivals.</p>
             
             <a href="https://www.instagram.com/nyanmeshi_japan/" target="_blank" class="map-cta">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -768,7 +813,6 @@
         </div>
     </section>
 
-    <!-- Partners Section -->
     <section id="partners" class="partners-section">
         <div class="section-header">
             <span class="section-subtitle">Collaborations</span>
@@ -776,23 +820,20 @@
             <div class="divider"></div>
         </div>
         <div class="partner-flex">
-            <!-- Logos in color -->
+            <!-- Full color logos as requested -->
             <img src="otafuku.webp" alt="Otafuku Logo" class="partner-logo-img">
             <img src="Isetan.png" alt="Isetan Logo" class="partner-logo-img">
         </div>
     </section>
 
-    <!-- Premium Footer -->
     <footer>
         <div class="footer-grid">
-            <!-- Brand Column -->
             <div class="footer-col">
                 <h4>Nyanmeshi JAPAN PTE. LTD.</h4>
                 <p>Singapore based Japanese F&B Event Specialists, bridging authentic culinary traditions with local communities.</p>
                 <p class="footer-jp-text">催事・イベント企画、シンガポール全土での日本食ブース出店。</p>
             </div>
 
-            <!-- Contact Column -->
             <div class="footer-col">
                 <h4>Contact Us</h4>
                 <ul class="footer-contact-list">
@@ -811,7 +852,6 @@
                 </ul>
             </div>
 
-            <!-- Social Column -->
             <div class="footer-col">
                 <h4>Follow Us</h4>
                 <div class="footer-socials">
@@ -829,7 +869,6 @@
         </div>
     </footer>
 
-    <!-- Leaflet JS for Interactive Map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -851,28 +890,37 @@
             });
 
             var locations = [
-                { name: "Catholic Junior College", lat: 1.3303, lng: 103.8341 },
-                { name: "Boon Lay Shopping Center", lat: 1.3458, lng: 103.7126 },
-                { name: "Whampoa Drive Market & Food Centre", lat: 1.3232, lng: 103.8546 },
-                { name: "Panasonic Singapore", lat: 1.3174, lng: 103.9443 },
-                { name: "Causeway Point", lat: 1.4361, lng: 103.7859 },
-                { name: "Marine Terrace MRT", lat: 1.3056, lng: 103.9135 },
-                { name: "Keat Hong Plaza (Chua Chu Kang Ave 4)", lat: 1.3837, lng: 103.7466 },
-                { name: "Toa Payoh Library (@600 Toa Payoh)", lat: 1.3323, lng: 103.8488 },
-                { name: "Blk 290a Compassvale Crescent", lat: 1.3965, lng: 103.8992 },
-                { name: "Mei De Coffeeshop", lat: 1.3500, lng: 103.8500 }, 
-                { name: "Yuhua Market & Hawker Centre", lat: 1.3429, lng: 103.7371 },
-                { name: "Changi Japanese Primary School", lat: 1.3216, lng: 103.9616 },
-                { name: "Compass One", lat: 1.3920, lng: 103.8953 },
-                { name: "Gardens By the Bay", lat: 1.2816, lng: 103.8636 },
-                { name: "Blk 205 Bedok North Street 1", lat: 1.3250, lng: 103.9300 },
-                { name: "Boon Lay Community Centre", lat: 1.3392, lng: 103.7107 },
-                { name: "Isetan Scotts", lat: 1.3060, lng: 103.8317 },
-                { name: "Takashimaya Shopping Centre (Ngee Ann City)", lat: 1.3023, lng: 103.8349 }
+                // Original Locations (18 total)
+                { name: "Catholic Junior College", lat: 1.3303, lng: 103.8341, type: "Event Venue" },
+                { name: "Boon Lay Shopping Center", lat: 1.3458, lng: 103.7126, type: "Event Venue" },
+                { name: "Whampoa Drive Market & Food Centre", lat: 1.3232, lng: 103.8546, type: "Event Venue" },
+                { name: "Panasonic Singapore", lat: 1.3174, lng: 103.9443, type: "Event Venue" },
+                { name: "Causeway Point", lat: 1.4361, lng: 103.7859, type: "Event Venue" },
+                { name: "Marine Terrace MRT", lat: 1.3056, lng: 103.9135, type: "Event Venue" },
+                { name: "Keat Hong Plaza (Chua Chu Kang Ave 4)", lat: 1.3837, lng: 103.7466, type: "Event Venue" },
+                { name: "Toa Payoh Library (@600 Toa Payoh)", lat: 1.3323, lng: 103.8488, type: "Event Venue" },
+                { name: "Blk 290a Compassvale Crescent", lat: 1.3965, lng: 103.8992, type: "Event Venue" },
+                { name: "Bukit Batok Blk 278", lat: 1.3496, lng: 103.7505, type: "Event Venue" },
+                { name: "Yuhua Market & Hawker Centre", lat: 1.3429, lng: 103.7371, type: "Event Venue" },
+                { name: "Changi Japanese Primary School", lat: 1.3216, lng: 103.9616, type: "Event Venue" },
+                { name: "Compass One", lat: 1.3920, lng: 103.8953, type: "Event Venue" },
+                { name: "Gardens By the Bay", lat: 1.2816, lng: 103.8636, type: "Event Venue" },
+                { name: "Blk 205 Bedok North Street 1", lat: 1.3250, lng: 103.9300, type: "Event Venue" },
+                { name: "Boon Lay Community Centre", lat: 1.3392, lng: 103.7107, type: "Event Venue" },
+                { name: "Isetan Scotts", lat: 1.3060, lng: 103.8317, type: "Event Venue" },
+                { name: "Takashimaya Shopping Centre (Ngee Ann City)", lat: 1.3023, lng: 103.8349, type: "Event Venue" },
+                
+                // Bank Roadshow Locations (6 total)
+                { name: "OCBC Toa Payoh", lat: 1.3320, lng: 103.8485, type: "Bank Roadshow" },
+                { name: "OCBC Tampines Branch", lat: 1.3524, lng: 103.9446, type: "Bank Roadshow" },
+                { name: "OCBC Wisma", lat: 1.3039, lng: 103.8331, type: "Bank Roadshow" },
+                { name: "OCBC Marine Parade Branch", lat: 1.3020, lng: 103.9054, type: "Bank Roadshow" },
+                { name: "Maybank Jurong East Branch", lat: 1.3337, lng: 103.7432, type: "Bank Roadshow" },
+                { name: "Maybank Bedok", lat: 1.3243, lng: 103.9314, type: "Bank Roadshow" }
             ];
 
             locations.forEach(function(loc) {
-                var popupContent = `<div style="text-align:center;"><strong>${loc.name}</strong><br><span style="color:#777; font-size:0.8rem; margin-top:4px; display:inline-block;">Event Venue</span></div>`;
+                var popupContent = `<div style="text-align:center;"><strong>${loc.name}</strong><br><span style="color:#777; font-size:0.8rem; margin-top:4px; display:inline-block;">${loc.type}</span></div>`;
                 L.marker([loc.lat, loc.lng], {icon: brandIcon})
                  .bindPopup(popupContent)
                  .addTo(map);
