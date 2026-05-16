@@ -7,9 +7,30 @@
     <meta name="description" content="Nyanmeshi JAPAN PTE. LTD. — Singapore's specialist for authentic Japanese culinary pop-ups, F&B activations at department stores, bank roadshows, and Pasar Malams island-wide.">
     <meta property="og:title" content="Nyanmeshi JAPAN PTE. LTD. | Authentic Japanese Culinary Events">
     <meta property="og:description" content="Singapore's specialist for authentic Japanese culinary events and F&B activations. SFA compliant. Bilingual. Direct Japan network.">
-    <meta property="og:image" content="nyanmeshi_logo.jpg">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nyanmeshi.com/">
+    <meta property="og:image" content="https://nyanmeshi.com/nyanmeshi_logo.jpg">
     <link rel="icon" type="image/jpeg" href="nyanmeshi_logo.jpg">
+    <link rel="apple-touch-icon" href="nyanmeshi_logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Nyanmeshi JAPAN PTE. LTD.",
+      "url": "https://nyanmeshi.com",
+      "logo": "https://nyanmeshi.com/nyanmeshi_logo.jpg",
+      "description": "Singapore's specialist for authentic Japanese culinary pop-ups, F&B activations at department stores, bank roadshows, and Pasar Malams island-wide.",
+      "email": "emi.maekawa@nyanmeshi.com",
+      "telephone": "+6598615103",
+      "areaServed": "SG",
+      "sameAs": [
+        "https://www.instagram.com/nyanmeshi_japan",
+        "https://www.facebook.com/nyanmeshijp"
+      ]
+    }
+    </script>
     
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -217,9 +238,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 50px;
+            gap: 30px;
             flex-wrap: wrap;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto 60px;
             padding: 25px 0;
             border-top: 1px solid var(--border-grey);
@@ -233,8 +254,8 @@
             gap: 12px;
             color: var(--charcoal);
             font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
 
@@ -277,8 +298,6 @@
             font-size: 1.1rem;
             color: var(--charcoal);
             margin-bottom: 25px;
-            text-align: justify;
-            text-justify: inter-word;
             line-height: 1.8;
             font-weight: 300;
         }
@@ -499,9 +518,11 @@
 
         /* --- Partners Section --- */
         .partners-section {
-            padding: 100px 5%;
+            padding: 70px 5%;
             text-align: center;
-            background: var(--paper-white);
+            background: var(--soft-grey);
+            border-top: 1px solid var(--border-grey);
+            border-bottom: 1px solid var(--border-grey);
         }
 
         .partner-flex {
@@ -627,6 +648,57 @@
             letter-spacing: 0.5px;
         }
 
+        /* --- Nav scroll effect --- */
+        nav.scrolled {
+            padding: 6px 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        /* --- Scroll-to-top button --- */
+        #scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--brand-red-dark);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3);
+        }
+        #scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #scroll-top:hover {
+            background: #b71c1c;
+            box-shadow: 0 8px 20px rgba(214, 48, 49, 0.45);
+            transform: translateY(-3px);
+        }
+
+        /* --- Section reveal animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
@@ -732,7 +804,7 @@
 
     <nav>
         <a href="#" class="logo-container">
-            <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img">
+            <img src="nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img" width="85" height="85">
         </a>
         <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -763,7 +835,7 @@
         <a href="#projects" class="mobile-menu-link">Gallery</a>
         <a href="#expertise" class="mobile-menu-link">Expertise</a>
         <a href="#locations" class="mobile-menu-link">Footprint</a>
-        <a href="#contact" class="mobile-menu-link">Contact</a>
+        <a href="#contact" class="mobile-menu-link">Contact Us</a>
         <div class="mobile-menu-socials">
             <a href="https://wa.me/6598615103" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
             <a href="https://www.instagram.com/nyanmeshi_japan" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -771,6 +843,7 @@
         </div>
     </div>
 
+    <main>
     <header class="hero">
         <div class="hero-content">
             <span class="hero-badge">Singapore's Premier Japanese Pop-ups</span>
@@ -782,19 +855,19 @@
     <div class="trust-bar">
         <div class="trust-item">
             <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            SFA Compliant Operations
+            SFA-Licensed & Compliant
         </div>
         <div class="trust-item">
             <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c-.96 1.66-2.49 2.93-4.33 3.56C5.35 8.45 5.81 7.25 6.13 6zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
-            Bilingual Tenant Liaison
+            Japanese–English Bilingual Team
         </div>
         <div class="trust-item">
-            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            Direct Japan Network
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            25+ Event Locations Island-wide
         </div>
     </div>
 
-    <section id="about" class="story-section">
+    <section id="about" class="story-section reveal">
         <div class="story-content">
             <span class="section-subtitle">Our Heritage</span>
             <h2>Japanese Authenticity,<br>Singaporean Foundation.</h2>
@@ -804,19 +877,19 @@
         </div>
     </section>
 
-    <section id="partners" class="partners-section">
+    <section id="partners" class="partners-section reveal">
         <div class="section-header">
             <span class="section-subtitle">Collaborations</span>
             <h2>Official Partners & Sponsors</h2>
             <div class="divider"></div>
         </div>
         <div class="partner-flex">
-            <img src="otafuku.webp" alt="Otafuku Logo" class="partner-logo-img">
-            <img src="Isetan.png" alt="Isetan Logo" class="partner-logo-img">
+            <img src="otafuku.webp" alt="Otafuku Logo" class="partner-logo-img" loading="lazy">
+            <img src="Isetan.png" alt="Isetan Logo" class="partner-logo-img" loading="lazy">
         </div>
     </section>
 
-    <section id="projects" class="gallery-section">
+    <section id="projects" class="gallery-section reveal">
         <div class="section-header">
             <span class="section-subtitle">Portfolio</span>
             <h2>Our Activations in Motion</h2>
@@ -868,7 +941,7 @@
         </div>
     </section>
 
-    <section id="expertise" class="section">
+    <section id="expertise" class="section reveal">
         <div class="section-header">
             <span class="section-subtitle">What We Do</span>
             <h2>Our Expertise</h2>
@@ -893,7 +966,7 @@
         </div>
     </section>
 
-    <section id="locations" class="map-section">
+    <section id="locations" class="map-section reveal">
         <div class="map-container">
             <div class="section-header">
                 <span class="section-subtitle">Where To Find Us</span>
@@ -912,14 +985,18 @@
         </div>
     </section>
 
+    </main>
+
+    <button id="scroll-top" aria-label="Scroll to top">&#8679;</button>
+
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>Nyanmeshi JAPAN PTE. LTD.</h4>
-                <p>Singapore based Japanese F&B Event Specialists, bridging authentic culinary traditions with local communities.</p>
+                <p>Singapore-based Japanese F&B Event Specialists, bridging authentic culinary traditions with local communities.</p>
                 <p class="footer-jp-text">催事・イベント企画、シンガポール全土での日本食ブース出店。</p>
             </div>
-            <div class="footer-col">
+            <div class="footer-col" id="contact">
                 <h4>Contact Us</h4>
                 <ul class="footer-contact-list">
                     <li><a href="mailto:emi.maekawa@nyanmeshi.com"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> emi.maekawa@nyanmeshi.com</a></li>
@@ -938,40 +1015,62 @@
     </footer>
 
     <script>
+        // Hamburger menu
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', () => {
             const open = mobileMenu.classList.toggle('open');
             hamburger.classList.toggle('open', open);
             hamburger.setAttribute('aria-expanded', open);
         });
-        mobileMenu.querySelectorAll('.mobile-menu-link').forEach(function(link) {
-            link.addEventListener('click', function() {
+        mobileMenu.querySelectorAll('.mobile-menu-link').forEach(link => {
+            link.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
                 hamburger.classList.remove('open');
                 hamburger.setAttribute('aria-expanded', false);
             });
         });
+
+        // Nav scroll shrink + scroll-to-top visibility
+        const nav = document.querySelector('nav');
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY > 60;
+            nav.classList.toggle('scrolled', scrolled);
+            scrollTopBtn.classList.toggle('visible', scrolled);
+        }, { passive: true });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Section reveal on scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var map = L.map('singapore-map', { scrollWheelZoom: false }).setView([1.3521, 103.8198], 11);
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = L.map('singapore-map', { scrollWheelZoom: false }).setView([1.3521, 103.8198], 11);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 subdomains: 'abcd',
                 maxZoom: 20
             }).addTo(map);
 
-            var brandIcon = L.divIcon({
+            const brandIcon = L.divIcon({
                 className: 'custom-div-icon',
                 html: "<div style='background-color:#d63031; width:14px; height:14px; border-radius:50%; border:3px solid white; box-shadow: 0 4px 10px rgba(214, 48, 49, 0.4);'></div>",
                 iconSize: [20, 20],
                 iconAnchor: [10, 10]
             });
 
-            var locations = [
+            const locations = [
                 { name: "Catholic Junior College", lat: 1.3303, lng: 103.8341, type: "Event Venue" },
                 { name: "Boon Lay Shopping Center", lat: 1.3458, lng: 103.7126, type: "Event Venue" },
                 { name: "Whampoa Drive Market & Food Centre", lat: 1.3232, lng: 103.8546, type: "Event Venue" },
@@ -999,8 +1098,8 @@
                 { name: "248 Simei Street 5", lat: 1.3421, lng: 103.9535, type: "Event Venue" }
             ];
 
-            locations.forEach(function(loc) {
-                var popupContent = `<div style="text-align:center;"><strong>${loc.name}</strong><br><span style="color:#777; font-size:0.8rem; margin-top:4px; display:inline-block;">${loc.type}</span></div>`;
+            locations.forEach(loc => {
+                const popupContent = `<div style="text-align:center;"><strong>${loc.name}</strong><br><span style="color:#777; font-size:0.8rem; margin-top:4px; display:inline-block;">${loc.type}</span></div>`;
                 L.marker([loc.lat, loc.lng], {icon: brandIcon}).bindPopup(popupContent).addTo(map);
             });
         });
