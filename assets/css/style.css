@@ -10,7 +10,12 @@
 
 html { scroll-behavior: smooth; }
 
-* {
+/* '*' alone does not match pseudo-elements — without the explicit
+   ::before/::after entries they fall back to content-box and any
+   bordered pseudo-element (e.g. the timeline dots) renders off-center. */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
