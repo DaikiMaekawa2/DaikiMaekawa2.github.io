@@ -618,13 +618,16 @@ nav {
     padding-left: 40px;
 }
 
+/* Alignment contract: the line (left 10px + 2px wide) and the dots
+   (left -35px + 12px wide inside the 40px padding) share center x = 11px.
+   Keep these numbers in lockstep — and identical at every breakpoint. */
 .timeline::before {
     content: '';
     position: absolute;
     left: 10px;
     top: 6px;
     bottom: 6px;
-    width: 1px;
+    width: 2px;
     background: linear-gradient(to bottom, rgba(255,118,117,0.6), rgba(255,255,255,0.12));
     transform: scaleY(var(--progress, 1));
     transform-origin: top;
@@ -644,8 +647,8 @@ nav {
     position: absolute;
     left: -35px;
     top: 8px;
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--ink-black);
     border: 2px solid var(--brand-red);
@@ -1402,6 +1405,5 @@ nav.scrolled {
         opacity: 1;
         background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     }
-    .timeline { padding-left: 32px; }
     .cta-section::before { font-size: 14rem; }
 }
