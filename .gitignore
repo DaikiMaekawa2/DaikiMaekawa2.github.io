@@ -1,0 +1,13 @@
+# Build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Never commit credentials or local config to this PUBLIC repo
+.env
+.env.*
+*.pem
+*.key
+*_credentials.json
+*token*
+*secret*

@@ -1,0 +1,109 @@
+# Map markers for the island-wide footprint section.
+- name: Catholic Junior College
+  lat: 1.3303
+  lng: 103.8341
+  type: Event Venue
+- name: Boon Lay Shopping Center
+  lat: 1.3458
+  lng: 103.7126
+  type: Event Venue
+- name: Whampoa Drive Market & Food Centre
+  lat: 1.3232
+  lng: 103.8546
+  type: Event Venue
+- name: Panasonic Singapore
+  lat: 1.3174
+  lng: 103.9443
+  type: Event Venue
+- name: Causeway Point
+  lat: 1.4361
+  lng: 103.7859
+  type: Event Venue
+- name: Marine Terrace MRT
+  lat: 1.3056
+  lng: 103.9135
+  type: Event Venue
+- name: Keat Hong Plaza (Chua Chu Kang Ave 4)
+  lat: 1.3837
+  lng: 103.7466
+  type: Event Venue
+- name: Toa Payoh Library (@600 Toa Payoh)
+  lat: 1.3323
+  lng: 103.8488
+  type: Event Venue
+- name: Blk 290a Compassvale Crescent
+  lat: 1.3965
+  lng: 103.8992
+  type: Event Venue
+- name: Bukit Batok Blk 278
+  lat: 1.3496
+  lng: 103.7505
+  type: Event Venue
+- name: Yuhua Market & Hawker Centre
+  lat: 1.3429
+  lng: 103.7371
+  type: Event Venue
+- name: Changi Japanese Primary School
+  lat: 1.3216
+  lng: 103.9616
+  type: Event Venue
+- name: Compass One
+  lat: 1.392
+  lng: 103.8953
+  type: Event Venue
+- name: Gardens By the Bay
+  lat: 1.2816
+  lng: 103.8636
+  type: Event Venue
+- name: Blk 205 Bedok North Street 1
+  lat: 1.325
+  lng: 103.93
+  type: Event Venue
+- name: Boon Lay Community Centre
+  lat: 1.3392
+  lng: 103.7107
+  type: Event Venue
+- name: Isetan Scotts
+  lat: 1.306
+  lng: 103.8317
+  type: Event Venue
+- name: Takashimaya Square (Ngee Ann City)
+  lat: 1.3023
+  lng: 103.8349
+  type: Event Venue
+- name: OCBC Toa Payoh
+  lat: 1.332
+  lng: 103.8485
+  type: Bank Roadshow
+- name: OCBC Tampines Branch
+  lat: 1.3524
+  lng: 103.9446
+  type: Bank Roadshow
+- name: OCBC Wisma
+  lat: 1.3039
+  lng: 103.8331
+  type: Bank Roadshow
+- name: OCBC Marine Parade Branch
+  lat: 1.302
+  lng: 103.9054
+  type: Bank Roadshow
+- name: Maybank Jurong East Branch
+  lat: 1.3337
+  lng: 103.7432
+  type: Bank Roadshow
+- name: Maybank Bedok
+  lat: 1.3243
+  lng: 103.9314
+  type: Bank Roadshow
+- name: 248 Simei Street 5
+  lat: 1.3421
+  lng: 103.9535
+  type: Event Venue
+- name: Tampines Mart
+  lat: 1.3552
+  lng: 103.9546
+  type: Event Venue
+- name: Tampines MRT
+  lat: 1.3543
+  lng: 103.9432
+  type: Event Venue

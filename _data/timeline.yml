@@ -1,0 +1,56 @@
+# The 2026 season, in order. Venue names and public run dates only.
+# *_ja fields are used on the Japanese page; English is the fallback.
+- period: Jan – Feb
+  period_ja: 1月〜2月
+  name: Bedok Central
+  name_ja: ベドック・セントラル
+  type: Pasar Malam
+  type_ja: パサマラム（夜市）
+  desc: Opened the 2026 season with nearly three weeks of street-food service in the Bedok heartlands.
+  desc_ja: ベドックの住宅街で約3週間の屋台営業を行い、2026年シーズンの幕開けを飾りました。
+
+- period: Feb
+  period_ja: 2月
+  name: Gardens by the Bay
+  name_ja: ガーデンズ・バイ・ザ・ベイ
+  type: River Hongbao Festival
+  type_ja: リバー・ホンバオ祭
+  desc: Served festival crowds at Singapore's iconic landmark during the Chinese New Year celebrations.
+  desc_ja: 旧正月のお祝い期間中、シンガポールを代表するランドマークで大勢の来場者をお迎えしました。
+
+- period: Mar – Apr
+  period_ja: 3月〜4月
+  name: Isetan Scotts
+  name_ja: 伊勢丹スコッツ
+  type: Department Store
+  type_ja: 百貨店
+  desc: A three-week premium pop-up on Orchard Road, executed to department-store retail standards.
+  desc_ja: オーチャード・ロードの百貨店で、3週間のプレミアムポップアップを百貨店品質で実施しました。
+
+- period: Apr – May
+  period_ja: 4月〜5月
+  name: Simei & Bukit Batok
+  name_ja: シメイ＆ブキ・バトック
+  type: Pasar Malam
+  type_ja: パサマラム（夜市）
+  desc: Back-to-back night-market runs, bringing the Matsuri experience deeper into the heartlands.
+  desc_ja: 2つの夜市に連続出店し、祭の体験をより多くの地域へお届けしました。
+
+- period: May – Jun
+  period_ja: 5月〜6月
+  name: Tampines Mart & Tampines MRT
+  name_ja: タンピネス・マート＆タンピネスMRT
+  type: Pasar Malam
+  type_ja: パサマラム（夜市）
+  desc: Two consecutive activations in Singapore's east — our longest continuous run of the year.
+  desc_ja: シンガポール東部で連続開催。年間最長の連続出店です。
+
+- period: Aug
+  period_ja: 8月
+  name: Seibu Kuala Lumpur
+  name_ja: 西武クアラルンプール
+  type: Yonetaya Matsuri · Malaysia
+  type_ja: ヨネタヤ祭・マレーシア
+  desc: Going international — our first overseas department-store <em>Matsuri</em>, in the heart of KL.
+  desc_ja: 海外初進出 — クアラルンプール中心部の百貨店で、初の海外「祭」を開催します。
+  highlight: true
