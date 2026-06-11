@@ -710,7 +710,7 @@ nav {
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
@@ -761,22 +761,6 @@ nav {
 .menu-card p.menu-desc {
     font-size: 0.9rem;
     color: #777;
-    margin-bottom: 16px;
-    min-height: 3.2em;
-}
-
-.menu-price {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--ink-black);
-    letter-spacing: 0.3px;
-}
-
-.menu-addons {
-    display: block;
-    font-size: 0.78rem;
-    color: #999;
-    margin-top: 4px;
 }
 
 .menu-tag {

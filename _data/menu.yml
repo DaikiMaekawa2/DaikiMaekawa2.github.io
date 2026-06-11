@@ -1,14 +1,11 @@
-# Signature stall menu — public prices as displayed at the stall.
+# Signature stall menu. No prices on the website by owner decision —
+# they vary over time and by venue. Sub-menu items are not listed either.
 # *_ja fields are used on the Japanese page; English is the fallback.
 - name: Takoyaki
   jp: たこ焼き
   icon: "🐙"
   desc: Osaka-style octopus balls griddled to order — our signature and best-seller.
   desc_ja: 大阪スタイルのたこ焼きを、ご注文ごとに焼き上げます。当店一番の看板メニュー。
-  price: 8 pcs $10 · 12 pcs $12
-  price_ja: 8個 $10 ・ 12個 $12
-  addons: "Add cheese or mentaiko +$2"
-  addons_ja: チーズ・明太子 各+$2
   signature: true
 
 - name: Karaage
@@ -16,53 +13,21 @@
   icon: "🍗"
   desc: Japanese fried chicken — juicy inside, shatteringly crisp outside.
   desc_ja: 外はカリッと、中はジューシーな日本の唐揚げ。
-  price: 5 pcs $10 · 10 pcs $18
-  price_ja: 5個 $10 ・ 10個 $18
-  addons: "Add cheese or mentaiko +$2"
-  addons_ja: チーズ・明太子 各+$2
 
 - name: Japanese Yakisoba
   jp: 焼きそば
   icon: "🍜"
   desc: Classic festival stir-fried noodles with savoury-sweet sauce.
   desc_ja: 甘辛ソースが香る、縁日の定番焼きそば。
-  price: $10
 
 - name: Wagyu Egg Burger
   jp: 和牛エッグバーガー
   icon: "🍔"
   desc: Wagyu beef patty topped with a soft egg — Matsuri comfort food at its best.
   desc_ja: 和牛パティに半熟卵をのせた、祭のごちそうバーガー。
-  price: $10
-
-- name: Dashi Maki Tamago
-  jp: だし巻き玉子
-  icon: "🥚"
-  desc: Delicate Japanese rolled omelette — plain, cheese, crabstick or chicken ham.
-  desc_ja: ふんわり繊細なだし巻き玉子。プレーン・チーズ・カニカマ・鶏ハムからお選びください。
-  price: from $8
-  price_ja: $8〜
-
-- name: Wagyu Croquette
-  jp: 和牛コロッケ
-  icon: "🥔"
-  desc: Golden, creamy croquettes made with wagyu beef.
-  desc_ja: 和牛入りのクリーミーな揚げたてコロッケ。
-  price: 2 pcs $10
-  price_ja: 2個 $10
-
-- name: Cheese Fry Stick
-  jp: チーズスティック
-  icon: "🧀"
-  desc: Fried mozzarella sticks — gooey, golden crowd-pleasers.
-  desc_ja: とろけるモッツァレラの揚げチーズスティック。
-  price: 5 pcs $10
-  price_ja: 5個 $10
 
 - name: Strawberry Daifuku Mochi
   jp: いちご大福
   icon: "🍓"
   desc: Fresh strawberry wrapped in sweet bean paste and soft mochi.
   desc_ja: みずみずしいいちごを餡と柔らかいお餅で包みました。
-  price: box of 2 $12
-  price_ja: 2個入 $12

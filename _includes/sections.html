@@ -22,7 +22,9 @@
 
     <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
-            {% for i in (1..2) %}{% for item in site.data.menu %}<span class="marquee-en">{{ item.name }}</span><span class="marquee-jp">{{ item.jp }}</span>{% endfor %}{% endfor %}
+            {%- comment -%} loop count must keep each half of the track wider
+    than any viewport, or the seamless scroll shows a gap {%- endcomment %}
+            {% for i in (1..4) %}{% for item in site.data.menu %}<span class="marquee-en">{{ item.name }}</span><span class="marquee-jp">{{ item.jp }}</span>{% endfor %}{% endfor %}
         </div>
     </div>
 
@@ -116,7 +118,6 @@
                 </div>
                 <h3>{{ item.name }}</h3>
                 <p class="menu-desc">{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
-                <p class="menu-price">{% if lang == 'ja' and item.price_ja %}{{ item.price_ja }}{% else %}{{ item.price }}{% endif %}{% if item.addons %}<span class="menu-addons">{% if lang == 'ja' and item.addons_ja %}{{ item.addons_ja }}{% else %}{{ item.addons }}{% endif %}</span>{% endif %}</p>
             </article>
             {% endfor %}
         </div>

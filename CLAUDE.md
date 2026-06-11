@@ -56,7 +56,7 @@ The `/sync-site` command (`.claude/commands/sync-site.md`) is the one-stop workf
 The "On Now / Coming Up" badges are computed in the browser from the event dates, so they stay correct daily without redeploys.
 
 ## Confidentiality
-This is a PUBLIC repository — never commit tokens or credentials, and never hardcode confidential business strings (payee or worker names) even in tooling; `scripts/check_site.py` derives its blocklist from the private finance repo at runtime for this reason. Venue names, run dates, menu items and stall prices are fine to publish. Never publish rent, commissions, sales figures, supplier costs, payees, or worker names. Run `check_site.py` before shipping.
+This is a PUBLIC repository — never commit tokens or credentials, and never hardcode confidential business strings (payee or worker names) even in tooling; `scripts/check_site.py` derives its blocklist from the private finance repo at runtime for this reason. Venue names, run dates and menu items are fine to publish. Do NOT publish menu prices — not confidential, but they vary over time and by venue, so the owner keeps them off the site (signature dishes only; no sub-menu items either). Never publish rent, commissions, sales figures, supplier costs, payees, or worker names. Run `check_site.py` before shipping.
 
 ## Security Invariants — do not weaken
 `check_site.py` enforces most of these; keep them true when editing:
