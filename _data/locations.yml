@@ -1,0 +1,31 @@
+# Region-level coverage for the island-wide footprint map.
+# DELIBERATELY aggregated: exact venues served are competitive information —
+# they are shared with prospective partners on request, never published
+# (see CLAUDE.md, Confidentiality). Never add venue names or venue-level
+# coordinates here; lat/lng are region label anchors only.
+# venues = distinct venues served in that region, all seasons and formats.
+- region: East
+  region_ja: 東部
+  lat: 1.335
+  lng: 103.935
+  venues: 10
+- region: Central
+  region_ja: 中央部
+  lat: 1.318
+  lng: 103.842
+  venues: 8
+- region: West
+  region_ja: 西部
+  lat: 1.348
+  lng: 103.727
+  venues: 7
+- region: North-East
+  region_ja: 北東部
+  lat: 1.394
+  lng: 103.897
+  venues: 2
+- region: North
+  region_ja: 北部
+  lat: 1.436
+  lng: 103.786
+  venues: 1

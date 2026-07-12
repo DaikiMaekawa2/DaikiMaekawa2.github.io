@@ -1,0 +1,59 @@
+# Running track record, in order — new seasons append here. Marquee venues
+# are named as credentials; the heartland Pasar Malam circuit is deliberately
+# kept at area level — the exact venue list is competitive information (see
+# CLAUDE.md, Confidentiality). Periods carry their own year.
+# *_ja fields are used on the Japanese page; English is the fallback.
+- period: Before 2026
+  period_ja: 2026年以前
+  name: Groundwork Across the Island
+  name_ja: 島内での実績づくり
+  type: Roadshows · Matsuri Support
+  type_ja: ロードショー・催事サポート
+  desc: Bank roadshow activations for OCBC and Maybank, community events, and operational support for the Japan Food Matsuri at Takashimaya Square.
+  desc_ja: OCBC・メイバンクの店頭ロードショー、地域イベント、高島屋スクエア「ジャパン・フード祭」の運営サポートなど、島内各地で実績を重ねてきました。
+
+- period: Jan – Feb 2026
+  period_ja: 2026年1月〜2月
+  name: Season Opener · Eastern Heartlands
+  name_ja: シーズン開幕・東部ハートランド
+  type: Pasar Malam
+  type_ja: パサマラム（夜市）
+  desc: Opened the 2026 season with nearly three weeks of nightly street-food service in Singapore's eastern heartlands.
+  desc_ja: 東部の住宅街で約3週間の夜間屋台営業を行い、2026年シーズンの幕開けを飾りました。
+
+- period: Feb 2026
+  period_ja: 2026年2月
+  name: Gardens by the Bay
+  name_ja: ガーデンズ・バイ・ザ・ベイ
+  type: River Hongbao Festival
+  type_ja: リバー・ホンバオ祭
+  desc: Served festival crowds at Singapore's iconic landmark during the Chinese New Year celebrations.
+  desc_ja: 旧正月のお祝い期間中、シンガポールを代表するランドマークで大勢の来場者をお迎えしました。
+
+- period: Mar – Apr 2026
+  period_ja: 2026年3月〜4月
+  name: Isetan Scotts
+  name_ja: 伊勢丹スコッツ
+  type: Department Store
+  type_ja: 百貨店
+  desc: A three-week premium pop-up on Orchard Road, executed to department-store retail standards.
+  desc_ja: オーチャード・ロードの百貨店で、3週間のプレミアムポップアップを百貨店品質で実施しました。
+
+- period: Apr – Jun 2026
+  period_ja: 2026年4月〜6月
+  name: The Heartland Circuit
+  name_ja: ハートランド巡回出店
+  type: Pasar Malam × 4
+  type_ja: パサマラム（夜市）× 4
+  desc: 'Four consecutive night-market runs across the island''s east and west: 73 stall-days, our longest continuous stretch of the year.'
+  desc_ja: 島の東西をめぐる4会場連続の夜市出店（計73営業日）。年間最長の連続稼働です。
+
+- period: Aug 2026
+  period_ja: 2026年8月
+  name: Seibu Kuala Lumpur
+  name_ja: 西武クアラルンプール
+  type: Yonetaya Matsuri · Malaysia
+  type_ja: ヨネタヤ祭・マレーシア
+  desc: Going international with our first overseas department-store <em>Matsuri</em>, in the heart of KL.
+  desc_ja: 海外初進出。クアラルンプール中心部の百貨店で、初の海外「祭」を開催します。
+  highlight: true

@@ -1,0 +1,20 @@
+# "By the numbers" band. Keep figures verifiable against the finance ledgers.
+- value: 25
+  suffix: "+"
+  label: Event venues across Singapore
+  label_ja: シンガポール島内の販売会場数
+
+- value: 120
+  suffix: "+"
+  label: Stall-days served in 2026
+  label_ja: 2026年の屋台営業日数
+
+- value: 9
+  suffix: ""
+  label: Activations in the 2026 season
+  label_ja: 2026年シーズンの出店イベント数
+
+- value: 2
+  suffix: ""
+  label: Countries by the end of 2026
+  label_ja: 2026年末までの展開国数

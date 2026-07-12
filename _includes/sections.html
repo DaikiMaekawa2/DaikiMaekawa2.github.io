@@ -1,0 +1,231 @@
+{% assign lang = page.lang | default: 'en' %}
+{% assign t = site.data.i18n[lang] %}
+<main>
+
+    <header class="hero">
+        <img src="/assets/img/takashimaya_japan_matsuri.webp" alt="" class="hero-bg" width="1000" height="742" fetchpriority="high" aria-hidden="true">
+        <span class="hero-kanji" aria-hidden="true">日本の味</span>
+        <div class="hero-content">
+            <span class="hero-badge">{{ t.hero.badge }}</span>
+            <h1>{{ t.hero.title }}</h1>
+            <p>{{ t.hero.lead }}</p>
+            <div class="hero-ctas">
+                {%- comment -%} JA targets Japanese suppliers, who prefer email
+                for first contact; EN organizers get WhatsApp. {%- endcomment %}
+                {% if lang == 'ja' %}
+                <a href="mailto:{{ site.email }}" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    {{ t.hero.cta_primary }}
+                </a>
+                {% else %}
+                <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    {% include icon-whatsapp.html %}
+                    {{ t.hero.cta_primary }}
+                </a>
+                {% endif %}
+                <a href="#now" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
+            </div>
+        </div>
+        <a href="#now" class="hero-scroll" aria-label="{{ t.hero.cta_secondary }}"><span></span></a>
+    </header>
+
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            {%- comment -%} loop count must keep each half of the track wider
+    than any viewport, or the seamless scroll shows a gap {%- endcomment %}
+            {% for i in (1..4) %}{% for item in site.data.menu %}<span class="marquee-en">{{ item.name }}</span><span class="marquee-jp">{{ item.jp }}</span>{% endfor %}{% endfor %}
+        </div>
+    </div>
+
+    <section id="now" class="now-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.schedule.subtitle }}</span>
+            <h2>{{ t.schedule.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="now-grid">
+            {% for event in site.data.schedule %}
+            <article class="schedule-card stagger" data-start="{{ event.start }}" data-end="{{ event.end }}"
+                     data-label-live="{{ t.schedule.live }}" data-label-upcoming="{{ t.schedule.upcoming }}" data-label-past="{{ t.schedule.past }}">
+                <span class="schedule-status"><span class="pulse-dot"></span><span class="schedule-status-text">{{ t.schedule.upcoming }}</span></span>
+                <h3>{% if lang == 'ja' and event.name_ja %}{{ event.name_ja }}{% else %}{{ event.name }}{% endif %}</h3>
+                <p class="schedule-meta">{% if lang == 'ja' and event.location_ja %}{{ event.location_ja }}{% else %}{{ event.location }}{% endif %}</p>
+                <p class="schedule-dates">{% if lang == 'ja' and event.dates_display_ja %}{{ event.dates_display_ja }}{% else %}{{ event.dates_display }}{% endif %}</p>
+                <p class="schedule-note">{% if lang == 'ja' and event.note_ja %}{{ event.note_ja }}{% else %}{{ event.note }}{% endif %}</p>
+            </article>
+            {% endfor %}
+            <a href="#contact" class="schedule-card schedule-card-cta stagger">
+                <span class="schedule-status">{{ t.schedule.cta_tag }}</span>
+                <h3>{{ t.schedule.cta_title }}</h3>
+                <p class="schedule-note">{{ t.schedule.cta_note }}</p>
+                <span class="schedule-cta-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="trust-bar reveal">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            {{ t.trust.sfa }}
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c-.96 1.66-2.49 2.93-4.33 3.56C5.35 8.45 5.81 7.25 6.13 6zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+            {{ t.trust.bilingual }}
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            {{ t.trust.locations }}
+        </div>
+    </div>
+
+    <section id="about" class="story-section reveal">
+        <div class="story-content">
+            <span class="section-subtitle">{{ t.story.subtitle }}</span>
+            <h2>{{ t.story.title }}</h2>
+            <p>{{ t.story.p1 }}</p>
+            <p>{{ t.story.p2 }}</p>
+            <p>{{ t.story.p3 }}</p>
+        </div>
+    </section>
+
+    <section class="stats-section reveal" aria-label="Nyanmeshi JAPAN by the numbers">
+        <div class="stats-grid">
+            {% for stat in site.data.stats %}
+            <div class="stat stagger">
+                <span class="stat-value"><span class="stat-number" data-count="{{ stat.value }}">{{ stat.value }}</span><span class="stat-suffix">{{ stat.suffix }}</span></span>
+                <span class="stat-label">{% if lang == 'ja' and stat.label_ja %}{{ stat.label_ja }}{% else %}{{ stat.label }}{% endif %}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="season" class="timeline-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.season.subtitle }}</span>
+            <h2>{{ t.season.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="timeline">
+            {% for stop in site.data.timeline %}
+            <div class="timeline-item stagger{% if stop.highlight %} highlight{% endif %}">
+                <span class="timeline-period">{% if lang == 'ja' and stop.period_ja %}{{ stop.period_ja }}{% else %}{{ stop.period }}{% endif %}</span>
+                <h3>{% if lang == 'ja' and stop.name_ja %}{{ stop.name_ja }}{% else %}{{ stop.name }}{% endif %}</h3>
+                <span class="timeline-type">{% if lang == 'ja' and stop.type_ja %}{{ stop.type_ja }}{% else %}{{ stop.type }}{% endif %}</span>
+                <p>{% if lang == 'ja' and stop.desc_ja %}{{ stop.desc_ja }}{% else %}{{ stop.desc }}{% endif %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.menu.subtitle }}</span>
+            <h2>{{ t.menu.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="menu-grid">
+            {% for item in site.data.menu %}
+            <article class="menu-card stagger">
+                {% if item.signature %}<span class="menu-tag">{{ t.menu.signature_tag }}</span>{% endif %}
+                <div class="menu-card-top">
+                    <span class="menu-icon" aria-hidden="true">{{ item.icon }}</span>
+                    <span class="menu-jp" lang="ja">{{ item.jp }}</span>
+                </div>
+                <h3>{{ item.name }}</h3>
+                <p class="menu-desc">{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
+            </article>
+            {% endfor %}
+        </div>
+        <p class="menu-footnote">{{ t.menu.footnote }}</p>
+    </section>
+
+    <section id="projects" class="gallery-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.gallery.subtitle }}</span>
+            <h2>{{ t.gallery.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="gallery-grid">
+            {% for item in site.data.gallery %}
+            <div class="gallery-item stagger">
+                <img src="/assets/img/{{ item.image }}" alt="{{ item.alt }}" loading="lazy" width="800" height="600">
+                <div class="gallery-overlay">
+                    <h4>{% if lang == 'ja' and item.title_ja %}{{ item.title_ja }}{% else %}{{ item.title }}{% endif %}</h4>
+                    <p>{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="expertise" class="section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.expertise.subtitle }}</span>
+            <h2>{{ t.expertise.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="services-grid">
+            {% for card in t.expertise.cards %}
+            <div class="service-card stagger">
+                <div class="service-icon">{{ card.icon }}</div>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="locations" class="map-section reveal">
+        <div class="map-container">
+            <div class="section-header">
+                <span class="section-subtitle">{{ t.map.subtitle }}</span>
+                <h2>{{ t.map.title }}</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div id="singapore-map" role="img" aria-label="{{ t.map.aria }}"></div>
+
+            <p class="map-caption">{{ t.map.caption }}</p>
+
+            <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener noreferrer" class="map-cta">
+                {% include icon-instagram.html %}
+                {{ t.map.cta }}
+            </a>
+        </div>
+    </section>
+
+    <section id="partners" class="partners-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.partners.subtitle }}</span>
+            <h2>{{ t.partners.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="partner-flex">
+            <img src="/assets/img/otafuku.webp" alt="Otafuku Logo" class="partner-logo-img" loading="lazy" width="725" height="768">
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="cta-content">
+            <span class="section-subtitle">{{ t.cta.subtitle }}</span>
+            <h2>{{ t.cta.title }}</h2>
+            <p>{{ t.cta.lead }}</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    {% include icon-whatsapp.html %}
+                    {{ t.cta.whatsapp }}
+                </a>
+                <a href="mailto:{{ site.email }}" class="btn btn-outline-light">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    {{ t.cta.email }}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    {%- comment -%} Non-executable JSON data island: keeps the page free of
+    inline scripts so the CSP can lock script-src down. {%- endcomment %}
+    <script type="application/json" id="nyan-coverage">{{ site.data.locations | jsonify }}</script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" defer></script>

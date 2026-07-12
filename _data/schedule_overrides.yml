@@ -1,0 +1,15 @@
+# Editorial copy for schedule cards, keyed by event_id from the finance
+# repo's events.csv. sync_schedule.py merges these over the generated
+# entries — everything here is optional. Prune a block once its event has
+# dropped off the schedule: past venue names should not accumulate in this
+# public repo (see CLAUDE.md, Confidentiality).
+#   name / name_ja:         override the display name
+#   location / location_ja: shown under the name (defaults to "Singapore")
+#   note / note_ja:         one-line description on the card (may contain <em>)
+SEIBU_KL_AUG:
+  name: Yonetaya Matsuri at Seibu Kuala Lumpur
+  name_ja: 西武クアラルンプール「ヨネタヤ祭」
+  location: Kuala Lumpur, Malaysia
+  location_ja: クアラルンプール、マレーシア
+  note: Our first international <em>Matsuri</em>, bringing the stall across the Causeway.
+  note_ja: 初の海外出店。コーズウェイを越えて、屋台をマレーシアへお届けします。

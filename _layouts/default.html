@@ -1,0 +1,132 @@
+{% assign lang = page.lang | default: 'en' %}
+{% assign t = site.data.i18n[lang] %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- comment -%} GitHub Pages cannot set HTTP headers, so the CSP ships as a
+    meta tag. script-src is strict (no inline scripts anywhere — keep it that
+    way); 'unsafe-inline' applies to STYLES only, which Leaflet needs.
+    {%- endcomment %}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.basemaps.cartocdn.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>{{ site.title }} | {{ t.meta.tagline }}</title>
+    <meta name="description" content="{{ t.meta.description | strip_newlines }}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <link rel="alternate" hreflang="en" href="{{ site.url }}/">
+    <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja/">
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
+    <meta property="og:title" content="{{ site.title }} | {{ t.meta.tagline }}">
+    <meta property="og:description" content="{{ t.meta.description | strip_newlines }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ site.url }}/assets/img/nyanmeshi_logo.jpg">
+    <meta property="og:locale" content="{% if lang == 'ja' %}ja_JP{% else %}en_SG{% endif %}">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/assets/img/takashimaya_japan_matsuri.webp" fetchpriority="high">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/favicon.png",
+      "description": "Singapore's specialist for authentic Japanese culinary pop-ups, F&B activations at department stores, bank roadshows, and Pasar Malams island-wide.",
+      "email": "{{ site.email }}",
+      "telephone": "+{{ site.whatsapp }}",
+      "areaServed": ["SG", "MY"],
+      "sameAs": [
+        "https://www.instagram.com/{{ site.instagram }}",
+        "https://www.facebook.com/{{ site.facebook }}",
+        "https://www.youtube.com/@{{ site.youtube }}",
+        "https://www.tiktok.com/@{{ site.tiktok }}"
+      ]
+    }
+    </script>
+
+    <!-- Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    {%- comment -%} site.time changes every build, so each deploy busts the
+    10-minute GitHub Pages cache and phones pick up CSS/JS fixes immediately.
+    {%- endcomment %}
+    <link rel="stylesheet" href="/assets/css/style.css?v={{ site.time | date: '%s' }}">
+</head>
+<body>
+
+    <nav>
+        <a href="{% if lang == 'ja' %}/ja/{% else %}/{% endif %}" class="logo-container" aria-label="Nyanmeshi JAPAN home">
+            <img src="/assets/img/nyanmeshi_logo.jpg" alt="Nyanmeshi JAPAN" class="logo-img" width="64" height="64">
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="#now">{{ t.nav.now }}</a>
+                <a href="#about">{{ t.nav.story }}</a>
+                <a href="#menu">{{ t.nav.menu }}</a>
+                <a href="#projects">{{ t.nav.gallery }}</a>
+                <a href="#locations">{{ t.nav.footprint }}</a>
+                <a href="#contact">{{ t.nav.contact }}</a>
+            </div>
+            <div class="nav-socials">
+                {% include social-links.html %}
+                <a href="{{ t.lang_switch.url }}" class="lang-switch" aria-label="{{ t.lang_switch.aria }}">{{ t.lang_switch.label }}</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#now" class="mobile-menu-link">{{ t.nav.now }}</a>
+        <a href="#about" class="mobile-menu-link">{{ t.nav.story }}</a>
+        <a href="#menu" class="mobile-menu-link">{{ t.nav.menu }}</a>
+        <a href="#projects" class="mobile-menu-link">{{ t.nav.gallery }}</a>
+        <a href="#locations" class="mobile-menu-link">{{ t.nav.footprint }}</a>
+        <a href="#contact" class="mobile-menu-link">{{ t.nav.contact_long }}</a>
+        <a href="{{ t.lang_switch.url }}" class="lang-switch-mobile" aria-label="{{ t.lang_switch.aria }}">{{ t.lang_switch.label }}</a>
+        <div class="mobile-menu-socials">
+            {% include social-links.html %}
+        </div>
+    </div>
+
+    {{ content }}
+
+    <button id="scroll-top" aria-label="Scroll to top">&#8679;</button>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>{{ site.title }}</h4>
+                <p>{{ t.footer.about }}</p>
+                <p class="footer-jp-text">{{ t.footer.about_alt }}</p>
+            </div>
+            <div class="footer-col" id="contact">
+                <h4>{{ t.footer.contact }}</h4>
+                <ul class="footer-contact-list">
+                    <li><a href="mailto:{{ site.email }}"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> {{ site.email }}</a></li>
+                    <li><a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer">{% include icon-whatsapp.html %} {{ site.whatsapp_display }}</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>{{ t.footer.follow }}</h4>
+                <div class="footer-socials">
+                    {% include social-links.html %}
+                </div>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 {{ site.title }} {{ t.footer.rights }} &nbsp;·&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a></div>
+    </footer>
+
+    <script src="/assets/js/main.js?v={{ site.time | date: '%s' }}" defer></script>
+</body>
+</html>

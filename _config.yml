@@ -1,0 +1,25 @@
+title: Nyanmeshi JAPAN PTE. LTD.
+tagline: Authentic Japanese Culinary Events
+description: >-
+  Nyanmeshi JAPAN PTE. LTD. is Singapore's specialist for authentic Japanese
+  culinary pop-ups, F&B activations at department stores, bank roadshows, and
+  Pasar Malams island-wide.
+url: "https://nyanmeshi.com"
+email: emi.maekawa@nyanmeshi.com
+whatsapp: "6598615103"
+whatsapp_display: "+65 98615103"
+instagram: nyanmeshijp
+facebook: nyanmeshijp
+youtube: nyanmeshijp
+tiktok: nyanmeshijp
+
+include:
+  - .well-known
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - .claude/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock

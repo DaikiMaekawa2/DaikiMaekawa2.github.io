@@ -1,0 +1,199 @@
+# UI strings for both language versions. Page content that lives in other
+# _data files carries its own *_ja fields next to the English ones.
+en:
+  meta:
+    tagline: Authentic Japanese Culinary Events
+    description: >-
+      Nyanmeshi JAPAN PTE. LTD. is Singapore's specialist for authentic Japanese
+      culinary pop-ups, F&B activations at department stores, bank roadshows,
+      and Pasar Malams island-wide.
+  nav:
+    now: Now Serving
+    story: Our Story
+    menu: Menu
+    gallery: Gallery
+    footprint: Footprint
+    contact: Contact
+    contact_long: Contact Us
+  lang_switch:
+    label: 日本語
+    url: /ja/
+    aria: 日本語版を見る
+  hero:
+    badge: Singapore's Premier Japanese Pop-ups
+    title: 'The Taste of a Japanese <strong><em>Matsuri</em></strong>,<br>Brought to Your Doorstep.'
+    lead: >-
+      From prestigious department stores to high-traffic bank roadshows and
+      lively local Pasar Malams, Nyanmeshi JAPAN is your specialist partner for
+      unforgettable culinary experiences, and from August 2026, in Malaysia too.
+    cta_primary: Plan an Activation
+    cta_secondary: Find Our Stall
+  schedule:
+    subtitle: Live Schedule
+    title: Where to Find Us
+    live: On Now
+    upcoming: Coming Up
+    past: Season Wrapped
+    cta_tag: Your Venue Next
+    cta_title: Bring the <em>Matsuri</em> to your crowd
+    cta_note: 'Department store, festival, mall or roadshow: tell us the venue and dates, and we''ll handle the rest.'
+  trust:
+    sfa: SFA-Licensed &amp; Compliant
+    bilingual: Japanese–English Bilingual Team
+    locations: 25+ Event Locations Island-wide
+  story:
+    subtitle: Our Heritage
+    title: Japanese Authenticity,<br>Singaporean Foundation.
+    p1: >-
+      Nyanmeshi JAPAN was founded with a mission to bring the vibrant,
+      authentic atmosphere of a Japanese <em>Matsuri</em> (festival) to the
+      doorsteps of local communities.
+    p2: >-
+      As a Japanese-managed firm based in Singapore, our core team acts as a
+      specialized content engine. By sourcing high-quality tenants directly
+      from Japan, vetting authentic regional products, and maintaining rigorous
+      operational standards, we ensure that every event is executed with
+      precision and <em>Omotenashi</em> (hospitality).
+    p3: >-
+      Our vision is to be the most reliable bridge between Japanese culinary
+      traditions and event organizers, providing our partners with seamless,
+      high-performance F&amp;B solutions that shoppers love, proven across
+      Singapore, and from August 2026, in Malaysia.
+  season:
+    subtitle: Track Record
+    title: Seasons on the Road
+  menu:
+    subtitle: From the Stall
+    title: Our Signature Menu
+    signature_tag: Signature
+    footnote: Every item is cooked fresh at the stall, the way it's done at a street festival in Japan.
+  gallery:
+    subtitle: Portfolio
+    title: Our Activations in Motion
+  expertise:
+    subtitle: Why Us
+    title: Why Event Organizers Choose Us
+    cards:
+      - icon: "🧲"
+        title: Proven Crowd-Pullers
+        desc: 9 activations and 120+ stall-days in 2026 alone, across department stores, festivals and night markets island-wide. We show up, and we draw.
+      - icon: "🎌"
+        title: An Authentic Content Engine
+        desc: Tenants and regional products sourced directly from Japan, so your venue gets a real <em>Matsuri</em>, not a lookalike.
+      - icon: "✅"
+        title: Compliance, Handled
+        desc: SFA-licensed and fully compliant. Hygiene, manpower and booth setup executed to department-store retail standards.
+      - icon: "🤝"
+        title: Brand-Backed Activations
+        desc: Sponsored partnerships with established Japanese brands like Otafuku bring trusted names and their audiences to your event.
+  map:
+    subtitle: Where We've Served
+    title: Our Island-wide Footprint
+    caption: '📍 Each number counts the distinct venues served in that region: every region of Singapore, and from August 2026, Kuala Lumpur. Venue-level references are available to prospective partners on request.'
+    aria: Map of Singapore showing the number of venues served in each region
+    cta: Follow @nyanmeshijp on Instagram
+  partners:
+    subtitle: Collaborations
+    title: Official Partners &amp; Sponsors
+  cta:
+    subtitle: Let's Talk
+    title: Planning an event?<br>Let's bring the <strong><em>Matsuri</em></strong> to it.
+    lead: Tell us about your venue, audience and dates, and we'll handle the rest, from SFA compliance to the last takoyaki served.
+    whatsapp: WhatsApp Us
+    email: Email Us
+  footer:
+    about: Singapore-based Japanese F&B Event Specialists, bridging authentic culinary traditions with local communities island-wide, and from August 2026, in Malaysia.
+    about_alt: 催事・イベント企画、シンガポール全土での日本食ブース出店。
+    contact: Contact Us
+    follow: Follow Us
+    rights: All Rights Reserved.
+
+ja:
+  meta:
+    tagline: 日本ブランドの海外展開パートナー
+    description: "Nyanmeshi JAPAN PTE. LTD.は、シンガポール全土の百貨店催事・銀行ロードショー・夜市で日本の食を販売する日本人経営の専門企業です。日本の食品メーカー・ブランドの海外展開を現地で支援します。"
+  nav:
+    now: 出店情報
+    story: 私たちについて
+    menu: メニュー
+    gallery: ギャラリー
+    footprint: 出店マップ
+    contact: お問い合わせ
+    contact_long: お問い合わせ
+  lang_switch:
+    label: EN
+    url: /
+    aria: View in English
+  hero:
+    badge: 日本ブランドの海外進出パートナー
+    title: '日本の<strong>祭の味</strong>を、<br>シンガポールから東南アジアへ。'
+    lead: "百貨店催事、銀行ロードショー、パサマラム（夜市）。シンガポール全域で日本の食を売り続けてきました。2026年8月にはマレーシアへ初出店。御社の商品の海外販路づくりを、現地からお手伝いします。"
+    cta_primary: 海外展開のご相談
+    cta_secondary: 出店スケジュール
+  schedule:
+    subtitle: ライブスケジュール
+    title: 出店スケジュール
+    live: 開催中
+    upcoming: 近日開催
+    past: 終了しました
+    cta_tag: 次の祭で、御社の商品を
+    cta_title: あなたの商品を、次の<strong>祭</strong>へ。
+    cta_note: ソース一本から地域の名品まで。次の出店で、御社の商品を現地のお客様に直接お届けします。
+  trust:
+    sfa: SFAライセンス取得・法令遵守
+    bilingual: 日英バイリンガルチーム
+    locations: 島内25ヶ所以上の販売実績
+  story:
+    subtitle: 私たちの原点
+    title: 日本の本物を、<br>シンガポールから。
+    p1: "Nyanmeshi JAPANは、日本の<em>祭</em>の本物の味と熱気を海外の生活者へ届けるため、シンガポールに設立された日本人経営の企業です。"
+    p2: "私たちは、日本の作り手と海外市場をつなぐ「現地の売り場」です。日本からの質の高いテナント誘致、本物の地域産品の厳選、そして徹底した衛生・運営基準。御社の商品が売れる環境を、現地で整えます。"
+    p3: "シンガポール全土での販売実績を土台に、2026年8月にはマレーシアへ。海外販路を求める日本ブランドにとって、最も信頼される架け橋となることが私たちのビジョンです。"
+  season:
+    subtitle: 販売・出店実績
+    title: 出店の軌跡
+  menu:
+    subtitle: 屋台の味
+    title: 看板メニュー
+    signature_tag: 名物
+    footnote: すべてのメニューを、日本の縁日と同じように屋台で一品ずつ調理しています。
+  gallery:
+    subtitle: 実績
+    title: 出店・イベントの様子
+  expertise:
+    subtitle: 選ばれる理由
+    title: なぜ、Nyanmeshi JAPANなのか
+    cards:
+      - icon: "🛍️"
+        title: 現地で売り切る力
+        desc: 2026年だけで9催事・のべ120日以上の販売実績。百貨店催事から夜市まで、シンガポール全域で日本の味を売り続けています。
+      - icon: "🌏"
+        title: 東南アジア市場への入り口
+        desc: シンガポールを起点に、2026年8月からはマレーシアへ。成長する東南アジアでのテストマーケティングの場をご提供します。
+      - icon: "✅"
+        title: 許認可も運営も、現地で一貫対応
+        desc: SFAライセンス取得済み。会場確保から設営・販売・衛生管理まで、日本語で相談できる現地チームが対応します。
+      - icon: "🤝"
+        title: 日本ブランドとの協業実績
+        desc: オタフクソースとのスポンサード催事をはじめ、日本ブランドとの協業実績。御社の商品を現地の生活者に直接届けます。
+  map:
+    subtitle: 出店マップ
+    title: 島内全域での出店実績
+    caption: 📍 数字は地域ごとの出店会場数です。シンガポール全域に加え、2026年8月からはクアラルンプールへ。会場の詳細リストは、お取引をご検討のパートナー様に個別にご案内しています。
+    aria: 地域ごとの出店会場数を示すシンガポールの地図
+    cta: Instagram @nyanmeshijp をフォロー
+  partners:
+    subtitle: コラボレーション
+    title: パートナー・スポンサー
+  cta:
+    subtitle: お問い合わせ
+    title: 日本の商品を、<br>海外の<strong>祭</strong>で売りませんか？
+    lead: 商品やブランド、展開したい市場をお聞かせください。テストマーケティングから継続出店まで、現地チームが日本語でサポートします。
+    whatsapp: WhatsAppで相談
+    email: メールで相談
+  footer:
+    about: シンガポール拠点の日本食イベント専門企業。百貨店催事から夜市までの現地販売網で、日本ブランドの海外展開を支援しています。2026年8月にはマレーシアへ初出店します。
+    about_alt: Japanese F&B event specialists based in Singapore.
+    contact: お問い合わせ
+    follow: フォローする
+    rights: All Rights Reserved.

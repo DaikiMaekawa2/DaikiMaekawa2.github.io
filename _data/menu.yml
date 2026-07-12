@@ -1,0 +1,33 @@
+# Signature stall menu. No prices on the website by owner decision —
+# they vary over time and by venue. Sub-menu items are not listed either.
+# *_ja fields are used on the Japanese page; English is the fallback.
+- name: Takoyaki
+  jp: たこ焼き
+  icon: "🐙"
+  desc: Osaka-style octopus balls griddled to order, our signature and best-seller.
+  desc_ja: 大阪スタイルのたこ焼きを、ご注文ごとに焼き上げます。当店一番の看板メニュー。
+  signature: true
+
+- name: Karaage
+  jp: 唐揚げ
+  icon: "🍗"
+  desc: Japanese fried chicken, juicy inside and shatteringly crisp outside.
+  desc_ja: 外はカリッと、中はジューシーな日本の唐揚げ。
+
+- name: Japanese Yakisoba
+  jp: 焼きそば
+  icon: "🍜"
+  desc: Classic festival stir-fried noodles with savoury-sweet sauce.
+  desc_ja: 甘辛ソースが香る、縁日の定番焼きそば。
+
+- name: Wagyu Egg Burger
+  jp: 和牛エッグバーガー
+  icon: "🍔"
+  desc: Wagyu beef patty topped with a soft egg, Matsuri comfort food at its best.
+  desc_ja: 和牛パティに半熟卵をのせた、祭のごちそうバーガー。
+
+- name: Strawberry Daifuku Mochi
+  jp: いちご大福
+  icon: "🍓"
+  desc: Fresh strawberry wrapped in sweet bean paste and soft mochi.
+  desc_ja: みずみずしいいちごを餡と柔らかいお餅で包みました。
