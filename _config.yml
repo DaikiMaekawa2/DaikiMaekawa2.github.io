@@ -13,10 +13,10 @@ facebook: nyanmeshijp
 youtube: nyanmeshijp
 tiktok: nyanmeshijp
 
-# Analytics (free tier — GA4). Leave blank until the GA4 property exists;
-# no analytics script loads and no GA origins are allowlisted in the CSP
-# while this is empty. See README.md "Analytics" for the setup steps.
-ga4_measurement_id: ""
+# Analytics (free tier — GA4). See README.md "Analytics" for setup notes.
+# This ID is not a secret — it's meant to be public (every GA4 site ships
+# it in page source); it does not grant access to the GA4 account/reports.
+ga4_measurement_id: "G-3NDC185C2Y"
 
 # Search Console domain-verification meta tag. Leave blank until Search
 # Console issues a verification code (or use the DNS TXT method instead,
