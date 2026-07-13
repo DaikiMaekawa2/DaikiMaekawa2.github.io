@@ -205,23 +205,76 @@
         </div>
     </section>
 
-    <section class="cta-section reveal">
+    <section id="book" class="cta-section reveal">
         <div class="cta-content">
             <span class="section-subtitle">{{ t.cta.subtitle }}</span>
             <h2>{{ t.cta.title }}</h2>
             <p>{{ t.cta.lead }}</p>
+
+            <div class="book-grid">
+                <div class="book-col">
+                    <h3>{{ t.cta.bring_title }}</h3>
+                    <ul class="book-list">
+                        {% for item in t.cta.bring_items %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="book-col">
+                    <h3>{{ t.cta.activations_title }}</h3>
+                    <ul class="book-list">
+                        {% for item in site.data.gallery limit: 3 %}
+                        <li>{% if lang == 'ja' and item.title_ja %}{{ item.title_ja }}{% else %}{{ item.title }}{% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="book-otafuku">
+                        <img src="/assets/img/otafuku.webp" alt="Otafuku" width="40" height="42" loading="lazy">
+                        {{ t.cta.otafuku_credit }}
+                    </p>
+                </div>
+            </div>
+
             <div class="cta-buttons">
-                <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <a href="https://wa.me/{{ site.whatsapp }}?text={{ t.cta.whatsapp_prefill | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta="book_whatsapp">
                     {% include icon-whatsapp.html %}
                     {{ t.cta.whatsapp }}
                 </a>
-                <a href="mailto:{{ site.email }}" class="btn btn-outline-light">
+                <a href="mailto:{{ site.email }}?subject={{ t.cta.email_subject | url_encode }}&body={{ t.cta.email_body | url_encode }}" class="btn btn-outline-light" data-cta="book_email">
                     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     {{ t.cta.email }}
                 </a>
             </div>
         </div>
     </section>
+
+    {%- if site.data.reviews.size > 0 or site.data.press.size > 0 %}
+    <section id="trust" class="trust-block-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.trust_block.subtitle }}</span>
+            <h2>{{ t.trust_block.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        {% if site.data.reviews.size > 0 %}
+        <div class="review-grid">
+            {% for review in site.data.reviews %}
+            <blockquote class="review-card stagger">
+                <p>&ldquo;{% if lang == 'ja' and review.quote_ja %}{{ review.quote_ja }}{% else %}{{ review.quote }}{% endif %}&rdquo;</p>
+                <cite>{{ review.author }} &middot; {{ review.rating }}&#9733;</cite>
+            </blockquote>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if site.data.press.size > 0 %}
+        <div class="press-flex">
+            {% for outlet in site.data.press %}
+            <a href="{{ outlet.url }}" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/{{ outlet.logo }}" alt="{{ outlet.name }}" loading="lazy" width="{{ outlet.width }}" height="{{ outlet.height }}">
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+    {%- endif %}
 
     </main>
 
