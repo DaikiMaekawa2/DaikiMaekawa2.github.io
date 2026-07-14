@@ -13,6 +13,7 @@ en:
     menu: Menu
     gallery: Gallery
     footprint: Footprint
+    book: Book Us
     contact: Contact
     contact_long: Contact Us
   lang_switch:
@@ -95,12 +96,34 @@ en:
   partners:
     subtitle: Collaborations
     title: Official Partners &amp; Sponsors
+  trust_block:
+    subtitle: In Their Words
+    title: What People Say
   cta:
     subtitle: Let's Talk
     title: Planning an event?<br>Let's bring the <strong><em>Matsuri</em></strong> to it.
     lead: Tell us about your venue, audience and dates, and we'll handle the rest, from SFA compliance to the last takoyaki served.
+    bring_title: What We Bring
+    bring_items:
+      - Our own stall, equipment and a trained bilingual crew
+      - A signature menu, cooked fresh at the stall
+      - SFA-licensed hygiene and operational standards
+      - Sponsored brand partnerships (e.g. Otafuku) where relevant
+    activations_title: Recent Activations
+    otafuku_credit: In partnership with Otafuku
     whatsapp: WhatsApp Us
+    whatsapp_prefill: 'Hi Nyanmeshi, I''d like to enquire about booking a pop-up. Venue: ___ Dates: ___'
     email: Email Us
+    email_subject: 'Booking Enquiry · Nyanmeshi JAPAN'
+    email_body: |-
+      Hi Nyanmeshi team,
+
+      We'd like to enquire about booking a pop-up.
+      Venue:
+      Proposed dates:
+      Expected footfall:
+
+      Thanks,
   footer:
     about: Singapore-based Japanese F&B Event Specialists, bridging authentic culinary traditions with local communities island-wide, and from August 2026, in Malaysia.
     about_alt: 催事・イベント企画、シンガポール全土での日本食ブース出店。
@@ -118,6 +141,7 @@ ja:
     menu: メニュー
     gallery: ギャラリー
     footprint: 出店マップ
+    book: 出店のご相談
     contact: お問い合わせ
     contact_long: お問い合わせ
   lang_switch:
@@ -185,12 +209,34 @@ ja:
   partners:
     subtitle: コラボレーション
     title: パートナー・スポンサー
+  trust_block:
+    subtitle: お客様の声
+    title: 評判・口コミ
   cta:
     subtitle: お問い合わせ
     title: 日本の商品を、<br>海外の<strong>祭</strong>で売りませんか？
     lead: 商品やブランド、展開したい市場をお聞かせください。テストマーケティングから継続出店まで、現地チームが日本語でサポートします。
+    bring_title: 私たちが提供できること
+    bring_items:
+      - 現地の屋台運営基盤とバイリンガルチーム
+      - シンガポール全域、2026年8月からはマレーシアへの販路
+      - SFAライセンス取得済み、法令遵守の現地オペレーション
+      - オタフクソースなど日本ブランドとの協業実績
+    activations_title: 主な出店実績
+    otafuku_credit: オタフクソースとの協業
     whatsapp: WhatsAppで相談
+    whatsapp_prefill: 'Nyanmeshi様、商品の海外展開についてご相談させてください。商品:___ 希望市場:___'
     email: メールで相談
+    email_subject: '海外展開のご相談・Nyanmeshi JAPAN'
+    email_body: |-
+      Nyanmeshi ご担当者様
+
+      商品の海外展開について相談させてください。
+      商品:
+      希望する市場:
+      想定数量:
+
+      よろしくお願いいたします。
   footer:
     about: シンガポール拠点の日本食イベント専門企業。百貨店催事から夜市までの現地販売網で、日本ブランドの海外展開を支援しています。2026年8月にはマレーシアへ初出店します。
     about_alt: Japanese F&B event specialists based in Singapore.

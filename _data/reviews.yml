@@ -1,0 +1,9 @@
+# Google Business Profile review quotes, surfaced once GBP reviews exist
+# (marketing repo issue #61). Kept empty until then — the trust block in
+# sections.html only renders once this file (or press.yml) is non-empty.
+# Schema, when populated:
+#   - quote: "..."
+#     quote_ja: "..."
+#     author: "First name only, or 'Google review'"
+#     rating: 5
+[]
