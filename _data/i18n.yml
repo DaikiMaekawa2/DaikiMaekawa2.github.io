@@ -99,6 +99,16 @@ en:
   trust_block:
     subtitle: In Their Words
     title: What People Say
+    # rating_value drives both the numeral and the width of the filled stars
+    # (value x 20 = percent), so the two can never disagree.
+    rating_value: "4.9"
+    rating_scale: out of 5
+    rating_count: Based on 14 Google reviews
+    rating_aria: Rated 4.9 out of 5 from 14 Google reviews
+    cta: Read them on Google
+    source: Google review
+    anonymous: Google user
+    local_guide: Local Guide
   cta:
     subtitle: Let's Talk
     title: Planning an event?<br>Let's bring the <strong><em>Matsuri</em></strong> to it.
@@ -212,6 +222,14 @@ ja:
   trust_block:
     subtitle: お客様の声
     title: 評判・口コミ
+    rating_value: "4.9"
+    rating_scale: 5点満点
+    rating_count: Googleの口コミ14件の平均評価
+    rating_aria: Googleの口コミ14件で5点満点中4.9の評価
+    cta: Googleで口コミを見る
+    source: Googleの口コミ
+    anonymous: Googleユーザー
+    local_guide: ローカルガイド
   cta:
     subtitle: お問い合わせ
     title: 日本の商品を、<br>海外の<strong>祭</strong>で売りませんか？

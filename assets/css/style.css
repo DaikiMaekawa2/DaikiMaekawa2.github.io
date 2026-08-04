@@ -304,6 +304,54 @@ nav {
     transform: translateY(-3px);
 }
 
+/* First-look trust signal, styled as the same soft pill/chip as .hero-badge
+   and .btn-ghost (translucent dark fill + blurred backdrop) rather than
+   bare text on the photo, so it reads as part of that family, not a stray
+   red accent sitting on top of the image. */
+.hero-trust {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 28px;
+    padding: 9px 20px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 50px;
+    background: rgba(10, 10, 10, 0.35);
+    backdrop-filter: blur(4px);
+    text-decoration: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    letter-spacing: 0.2px;
+    transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.hero-trust:hover {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(10, 10, 10, 0.5);
+    color: var(--paper-white);
+}
+
+.hero-trust-stars {
+    position: relative;
+    display: inline-block;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.hero-trust-stars-track {
+    color: rgba(255,255,255,0.3);
+}
+
+.hero-trust-stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffb3b2;
+}
+
 @keyframes heroDrift {
     from { transform: scale(1.05) translateX(0); }
     to { transform: scale(1.12) translateX(-1.5%); }
@@ -761,31 +809,26 @@ nav {
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
 }
 
-.menu-card-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
 .menu-icon {
+    display: block;
     font-size: 1.9rem;
     line-height: 1;
-}
-
-.menu-jp {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 0.85rem;
-    color: #aaa;
-    letter-spacing: 1px;
+    margin-bottom: 18px;
 }
 
 .menu-card h3 {
     font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: -0.2px;
-    margin-bottom: 8px;
+}
+
+.menu-alt {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.82rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 .menu-card p.menu-desc {
@@ -904,10 +947,10 @@ nav {
 
 .service-card {
     background: var(--paper-white);
-    padding: 50px 30px;
+    padding: 40px 32px 44px;
     border-radius: 4px;
     border: 1px solid rgba(0,0,0,0.04);
-    text-align: center;
+    text-align: left;
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -939,16 +982,19 @@ nav {
 }
 
 .service-icon {
-    font-size: 2.5rem;
-    margin-bottom: 25px;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 22px;
     opacity: 0.9;
 }
 
 .service-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+    padding-top: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    border-top: 2px solid rgba(214, 48, 49, 0.25);
 }
 
 .service-card p {
@@ -1056,18 +1102,19 @@ nav {
 
 /* --- Partners Section --- */
 .partners-section {
-    padding: 70px 5%;
+    padding: 90px 5%;
     text-align: center;
     background: var(--paper-white);
 }
 
+/* The section header already carries 70px of space below it; the flex row
+   adds none of its own, or a single logo floats in a very tall empty band. */
 .partner-flex {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 100px;
-    margin-top: 50px;
 }
 
 .partner-logo-img {
@@ -1198,52 +1245,273 @@ nav {
     font-size: 0.85rem;
 }
 
+/* The mark is red-on-white; desaturating it on the black panel turned it
+   into a grey blob, so it sits on a small paper chip instead. */
 .book-otafuku img {
-    height: 28px;
+    height: 34px;
     width: auto;
-    filter: grayscale(1) brightness(2);
-    opacity: 0.8;
+    background: var(--paper-white);
+    border-radius: 4px;
+    padding: 3px 4px;
 }
 
 /* --- Trust Block (GBP reviews + press, hidden until data exists) --- */
 .trust-block-section {
-    padding: 90px 5%;
-    background: var(--paper-white);
+    padding: 100px 5%;
+    background: var(--soft-grey);
+    border-top: 1px solid var(--border-grey);
+    border-bottom: 1px solid var(--border-grey);
 }
 
+/* Aggregate score, presented as one object rather than a sentence — it is
+   the strongest single trust signal on the page. */
+.rating-card {
+    max-width: 640px;
+    margin: -20px auto 55px;
+    background: var(--paper-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 10px;
+    padding: 26px 34px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.04);
+}
+
+.rating-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 28px;
+    border-right: 1px solid var(--border-grey);
+    flex-shrink: 0;
+}
+
+.rating-value {
+    font-size: 2.9rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    color: var(--ink-black);
+}
+
+.rating-scale {
+    margin-top: 6px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: #999;
+    white-space: nowrap;
+}
+
+.rating-detail {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Grey track with a clipped red copy layered over it, so a non-integer
+   score (4.9) shows as a genuinely partial last star. */
+.rating-stars {
+    position: relative;
+    display: inline-block;
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+
+.rating-stars-track {
+    color: #dcdcdc;
+}
+
+.rating-stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--brand-red-dark);
+}
+
+.rating-count {
+    display: block;
+    margin-top: 9px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.rating-cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--brand-red-dark);
+    border: 1px solid rgba(214, 48, 49, 0.3);
+    border-radius: 50px;
+    padding: 11px 22px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rating-cta:hover {
+    background: var(--brand-red-dark);
+    border-color: var(--brand-red-dark);
+    color: var(--paper-white);
+    box-shadow: 0 8px 20px rgba(214, 48, 49, 0.22);
+}
+
+.rating-cta-arrow {
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rating-cta:hover .rating-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* Column flow, not a grid: quotes differ a lot in length, and equal-height
+   grid cells left large dead areas inside the shorter cards. */
+/* Grid, not columns: a masonry column-flow let card tops drift out of line
+   with each other whenever quote lengths differed, which read as misaligned.
+   A real grid keeps every card in a row the same height, with the quote
+   filling the flexible space above the pinned-to-bottom attribution. */
 .review-grid {
     max-width: 1100px;
-    margin: 0 auto 50px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
 }
 
 .review-card {
-    background: var(--soft-grey);
-    padding: 35px 30px;
-    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--paper-white);
+    padding: 30px 30px 26px;
+    border-radius: 8px;
     border: 1px solid var(--border-grey);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.review-card p {
-    color: var(--charcoal);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 15px;
-    font-style: italic;
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.05);
 }
 
-.review-card cite {
+/* Decorative mark, anchored top-right so it never sits over the attribution */
+.review-card::after {
+    content: '”';
+    position: absolute;
+    right: 20px;
+    top: 6px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: rgba(214, 48, 49, 0.08);
+    pointer-events: none;
+}
+
+.review-stars {
     display: block;
-    font-style: normal;
     font-size: 0.85rem;
-    color: rgba(45,52,54,0.6);
+    letter-spacing: 3px;
+    line-height: 1;
+    color: var(--brand-red-dark);
+    margin-bottom: 16px;
+}
+
+.review-stars .is-empty {
+    color: #dcdcdc;
+}
+
+.review-card blockquote {
+    flex: 1;
+    position: relative;
+    color: var(--charcoal);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+/* Japanese has no true italic — browsers fake it with a slant that reads as
+   a rendering fault, so quotes stay upright on the JA page. */
+:lang(ja) .review-card blockquote {
+    font-size: 0.93rem;
+    line-height: 1.85;
+}
+
+.review-card figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-grey);
+}
+
+.review-avatar {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(214, 48, 49, 0.08);
+    color: var(--brand-red-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.review-who {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+    min-width: 0;
+}
+
+.review-author {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink-black);
+}
+
+/* Google's own Local Guide badge is a small filled chip next to the name;
+   mirrored here so returning GBP users recognize it at a glance. */
+.local-guide-badge {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2px;
+    padding: 2px 8px;
+    border-radius: 50px;
+    background: rgba(214, 48, 49, 0.08);
+    color: var(--brand-red-dark);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: none;
+}
+
+.review-source {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #a0a0a0;
+}
+
+/* The JA label is a sentence containing the Google wordmark — uppercasing it
+   would render the brand as "GOOGLE". */
+:lang(ja) .review-source {
+    text-transform: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
 }
 
 .press-flex {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 55px auto 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1587,6 +1855,22 @@ nav.scrolled {
     transform: translateY(-3px);
 }
 
+/* Japanese fonts ship no italic, so browsers synthesise a slant that reads as
+   a rendering fault. Every italic run on the site is decorative, and drops to
+   upright on the JA page. */
+:lang(ja) .menu-footnote,
+:lang(ja) .map-caption {
+    font-style: normal;
+}
+
+/* Same reason: emphasis in the JA copy falls on single kanji (祭), where a
+   slant is simply wrong. Weight and brand colour carry it instead. */
+:lang(ja) .story-content em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--brand-red-dark);
+}
+
 /* --- Section reveal animations --- */
 .reveal {
     opacity: 0;
@@ -1643,6 +1927,7 @@ nav.scrolled {
 @media (max-width: 992px) {
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .hero-kanji { display: none; }
+    .review-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* --- Hamburger Menu --- */
@@ -1736,4 +2021,20 @@ nav.scrolled {
         background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     }
     .cta-section::before { font-size: 14rem; }
+    .review-grid { grid-template-columns: 1fr; }
+    .rating-card {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 30px 26px;
+    }
+    .rating-score {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 10px;
+        padding-right: 0;
+        border-right: none;
+    }
+    .rating-detail { flex: none; }
+    .review-card figcaption { justify-content: flex-start; }
 }

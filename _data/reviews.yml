@@ -1,9 +1,49 @@
-# Google Business Profile review quotes, surfaced once GBP reviews exist
-# (marketing repo issue #61). Kept empty until then — the trust block in
-# sections.html only renders once this file (or press.yml) is non-empty.
-# Schema, when populated:
+# Google Business Profile review quotes. Pulled from live GBP reviews
+# (4.9/5, 14 reviews as of Aug 2026) - see google_reviews_url in _config.yml
+# for the profile itself. Schema:
 #   - quote: "..."
 #     quote_ja: "..."
-#     author: "First name only, or 'Google review'"
+#     author: "Both given name and surname masked to their first letter + x's
+#              for the rest (e.g. Google's 'Cheryl Goh' -> 'Cxxxxx Gxx') so
+#              the card isn't publishing a reviewer's full legal name. Omit
+#              entirely for an anonymous reviewer — the card then falls back
+#              to i18n trust_block.anonymous."
 #     rating: 5
-[]
+#     local_guide: true  # optional — only set when Google's Maps listing
+#                        # actually shows this reviewer as a Local Guide
+#     flag: "🇯🇵"  # optional — masking a first name like "Manami" throws
+#                  # away the "this is a Japanese customer" signal it carried;
+#                  # use sparingly, only when that origin is worth restoring
+#     flag_label: "Japan"       # required alongside flag — accessible name
+#     flag_label_ja: "日本"     # for the emoji (screen readers render it
+#                               # inconsistently on its own)
+- quote: "3 words: AUTHENTIC DELICIOUS FOOD. Emi is a great cook and makes one of the best takoyaki in Singapore. Everything is made from scratch, including the sauce. It has become our comfort food and a sure win at any party. You will not regret ordering from her."
+  quote_ja: "一言でいうと「本物の美味しさ」。Emiさんの料理の腕は確かで、シンガポールでも屈指の美味しいたこ焼きを作ってくれます。ソースまですべて手作り。我が家の定番になり、どんなパーティーでも大好評です。頼んで後悔しないはずです。"
+  author: Cxxxxx Gxx
+  rating: 5
+  local_guide: true
+
+- quote: "No regrets! Takoyaki was chewy and yummy and held up to delivery very well, not once turning soggy. It was such a hit we had to hide some trays first to save some for the rest."
+  quote_ja: "後悔なし！たこ焼きはもちもちで美味しく、デリバリーでも一度もふやけることがありませんでした。あまりの人気で、みんなに配る前にいくつかのトレイを隠しておかなければならないほどでした。"
+  author: Yxxxxxx Sxx
+  rating: 5
+  local_guide: true
+
+- quote: "If you're tired of eating bad takoyaki in Singapore and want the real thing at the same prices, try Emi's takoyaki! Great texture and flavor just like what you can get in Japan."
+  quote_ja: "シンガポールでイマイチなたこ焼きに飽きたなら、同じ価格で本物を味わえるEmiさんのたこ焼きをぜひ。食感も味も、日本で食べるものそのものです。"
+  author: Xxxxxxx Txx
+  rating: 5
+
+- quote: "The takoyaki is delicious, with the flavor of the dashi stock made by a Japanese chef! The takeaway portion was also delicious."
+  quote_ja: "たこ焼きが美味しい、日本人シェフが作る出汁の味がしっかり効いています！テイクアウトの量も満足でした。"
+  author: Mxxxxx Kxxxxxx
+  rating: 5
+  local_guide: true
+  flag: "🇯🇵"
+  flag_label: "Japan"
+  flag_label_ja: "日本"
+
+- quote: "My second time ordering from Nyanmeshi and the takoyaki were a hit with my guests! Very reasonable pricing and delicious food. Will definitely order again."
+  quote_ja: "Nyanmeshiで注文するのは2回目。たこ焼きはゲストにも大好評でした！価格も手頃で美味しく、また絶対に注文します。"
+  author: Sx
+  rating: 5

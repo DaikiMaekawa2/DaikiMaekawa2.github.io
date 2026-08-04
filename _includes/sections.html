@@ -25,6 +25,20 @@
                 {% endif %}
                 <a href="#now" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
             </div>
+
+            {%- comment -%} Trust signal in the "first look" zone, mirroring the
+            full trust block that sits in the "last look" zone before #book.
+            Same guard, same source numbers (rating_value/cta), so the two
+            never drift apart. {%- endcomment -%}
+            {%- if site.data.reviews.size > 0 or site.data.press.size > 0 %}
+            <a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" class="hero-trust" aria-label="{{ t.trust_block.rating_aria }}" data-cta="google_reviews_hero">
+                <span class="hero-trust-stars" aria-hidden="true">
+                    <span class="hero-trust-stars-track">★★★★★</span>
+                    <span class="hero-trust-stars-fill" style="width: {{ t.trust_block.rating_value | times: 20 }}%">★★★★★</span>
+                </span>
+                <span aria-hidden="true">{{ t.trust_block.rating_value }}{% if lang == 'ja' %}・{% else %} &middot; {% endif %}{{ t.trust_block.cta }}</span>
+            </a>
+            {%- endif %}
         </div>
         <a href="#now" class="hero-scroll" aria-label="{{ t.hero.cta_secondary }}"><span></span></a>
     </header>
@@ -127,11 +141,18 @@
             {% for item in site.data.menu %}
             <article class="menu-card stagger">
                 {% if item.signature %}<span class="menu-tag">{{ t.menu.signature_tag }}</span>{% endif %}
-                <div class="menu-card-top">
-                    <span class="menu-icon" aria-hidden="true">{{ item.icon }}</span>
-                    <span class="menu-jp" lang="ja">{{ item.jp }}</span>
-                </div>
+                <span class="menu-icon" aria-hidden="true">{{ item.icon }}</span>
+                {%- comment -%} Each page leads with the name its audience reads
+                first; the other name follows as the subtitle. Stacking them
+                (rather than sitting them side by side) keeps every card's title
+                on the same baseline however long the names are. {%- endcomment %}
+                {% if lang == 'ja' %}
+                <h3 lang="ja">{{ item.jp }}</h3>
+                <span class="menu-alt">{{ item.name }}</span>
+                {% else %}
                 <h3>{{ item.name }}</h3>
+                <span class="menu-alt" lang="ja">{{ item.jp }}</span>
+                {% endif %}
                 <p class="menu-desc">{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
             </article>
             {% endfor %}
@@ -205,6 +226,67 @@
         </div>
     </section>
 
+    {%- comment -%} Social proof sits immediately before the booking CTA:
+    organizers (EN) and suppliers (JA) read the reviews, then hit the buttons.
+    {%- endcomment -%}
+    {%- if site.data.reviews.size > 0 or site.data.press.size > 0 %}
+    <section id="trust" class="trust-block-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.trust_block.subtitle }}</span>
+            <h2>{{ t.trust_block.title }}</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="rating-card">
+            <div class="rating-score">
+                <span class="rating-value">{{ t.trust_block.rating_value }}</span>
+                <span class="rating-scale">{{ t.trust_block.rating_scale }}</span>
+            </div>
+            <div class="rating-detail">
+                {%- comment -%} One track of grey stars, one clipped red copy on
+                top: the fill width is the rating itself (value x 20 = %), so the
+                stars can never drift from the number beside them. {%- endcomment %}
+                <span class="rating-stars" role="img" aria-label="{{ t.trust_block.rating_aria }}">
+                    <span class="rating-stars-track" aria-hidden="true">★★★★★</span>
+                    <span class="rating-stars-fill" aria-hidden="true" style="width: {{ t.trust_block.rating_value | times: 20 }}%">★★★★★</span>
+                </span>
+                <span class="rating-count">{{ t.trust_block.rating_count }}</span>
+            </div>
+            <a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" class="rating-cta" data-cta="google_reviews">
+                {{ t.trust_block.cta }}<span class="rating-cta-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+
+        {% if site.data.reviews.size > 0 %}
+        <div class="review-grid">
+            {% for review in site.data.reviews %}
+            {%- assign author = review.author | default: t.trust_block.anonymous -%}
+            <figure class="review-card stagger">
+                <span class="review-stars" role="img" aria-label="{{ review.rating }}/5">{% for i in (1..5) %}<span{% if i > review.rating %} class="is-empty"{% endif %}>★</span>{% endfor %}</span>
+                <blockquote>{% if lang == 'ja' and review.quote_ja %}{{ review.quote_ja }}{% else %}{{ review.quote }}{% endif %}</blockquote>
+                <figcaption>
+                    <span class="review-avatar" aria-hidden="true">{{ author | slice: 0 }}</span>
+                    <span class="review-who">
+                        <span class="review-author">{{ author }}{% if review.flag %} <span role="img" aria-label="{% if lang == 'ja' and review.flag_label_ja %}{{ review.flag_label_ja }}{% else %}{{ review.flag_label }}{% endif %}">{{ review.flag }}</span>{% endif %}{% if review.local_guide %} <span class="local-guide-badge">{{ t.trust_block.local_guide }}</span>{% endif %}</span>
+                        <span class="review-source">{{ t.trust_block.source }}</span>
+                    </span>
+                </figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if site.data.press.size > 0 %}
+        <div class="press-flex">
+            {% for outlet in site.data.press %}
+            <a href="{{ outlet.url }}" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/{{ outlet.logo }}" alt="{{ outlet.name }}" loading="lazy" width="{{ outlet.width }}" height="{{ outlet.height }}">
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+    {%- endif %}
+
     <section id="book" class="cta-section reveal">
         <div class="cta-content">
             <span class="section-subtitle">{{ t.cta.subtitle }}</span>
@@ -246,35 +328,6 @@
             </div>
         </div>
     </section>
-
-    {%- if site.data.reviews.size > 0 or site.data.press.size > 0 %}
-    <section id="trust" class="trust-block-section reveal">
-        <div class="section-header">
-            <span class="section-subtitle">{{ t.trust_block.subtitle }}</span>
-            <h2>{{ t.trust_block.title }}</h2>
-            <div class="divider"></div>
-        </div>
-        {% if site.data.reviews.size > 0 %}
-        <div class="review-grid">
-            {% for review in site.data.reviews %}
-            <blockquote class="review-card stagger">
-                <p>&ldquo;{% if lang == 'ja' and review.quote_ja %}{{ review.quote_ja }}{% else %}{{ review.quote }}{% endif %}&rdquo;</p>
-                <cite>{{ review.author }} &middot; {{ review.rating }}&#9733;</cite>
-            </blockquote>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% if site.data.press.size > 0 %}
-        <div class="press-flex">
-            {% for outlet in site.data.press %}
-            <a href="{{ outlet.url }}" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/{{ outlet.logo }}" alt="{{ outlet.name }}" loading="lazy" width="{{ outlet.width }}" height="{{ outlet.height }}">
-            </a>
-            {% endfor %}
-        </div>
-        {% endif %}
-    </section>
-    {%- endif %}
 
     </main>
 
