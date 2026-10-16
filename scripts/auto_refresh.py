@@ -11,7 +11,8 @@ is watching:
   * It only ever commits AUTO_FILES (the two generated figure files). If
     anything else in the working tree is modified, it skips the whole run,
     so half-finished manual work is never swept into an automatic commit.
-  * It fast-forwards from origin first and never force-pushes.
+  * It only runs with main checked out, fast-forwards from origin first,
+    never force-pushes, and retries a commit a previous run failed to push.
   * Any failure (verify, pull, push) is logged and nothing is published.
 
 Log: ~/.local/state/nyanmeshi-site/refresh.log (LEDGER GAP warnings from
@@ -50,6 +51,10 @@ def changed_files():
 
 def main():
     dry = "--dry-run" in sys.argv
+    branch = git("rev-parse", "--abbrev-ref", "HEAD", check=False).strip()
+    if branch != "main":
+        log(f"SKIP: checked out on '{branch}', not main; not auto-publishing")
+        return 0
     other = changed_files() - AUTO_FILES
     if other:
         log(f"SKIP: uncommitted manual changes ({len(other)} file(s)), not auto-publishing")
@@ -72,6 +77,17 @@ def main():
 
     changes = changed_files()
     if not changes:
+        # A previous run may have committed but failed to push (network
+        # blip): retry so that commit doesn't sit stranded locally.
+        ahead = git("rev-list", "--count", "@{u}..HEAD", check=False).strip()
+        if ahead.isdigit() and int(ahead) > 0 and not dry:
+            try:
+                git("push", "--quiet")
+            except RuntimeError as e:
+                log(f"FAIL: retrying unpushed commit: {e}")
+                return 1
+            log(f"PUBLISHED: {ahead} previously unpushed commit(s)")
+            return 0
         log("OK: site already shows the latest figures")
         return 0
     if not changes <= AUTO_FILES:
