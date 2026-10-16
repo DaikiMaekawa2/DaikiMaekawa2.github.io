@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%- comment -%} GitHub Pages cannot set HTTP headers, so the CSP ships as a
     meta tag. script-src is strict (no inline scripts anywhere — keep it that
-    way); 'unsafe-inline' applies to STYLES only, which Leaflet needs. GA4
+    way); 'unsafe-inline' applies to STYLES only (the star-rating fill widths). GA4
     origins are appended only when ga4_measurement_id is set, so nothing is
     allowlisted before it's actually used.
     {%- endcomment %}
-    {%- assign csp_script = "'self' https://unpkg.com" -%}
+    {%- assign csp_script = "'self'" -%}
     {%- assign csp_connect = "'self'" -%}
     {%- if site.ga4_measurement_id != "" -%}
       {%- assign csp_script = csp_script | append: " https://www.googletagmanager.com" -%}
       {%- assign csp_connect = csp_connect | append: " https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com" -%}
     {%- endif -%}
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src {{ csp_script }}; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.basemaps.cartocdn.com; connect-src {{ csp_connect }}; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src {{ csp_script }}; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src {{ csp_connect }}; object-src 'none'; base-uri 'self'; form-action 'self'">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     {%- if site.google_site_verification != "" %}
     <meta name="google-site-verification" content="{{ site.google_site_verification }}">
@@ -64,42 +64,9 @@
       ]
     }
     </script>
-    {%- if is_home and site.data.schedule.size > 0 %}
-    {%- comment -%} One FoodEvent per current/upcoming schedule entry (schedule.yml
-    only ever carries current + upcoming rows — see its own header comment). Only
-    public-safe fields are used: no prices, no exact venue addresses. {%- endcomment -%}
-    <script type="application/ld+json">
-    [
-    {%- for event in site.data.schedule %}
-      {
-        "@context": "https://schema.org",
-        "@type": "FoodEvent",
-        "name": "{% if lang == 'ja' and event.name_ja %}{{ event.name_ja }}{% else %}{{ event.name }}{% endif %}",
-        "startDate": "{{ event.start }}",
-        "endDate": "{{ event.end }}",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "location": {
-          "@type": "Place",
-          "name": "{% if lang == 'ja' and event.location_ja %}{{ event.location_ja }}{% else %}{{ event.location }}{% endif %}"
-        },
-        "image": "{{ site.url }}/assets/img/nyanmeshi_logo.jpg",
-        "organizer": {
-          "@type": "Organization",
-          "name": "{{ site.title }}",
-          "url": "{{ site.url }}"
-        }
-      }{% unless forloop.last %},{% endunless %}
-    {%- endfor %}
-    ]
-    </script>
-    {%- endif %}
 
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Leaflet CSS for Interactive Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
     {%- comment -%} site.time changes every build, so each deploy busts the
     10-minute GitHub Pages cache and phones pick up CSS/JS fixes immediately.
@@ -110,7 +77,7 @@
     {%- comment -%} gtag.js itself is an external script (CSP-safe); its init
     call would normally be inline, so the measurement ID travels instead via a
     non-executable JSON data island and assets/js/analytics.js reads it —
-    same pattern as the footprint map's coverage data. {%- endcomment %}
+    the same JSON-island pattern used for any page data. {%- endcomment %}
     <script src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4_measurement_id }}" defer></script>
     <script type="application/json" id="nyan-ga-config">{"id": "{{ site.ga4_measurement_id }}"}</script>
     <script src="/assets/js/analytics.js?v={{ site.time | date: '%s' }}" defer></script>
@@ -127,12 +94,12 @@
         </button>
         <div class="nav-content">
             <div class="nav-links">
-                <a href="#now">{{ t.nav.now }}</a>
                 <a href="#about">{{ t.nav.story }}</a>
-                <a href="#menu">{{ t.nav.menu }}</a>
+                <a href="#season">{{ t.nav.season }}</a>
                 <a href="#projects">{{ t.nav.gallery }}</a>
-                <a href="#locations">{{ t.nav.footprint }}</a>
+                <a href="#menu">{{ t.nav.menu }}</a>
                 <a href="#book">{{ t.nav.book }}</a>
+                <a href="#find-us">{{ t.nav.find_us }}</a>
                 <a href="#contact">{{ t.nav.contact }}</a>
             </div>
             <div class="nav-socials">
@@ -143,12 +110,12 @@
     </nav>
 
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#now" class="mobile-menu-link">{{ t.nav.now }}</a>
         <a href="#about" class="mobile-menu-link">{{ t.nav.story }}</a>
-        <a href="#menu" class="mobile-menu-link">{{ t.nav.menu }}</a>
+        <a href="#season" class="mobile-menu-link">{{ t.nav.season }}</a>
         <a href="#projects" class="mobile-menu-link">{{ t.nav.gallery }}</a>
-        <a href="#locations" class="mobile-menu-link">{{ t.nav.footprint }}</a>
+        <a href="#menu" class="mobile-menu-link">{{ t.nav.menu }}</a>
         <a href="#book" class="mobile-menu-link">{{ t.nav.book }}</a>
+        <a href="#find-us" class="mobile-menu-link">{{ t.nav.find_us }}</a>
         <a href="#contact" class="mobile-menu-link">{{ t.nav.contact_long }}</a>
         <a href="{{ t.lang_switch.url }}" class="lang-switch-mobile" aria-label="{{ t.lang_switch.aria }}">{{ t.lang_switch.label }}</a>
         <div class="mobile-menu-socials">
@@ -181,7 +148,7 @@
                 </div>
             </div>
         </div>
-        <div class="copyright">&copy; 2026 {{ site.title }} {{ t.footer.rights }} &nbsp;·&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/data-deletion.html">Data Deletion</a></div>
+        <div class="copyright">&copy; {{ site.time | date: '%Y' }} {{ site.title }} {{ t.footer.rights }} &nbsp;·&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/data-deletion.html">Data Deletion</a></div>
     </footer>
 
     <script src="/assets/js/main.js?v={{ site.time | date: '%s' }}" defer></script>

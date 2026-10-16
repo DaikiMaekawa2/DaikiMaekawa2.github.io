@@ -23,24 +23,22 @@
                     {{ t.hero.cta_primary }}
                 </a>
                 {% endif %}
-                <a href="#now" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
+                <a href="#season" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
             </div>
 
-            {%- comment -%} Trust signal in the "first look" zone, mirroring the
-            full trust block that sits in the "last look" zone before #book.
-            Same guard, same source numbers (rating_value/cta), so the two
-            never drift apart. {%- endcomment -%}
-            {%- if site.data.reviews.size > 0 or site.data.press.size > 0 %}
-            <a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" class="hero-trust" aria-label="{{ t.trust_block.rating_aria }}" data-cta="google_reviews_hero">
-                <span class="hero-trust-stars" aria-hidden="true">
-                    <span class="hero-trust-stars-track">★★★★★</span>
-                    <span class="hero-trust-stars-fill" style="width: {{ t.trust_block.rating_value | times: 20 }}%">★★★★★</span>
-                </span>
-                <span aria-hidden="true">{{ t.trust_block.rating_value }}{% if lang == 'ja' %}・{% else %} &middot; {% endif %}{{ t.trust_block.cta }}</span>
-            </a>
-            {%- endif %}
+            {%- comment -%} Proof line in the "first look" zone. Built from
+            _data/stats.yml (the same floors as the numbers band), so the two
+            can never disagree and nothing here needs a date. {%- endcomment %}
+            <ul class="hero-proof" aria-label="{{ t.hero.proof_aria }}">
+                {%- for stat in site.data.stats limit: 3 %}
+                <li><strong>{{ stat.value }}{{ stat.suffix }}</strong> {% if lang == 'ja' and stat.label_ja %}{{ stat.label_ja }}{% else %}{{ stat.label }}{% endif %}</li>
+                {%- endfor %}
+                {%- if site.data.gbp.rating %}
+                <li><a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" data-cta="google_reviews_hero"><strong>{{ site.data.gbp.rating }}★</strong> {{ t.hero.proof_rating }}</a></li>
+                {%- endif %}
+            </ul>
         </div>
-        <a href="#now" class="hero-scroll" aria-label="{{ t.hero.cta_secondary }}"><span></span></a>
+        <a href="#about" class="hero-scroll" aria-label="{{ t.hero.cta_secondary }}"><span></span></a>
     </header>
 
     <div class="marquee" aria-hidden="true">
@@ -50,32 +48,6 @@
             {% for i in (1..4) %}{% for item in site.data.menu %}<span class="marquee-en">{{ item.name }}</span><span class="marquee-jp">{{ item.jp }}</span>{% endfor %}{% endfor %}
         </div>
     </div>
-
-    <section id="now" class="now-section reveal">
-        <div class="section-header">
-            <span class="section-subtitle">{{ t.schedule.subtitle }}</span>
-            <h2>{{ t.schedule.title }}</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="now-grid">
-            {% for event in site.data.schedule %}
-            <article class="schedule-card stagger" data-start="{{ event.start }}" data-end="{{ event.end }}"
-                     data-label-live="{{ t.schedule.live }}" data-label-upcoming="{{ t.schedule.upcoming }}" data-label-past="{{ t.schedule.past }}">
-                <span class="schedule-status"><span class="pulse-dot"></span><span class="schedule-status-text">{{ t.schedule.upcoming }}</span></span>
-                <h3>{% if lang == 'ja' and event.name_ja %}{{ event.name_ja }}{% else %}{{ event.name }}{% endif %}</h3>
-                <p class="schedule-meta">{% if lang == 'ja' and event.location_ja %}{{ event.location_ja }}{% else %}{{ event.location }}{% endif %}</p>
-                <p class="schedule-dates">{% if lang == 'ja' and event.dates_display_ja %}{{ event.dates_display_ja }}{% else %}{{ event.dates_display }}{% endif %}</p>
-                <p class="schedule-note">{% if lang == 'ja' and event.note_ja %}{{ event.note_ja }}{% else %}{{ event.note }}{% endif %}</p>
-            </article>
-            {% endfor %}
-            <a href="#contact" class="schedule-card schedule-card-cta stagger">
-                <span class="schedule-status">{{ t.schedule.cta_tag }}</span>
-                <h3>{{ t.schedule.cta_title }}</h3>
-                <p class="schedule-note">{{ t.schedule.cta_note }}</p>
-                <span class="schedule-cta-arrow" aria-hidden="true">→</span>
-            </a>
-        </div>
-    </section>
 
     <div class="trust-bar reveal">
         <div class="trust-item">
@@ -113,6 +85,35 @@
         </div>
     </section>
 
+    {%- comment -%} Replaces the old interactive map. The dot-matrix island is
+    a static SVG (scripts/make_reach_map.py, URA region boundaries) with all
+    five regions lit: region-level only, no venue positions, no JS, and it
+    never needs updating as the business grows. {%- endcomment %}
+    <section id="reach" class="reach-section reveal">
+        <div class="reach-grid">
+            <figure class="reach-visual">
+                {% include reach-map.svg %}
+                <div class="reach-route" aria-hidden="true">
+                    <span class="reach-stop"><span class="reach-dot"></span>{{ t.reach.route_from }}</span>
+                    <span class="reach-line"></span>
+                    <span class="reach-stop"><span class="reach-dot"></span>{{ t.reach.route_to }}</span>
+                </div>
+                <figcaption class="reach-credit">{{ t.reach.credit }}</figcaption>
+            </figure>
+            <div class="reach-copy">
+                <span class="section-subtitle">{{ t.reach.subtitle }}</span>
+                <h2>{{ t.reach.title }}</h2>
+                <p class="reach-lead">{{ t.reach.lead }}</p>
+                {% for market in t.reach.markets %}
+                <div class="reach-market">
+                    <h3><span class="reach-market-name">{{ market.name }}</span><span class="reach-market-scope">{{ market.scope }}</span></h3>
+                    <p>{{ market.detail }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
     <section id="season" class="timeline-section reveal">
         <div class="section-header">
             <span class="section-subtitle">{{ t.season.subtitle }}</span>
@@ -126,6 +127,42 @@
                 <h3>{% if lang == 'ja' and stop.name_ja %}{{ stop.name_ja }}{% else %}{{ stop.name }}{% endif %}</h3>
                 <span class="timeline-type">{% if lang == 'ja' and stop.type_ja %}{{ stop.type_ja }}{% else %}{{ stop.type }}{% endif %}</span>
                 <p>{% if lang == 'ja' and stop.desc_ja %}{{ stop.desc_ja }}{% else %}{{ stop.desc }}{% endif %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="expertise" class="section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.expertise.subtitle }}</span>
+            <h2>{{ t.expertise.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="services-grid">
+            {% for card in t.expertise.cards %}
+            <div class="service-card stagger">
+                <div class="service-icon">{{ card.icon }}</div>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="projects" class="gallery-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.gallery.subtitle }}</span>
+            <h2>{{ t.gallery.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="gallery-grid">
+            {% for item in site.data.gallery %}
+            <div class="gallery-item stagger">
+                <img src="/assets/img/{{ item.image }}" alt="{{ item.alt }}" loading="lazy" width="800" height="600">
+                <div class="gallery-overlay">
+                    <h4>{% if lang == 'ja' and item.title_ja %}{{ item.title_ja }}{% else %}{{ item.title }}{% endif %}</h4>
+                    <p>{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -160,61 +197,6 @@
         <p class="menu-footnote">{{ t.menu.footnote }}</p>
     </section>
 
-    <section id="projects" class="gallery-section reveal">
-        <div class="section-header">
-            <span class="section-subtitle">{{ t.gallery.subtitle }}</span>
-            <h2>{{ t.gallery.title }}</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="gallery-grid">
-            {% for item in site.data.gallery %}
-            <div class="gallery-item stagger">
-                <img src="/assets/img/{{ item.image }}" alt="{{ item.alt }}" loading="lazy" width="800" height="600">
-                <div class="gallery-overlay">
-                    <h4>{% if lang == 'ja' and item.title_ja %}{{ item.title_ja }}{% else %}{{ item.title }}{% endif %}</h4>
-                    <p>{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section id="expertise" class="section reveal">
-        <div class="section-header">
-            <span class="section-subtitle">{{ t.expertise.subtitle }}</span>
-            <h2>{{ t.expertise.title }}</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="services-grid">
-            {% for card in t.expertise.cards %}
-            <div class="service-card stagger">
-                <div class="service-icon">{{ card.icon }}</div>
-                <h3>{{ card.title }}</h3>
-                <p>{{ card.desc }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section id="locations" class="map-section reveal">
-        <div class="map-container">
-            <div class="section-header">
-                <span class="section-subtitle">{{ t.map.subtitle }}</span>
-                <h2>{{ t.map.title }}</h2>
-                <div class="divider"></div>
-            </div>
-
-            <div id="singapore-map" role="img" aria-label="{{ t.map.aria }}"></div>
-
-            <p class="map-caption">{{ t.map.caption }}</p>
-
-            <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener noreferrer" class="map-cta">
-                {% include icon-instagram.html %}
-                {{ t.map.cta }}
-            </a>
-        </div>
-    </section>
-
     <section id="partners" class="partners-section reveal">
         <div class="section-header">
             <span class="section-subtitle">{{ t.partners.subtitle }}</span>
@@ -237,25 +219,19 @@
             <div class="divider"></div>
         </div>
 
-        <div class="rating-card">
-            <div class="rating-score">
-                <span class="rating-value">{{ t.trust_block.rating_value }}</span>
-                <span class="rating-scale">{{ t.trust_block.rating_scale }}</span>
-            </div>
-            <div class="rating-detail">
-                {%- comment -%} One track of grey stars, one clipped red copy on
-                top: the fill width is the rating itself (value x 20 = %), so the
-                stars can never drift from the number beside them. {%- endcomment %}
-                <span class="rating-stars" role="img" aria-label="{{ t.trust_block.rating_aria }}">
-                    <span class="rating-stars-track" aria-hidden="true">★★★★★</span>
-                    <span class="rating-stars-fill" aria-hidden="true" style="width: {{ t.trust_block.rating_value | times: 20 }}%">★★★★★</span>
-                </span>
-                <span class="rating-count">{{ t.trust_block.rating_count }}</span>
-            </div>
-            <a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" class="rating-cta" data-cta="google_reviews">
-                {{ t.trust_block.cta }}<span class="rating-cta-arrow" aria-hidden="true">→</span>
-            </a>
+        {%- comment -%} Rating + count come from _data/gbp.yml, generated by
+        scripts/sync_gbp.py from the marketing repo's live GBP snapshot. The
+        count is a floor (20+) so it stays true as reviews come in. {%- endcomment %}
+        {%- if site.data.gbp.rating %}
+        <div class="rating-summary">
+            <span class="rating-value">{{ site.data.gbp.rating }}</span>
+            <span class="rating-stars" role="img" aria-label="{{ site.data.gbp.rating }} / 5">
+                <span class="rating-stars-track" aria-hidden="true">★★★★★</span>
+                <span class="rating-stars-fill" aria-hidden="true" style="width: {{ site.data.gbp.rating | times: 20 }}%">★★★★★</span>
+            </span>
+            <span class="rating-count">{{ t.trust_block.rating_count | replace: '%n', site.data.gbp.review_floor }}</span>
         </div>
+        {%- endif %}
 
         {% if site.data.reviews.size > 0 %}
         <div class="review-grid">
@@ -274,6 +250,9 @@
             </figure>
             {% endfor %}
         </div>
+        <a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" class="reviews-link" data-cta="google_reviews">
+            {{ t.trust_block.cta }}<span aria-hidden="true">→</span>
+        </a>
         {% endif %}
         {% if site.data.press.size > 0 %}
         <div class="press-flex">
@@ -329,9 +308,24 @@
         </div>
     </section>
 
+    {%- comment -%} Evergreen by design: the site never lists current or
+    upcoming events (see CLAUDE.md). Shoppers looking for the stall are sent
+    to Instagram, which is updated as part of normal operations. {%- endcomment %}
+    <section id="find-us" class="follow-section reveal">
+        <div class="follow-container">
+            <div class="section-header">
+                <span class="section-subtitle">{{ t.follow.subtitle }}</span>
+                <h2>{{ t.follow.title }}</h2>
+                <div class="divider"></div>
+            </div>
+            <p class="follow-lead">{{ t.follow.lead }}</p>
+            <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener noreferrer" class="follow-cta" data-cta="instagram_find_us">
+                {% include icon-instagram.html %}
+                {{ t.follow.cta }}
+            </a>
+            <p class="follow-caption">{{ t.follow.caption }}</p>
+        </div>
+    </section>
+
     </main>
 
-    {%- comment -%} Non-executable JSON data island: keeps the page free of
-    inline scripts so the CSP can lock script-src down. {%- endcomment %}
-    <script type="application/json" id="nyan-coverage">{{ site.data.locations | jsonify }}</script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" defer></script>

@@ -1,59 +1,49 @@
 ---
-description: Sync the website schedule & map from the finance ledger, verify, and publish
+description: Pull the latest Google reviews and track record into the site, verify, and publish
 ---
 
-Update nyanmeshi.com from the finance ledger. Follow these steps exactly, in order.
-The scripts do the hard work — your job is to run them and act on their output.
+One command refreshes every live figure on nyanmeshi.com. Run it, read the
+output, publish. The site is evergreen (no schedule, no map), so this is
+never urgent: run it whenever the owner wants the latest numbers up.
 
-## 1. Sync the schedule
+## 1. Refresh
 
 ```bash
-python3 scripts/sync_schedule.py
+python3 scripts/refresh_site.py
 ```
 
-This regenerates `_data/schedule.yml` from the finance repo's `events.csv`
-(public fields only). Read its output:
+It runs, in order:
+- **Google reviews**: live rating + review-count floor via the marketing
+  repo's GBP API client (falls back to its daily snapshot) → `_data/gbp.yml`
+- **Track record**: activations, stall-days, venues from the finance
+  ledger → `_data/stats.yml`. Floors only ever go up.
+- **Verify**: `check_site.py` (confidential terms, anchors, assets, CSP,
+  rating never overstated). Must print `PASS`.
 
-- If a NEW event appears with the default location "Singapore" and no note,
-  add editorial copy under its `event_id` in `_data/schedule_overrides.yml`
-  (`name`, `name_ja`, `location`, `location_ja`, `note`, `note_ja`), then run
-  the script again. Write the Japanese fields too — the site is bilingual.
+Relay to the owner:
+- What changed (rating, review floor, any raised stat).
+- Any `LEDGER GAP` line: the finance ledger is behind (e.g. an event run
+  without its events.csv row). Tell the owner; don't fix the finance repo
+  without asking.
+- If the step output shows a strong new 4-5★ review not yet quoted, offer
+  to add it to `_data/reviews.yml` (mask the name as first letter + x's,
+  write `quote_ja`, keep the total a multiple of 3). Never auto-publish
+  quotes.
 
-- If an event has DROPPED OFF the schedule (it ended more than a few days
-  ago), delete its block from `_data/schedule_overrides.yml` — past venue
-  names must not accumulate in this public repo. Then, if that venue was new
-  for its Singapore region, bump the region's `venues` count in
-  `_data/locations.yml`.
+If any step fails, fix it and rerun. Never publish while Verify fails.
 
-- NEVER add venue names or venue-level coordinates to `_data/locations.yml`.
-  The footprint map is deliberately region-level aggregates only — the exact
-  venue list is competitive information, shared with prospective partners
-  privately on request.
+## 2. Publish
 
-## 2. Verify
-
-```bash
-python3 scripts/check_site.py
-```
-
-This builds the site and checks both language pages for confidential terms,
-broken links/anchors, missing assets, and schedule drift. It must print
-`PASS`. If it prints `FAIL` lines, fix each one and re-run. Never publish
-while this fails.
-
-## 3. Publish
-
-Review the diff, then commit and push (GitHub Pages deploys automatically):
+If `_data/` changed and Verify passed:
 
 ```bash
-git diff
-git add _data/ && git commit -m "update event schedule" && git push
+git add _data/ && git commit -m "refresh track record and Google rating" && git push
 ```
 
 Rules:
-- This is a PUBLIC repository. Never commit tokens, credentials, financial
-  figures (rent, commissions, sales), payee names, or helper/worker names.
-  `check_site.py` guards the built pages, but the rule applies to every file.
+- PUBLIC repository. Never commit tokens, credentials, financial figures,
+  payee names, or worker names. GBP performance metrics (impressions,
+  clicks) stay internal.
 - Plain commit message, no AI attribution.
-- Only `_data/` should normally change in this workflow. If other files
-  changed unexpectedly, stop and ask the user before committing.
+- Only `_data/` should change in this workflow. If other files changed,
+  stop and ask before committing.

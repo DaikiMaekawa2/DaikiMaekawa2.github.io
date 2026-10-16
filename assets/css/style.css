@@ -304,52 +304,51 @@ nav {
     transform: translateY(-3px);
 }
 
-/* First-look trust signal, styled as the same soft pill/chip as .hero-badge
-   and .btn-ghost (translucent dark fill + blurred backdrop) rather than
-   bare text on the photo, so it reads as part of that family, not a stray
-   red accent sitting on top of the image. */
-.hero-trust {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    margin-top: 28px;
-    padding: 9px 20px;
-    border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 50px;
-    background: rgba(10, 10, 10, 0.35);
-    backdrop-filter: blur(4px);
-    text-decoration: none;
-    color: rgba(255,255,255,0.8);
-    font-size: 0.8rem;
-    letter-spacing: 0.2px;
-    transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+/* First-look proof line: the headline floors from _data/stats.yml, set as
+   quiet small caps under the CTAs so the hero states facts, not claims. */
+.hero-proof {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 0;
+    margin-top: 34px;
+    padding: 0;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
 }
 
-.hero-trust:hover {
-    border-color: rgba(255,255,255,0.4);
-    background: rgba(10, 10, 10, 0.5);
+.hero-proof li {
+    padding: 0 18px;
+}
+
+.hero-proof li + li {
+    border-left: 1px solid rgba(255,255,255,0.28);
+}
+
+.hero-proof a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.hero-proof a:hover {
     color: var(--paper-white);
 }
 
-.hero-trust-stars {
-    position: relative;
-    display: inline-block;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    line-height: 1;
+.hero-proof strong {
+    font-weight: 700;
+    color: var(--paper-white);
+    letter-spacing: 0.5px;
+    margin-right: 4px;
 }
 
-.hero-trust-stars-track {
-    color: rgba(255,255,255,0.3);
-}
-
-.hero-trust-stars-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    color: #ffb3b2;
+:lang(ja) .hero-proof {
+    text-transform: none;
+    letter-spacing: 0.5px;
 }
 
 @keyframes heroDrift {
@@ -425,130 +424,6 @@ nav {
 
 @keyframes marquee {
     to { transform: translateX(-50%); }
-}
-
-/* --- Now Serving --- */
-.now-section {
-    padding: 100px 5%;
-    background: var(--paper-white);
-}
-
-.now-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.schedule-card {
-    position: relative;
-    background: var(--soft-grey);
-    border: 1px solid var(--border-grey);
-    border-radius: 8px;
-    padding: 40px 35px 35px;
-    text-align: left;
-    transition: all 0.4s ease;
-}
-
-.schedule-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-}
-
-.schedule-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 18px;
-}
-
-.schedule-card.is-live .schedule-status {
-    color: var(--brand-red-dark);
-}
-
-.schedule-card.is-live {
-    border-color: rgba(214, 48, 49, 0.25);
-    background: linear-gradient(135deg, #fffafa 0%, var(--soft-grey) 100%);
-}
-
-.pulse-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #bbb;
-    flex-shrink: 0;
-}
-
-.schedule-card.is-live .pulse-dot {
-    background: var(--brand-red-dark);
-    animation: pulse 1.6s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(214, 48, 49, 0.45); }
-    50% { box-shadow: 0 0 0 8px rgba(214, 48, 49, 0); }
-}
-
-.schedule-card h3 {
-    font-size: 1.35rem;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    margin-bottom: 6px;
-}
-
-.schedule-meta {
-    font-size: 0.85rem;
-    color: var(--brand-red-dark);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
-}
-
-.schedule-dates {
-    font-size: 0.85rem;
-    color: #888;
-    margin-bottom: 16px;
-}
-
-.schedule-card p.schedule-note {
-    font-size: 0.95rem;
-    color: #777;
-}
-
-/* B2B slot at the end of the schedule grid */
-.schedule-card-cta {
-    display: block;
-    text-decoration: none;
-    background: var(--paper-white);
-    border-style: dashed;
-    border-color: #e0e0e0;
-}
-
-.schedule-card-cta .schedule-status {
-    color: var(--brand-red-dark);
-}
-
-.schedule-cta-arrow {
-    display: inline-block;
-    margin-top: 18px;
-    font-size: 1.3rem;
-    line-height: 1;
-    color: var(--brand-red-dark);
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.schedule-card-cta:hover {
-    border-color: var(--brand-red);
-}
-
-.schedule-card-cta:hover .schedule-cta-arrow {
-    transform: translateX(6px);
 }
 
 /* --- Trust Bar / Stats --- */
@@ -1003,74 +878,39 @@ nav {
     font-weight: 300;
 }
 
-/* --- Map Section --- */
-.map-section {
+/* --- Find Us (Instagram) --- */
+.follow-section {
     background: var(--soft-grey);
     padding: 100px 0;
     border-top: 1px solid var(--border-grey);
     border-bottom: 1px solid var(--border-grey);
 }
 
-.map-container {
-    max-width: 1100px;
+.follow-container {
+    max-width: 720px;
     margin: 0 auto;
     padding: 0 5%;
     text-align: center;
 }
 
-#singapore-map {
-    height: 550px;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.05);
-    z-index: 1;
+.follow-container .section-header {
+    margin-bottom: 30px;
+}
+
+.follow-lead {
+    font-size: 1.05rem;
+    color: #666;
     margin-bottom: 35px;
-    background: var(--paper-white);
 }
 
-/* Region coverage labels sit centred on the proportional circles; the white
-   halo keeps ink legible over whatever the basemap draws underneath. */
-.map-region-icon {
-    background: none;
-    border: none;
-}
-
-.map-region-label {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.15;
-    text-align: center;
-    pointer-events: none;
-}
-
-.map-region-count {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--ink-black);
-    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.95), 0 0 2px #fff;
-}
-
-.map-region-name {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95), 0 0 2px #fff;
-}
-
-.map-caption {
+.follow-caption {
     font-size: 0.9rem;
     color: #888;
-    margin-bottom: 25px;
+    margin-top: 30px;
     font-style: italic;
 }
 
-.map-cta {
+.follow-cta {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -1087,14 +927,14 @@ nav {
     border: 1px solid var(--border-grey);
 }
 
-.map-cta:hover {
+.follow-cta:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     border-color: var(--brand-red);
     color: var(--brand-red-dark);
 }
 
-.map-cta svg {
+.follow-cta svg {
     width: 20px;
     height: 20px;
     fill: currentColor;
@@ -1255,7 +1095,9 @@ nav {
     padding: 3px 4px;
 }
 
-/* --- Trust Block (GBP reviews + press, hidden until data exists) --- */
+/* --- Trust Block (GBP rating + review quotes + press, hidden until data exists) ---
+   The rating comes from _data/gbp.yml (synced from the live profile); the
+   count is shown as a floor so it never overstates. */
 .trust-block-section {
     padding: 100px 5%;
     background: var(--soft-grey);
@@ -1263,116 +1105,6 @@ nav {
     border-bottom: 1px solid var(--border-grey);
 }
 
-/* Aggregate score, presented as one object rather than a sentence — it is
-   the strongest single trust signal on the page. */
-.rating-card {
-    max-width: 640px;
-    margin: -20px auto 55px;
-    background: var(--paper-white);
-    border: 1px solid var(--border-grey);
-    border-radius: 10px;
-    padding: 26px 34px;
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    box-shadow: 0 14px 34px rgba(0,0,0,0.04);
-}
-
-.rating-score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-right: 28px;
-    border-right: 1px solid var(--border-grey);
-    flex-shrink: 0;
-}
-
-.rating-value {
-    font-size: 2.9rem;
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -1.5px;
-    color: var(--ink-black);
-}
-
-.rating-scale {
-    margin-top: 6px;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    color: #999;
-    white-space: nowrap;
-}
-
-.rating-detail {
-    flex: 1;
-    min-width: 0;
-}
-
-/* Grey track with a clipped red copy layered over it, so a non-integer
-   score (4.9) shows as a genuinely partial last star. */
-.rating-stars {
-    position: relative;
-    display: inline-block;
-    font-size: 1.05rem;
-    letter-spacing: 3px;
-    line-height: 1;
-}
-
-.rating-stars-track {
-    color: #dcdcdc;
-}
-
-.rating-stars-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    color: var(--brand-red-dark);
-}
-
-.rating-count {
-    display: block;
-    margin-top: 9px;
-    font-size: 0.85rem;
-    color: #888;
-}
-
-.rating-cta {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: var(--brand-red-dark);
-    border: 1px solid rgba(214, 48, 49, 0.3);
-    border-radius: 50px;
-    padding: 11px 22px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.rating-cta:hover {
-    background: var(--brand-red-dark);
-    border-color: var(--brand-red-dark);
-    color: var(--paper-white);
-    box-shadow: 0 8px 20px rgba(214, 48, 49, 0.22);
-}
-
-.rating-cta-arrow {
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.rating-cta:hover .rating-cta-arrow {
-    transform: translateX(4px);
-}
-
-/* Column flow, not a grid: quotes differ a lot in length, and equal-height
-   grid cells left large dead areas inside the shorter cards. */
 /* Grid, not columns: a masonry column-flow let card tops drift out of line
    with each other whenever quote lengths differed, which read as misaligned.
    A real grid keeps every card in a row the same height, with the quote
@@ -1859,7 +1591,7 @@ nav.scrolled {
    a rendering fault. Every italic run on the site is decorative, and drops to
    upright on the JA page. */
 :lang(ja) .menu-footnote,
-:lang(ja) .map-caption {
+:lang(ja) .follow-caption {
     font-style: normal;
 }
 
@@ -2014,7 +1746,6 @@ nav.scrolled {
     .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .footer-contact-list a { justify-content: center; }
     .footer-socials { justify-content: center; }
-    #singapore-map { height: 400px; }
     .gallery-grid { grid-template-columns: 1fr; }
     .gallery-overlay {
         opacity: 1;
@@ -2022,19 +1753,245 @@ nav.scrolled {
     }
     .cta-section::before { font-size: 14rem; }
     .review-grid { grid-template-columns: 1fr; }
-    .rating-card {
+    .hero-proof {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 0;
+        width: 100%;
+        letter-spacing: 1px;
+    }
+    .hero-proof li + li { border-left: none; }
+    .hero-proof li:nth-child(even) { border-left: 1px solid rgba(255,255,255,0.28); }
+    .hero-proof li {
+        display: flex;
         flex-direction: column;
-        gap: 20px;
-        text-align: center;
-        padding: 30px 26px;
+        align-items: center;
+        gap: 4px;
+        padding: 0 6px;
+        line-height: 1.35;
     }
-    .rating-score {
-        flex-direction: row;
-        align-items: baseline;
-        gap: 10px;
-        padding-right: 0;
-        border-right: none;
-    }
-    .rating-detail { flex: none; }
+    .hero-proof strong { font-size: 1.15rem; margin-right: 0; }
     .review-card figcaption { justify-content: flex-start; }
+}
+
+/* Live Google rating (from _data/gbp.yml) above the quotes: one quiet
+   line, red stars clipped to the exact score so 4.7 shows a partial star. */
+.rating-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin: -20px auto 50px;
+}
+
+.rating-value {
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--ink-black);
+}
+
+.rating-stars {
+    position: relative;
+    display: inline-block;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+
+.rating-stars-track {
+    color: #dcdcdc;
+}
+
+.rating-stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--brand-red-dark);
+}
+
+.rating-count {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Link to the live Google profile, under the review quotes */
+.reviews-link {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+    margin: 45px auto 0;
+    text-decoration: none;
+    color: var(--brand-red-dark);
+    border: 1px solid rgba(214, 48, 49, 0.3);
+    border-radius: 50px;
+    padding: 12px 26px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reviews-link:hover {
+    background: var(--brand-red-dark);
+    border-color: var(--brand-red-dark);
+    color: var(--paper-white);
+    box-shadow: 0 8px 20px rgba(214, 48, 49, 0.22);
+}
+
+/* --- Our Reach (static dot-matrix island, replaces the old map) ---
+   Every region is lit; the five tones of red only separate the regions so
+   the labels read, they don't rank them. */
+.reach-section {
+    padding: 100px 5%;
+    background: var(--paper-white);
+}
+
+.reach-grid {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.reach-visual {
+    margin: 0;
+}
+
+.reach-map {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.reach-dots {
+    fill: none;
+    stroke: var(--brand-red-dark);
+    stroke-width: 7.5;
+    stroke-linecap: round;
+}
+
+.reach-central { opacity: 1; }
+.reach-east { opacity: 0.82; }
+.reach-north-east { opacity: 0.68; }
+.reach-north { opacity: 0.56; }
+.reach-west { opacity: 0.7; }
+
+.reach-label {
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-anchor: middle;
+    fill: var(--ink-black);
+    paint-order: stroke;
+    stroke: var(--paper-white);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+}
+
+.reach-route {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 6% 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+}
+
+.reach-stop {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.reach-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--brand-red-dark);
+    box-shadow: 0 0 0 4px rgba(214, 48, 49, 0.15);
+}
+
+.reach-line {
+    flex: 1;
+    border-top: 2px dashed rgba(214, 48, 49, 0.4);
+}
+
+.reach-credit {
+    margin-top: 18px;
+    font-size: 0.68rem;
+    color: #aaa;
+    text-align: center;
+}
+
+.reach-copy h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1.25;
+    margin: 12px 0 20px;
+}
+
+.reach-lead {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.reach-market {
+    padding: 18px 0;
+    border-top: 1px solid var(--border-grey);
+}
+
+.reach-market h3 {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.reach-market-scope {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--brand-red-dark);
+}
+
+.reach-market p {
+    font-size: 0.92rem;
+    color: #777;
+}
+
+:lang(ja) .reach-label,
+:lang(ja) .reach-route,
+:lang(ja) .reach-market-scope {
+    letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+    .reach-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .reach-copy { text-align: left; }
+}
+
+@media (max-width: 600px) {
+    .reach-section { padding: 70px 5%; }
+    .reach-label { font-size: 22px; }
+    .reach-dots { stroke-width: 8; }
+    .reach-route { margin: 20px 0 0; letter-spacing: 1px; }
 }

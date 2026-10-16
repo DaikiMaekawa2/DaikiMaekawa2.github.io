@@ -1,4 +1,6 @@
-# Running track record, in order — new seasons append here. Marquee venues
+# Running track record, in order. OPTIONAL to update: every entry is a
+# dated past fact, so the section never goes stale; append a stop when
+# there's a milestone worth showing. Marquee venues
 # are named as credentials; the heartland Pasar Malam circuit is deliberately
 # kept at area level — the exact venue list is competitive information (see
 # CLAUDE.md, Confidentiality). Periods carry their own year.
@@ -48,12 +50,21 @@
   desc: 'Four consecutive night-market runs across the island''s east and west: 73 stall-days, our longest continuous stretch of the year.'
   desc_ja: 島の東西をめぐる4会場連続の夜市出店（計73営業日）。年間最長の連続稼働です。
 
+- period: Jul – Sep 2026
+  period_ja: 2026年7月〜9月
+  name: The Mall Circuit
+  name_ja: ショッピングモール巡回出店
+  type: Mall × 3
+  type_ja: ショッピングモール × 3
+  desc: Three suburban mall activations across Singapore's north-east and east, taking the stall indoors and into a new format.
+  desc_ja: 北東部・東部の郊外モール3会場で出店。屋台の味を、ショッピングモールという新しい売り場へ広げました。
+
 - period: Aug 2026
   period_ja: 2026年8月
   name: Seibu Kuala Lumpur
   name_ja: 西武クアラルンプール
   type: Yonetaya Matsuri · Malaysia
   type_ja: ヨネタヤ祭・マレーシア
-  desc: Going international with our first overseas department-store <em>Matsuri</em>, in the heart of KL.
-  desc_ja: 海外初進出。クアラルンプール中心部の百貨店で、初の海外「祭」を開催します。
+  desc: Went international with our first overseas department-store <em>Matsuri</em>, in the heart of KL.
+  desc_ja: 海外初進出。クアラルンプール中心部の百貨店で、初の海外「祭」を開催しました。
   highlight: true

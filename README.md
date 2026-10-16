@@ -11,9 +11,7 @@ _includes/sections.html    all page sections, shared by both languages
 index.html, ja/index.html  thin per-language wrappers
 _data/                     all editable content (YAML)
   i18n.yml                 UI strings per language
-  schedule.yml             GENERATED — do not edit by hand
-  schedule_overrides.yml   editorial copy for schedule cards
-  menu.yml, timeline.yml, gallery.yml, stats.yml, locations.yml
+  menu.yml, timeline.yml, gallery.yml, stats.yml, reviews.yml, press.yml
 assets/css, assets/js      styles and scripts
 assets/img                 site images (originals/ holds unused sources)
 scripts/                   sync + verification tooling
@@ -24,11 +22,12 @@ scripts/                   sync + verification tooling
 Most content is plain YAML in `_data/` — edit, build, push. English fields
 have `*_ja` counterparts for the Japanese page; fill both.
 
-The event schedule is generated from an internal ledger:
+The site is evergreen: it does not list current or upcoming events (those
+are posted on Instagram), so it never goes stale between edits. To refresh
+the track-record numbers from the internal ledger when you want to:
 
 ```bash
-python3 scripts/sync_schedule.py   # regenerate _data/schedule.yml
-python3 scripts/check_site.py     # build + verify (must print PASS)
+python3 scripts/refresh_site.py   # live Google rating + ledger floors, then build + verify
 ```
 
 In Claude Code, `/sync-site` runs this whole workflow.
