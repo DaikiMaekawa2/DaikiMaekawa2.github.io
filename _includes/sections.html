@@ -2,42 +2,54 @@
 {% assign t = site.data.i18n[lang] %}
 <main>
 
-    <header class="hero">
+    <header class="hero{% if lang != 'ja' %} hero-split{% endif %}">
+        {%- comment -%} The EN hero is led by the stall photo on the right; the busy
+        event photo (with another company's banner in frame) stays on JA only. {%- endcomment %}
+        {% if lang == 'ja' %}
         <img src="/assets/img/takashimaya_japan_matsuri.webp" alt="" class="hero-bg" width="1000" height="742" fetchpriority="high" aria-hidden="true">
+        {% endif %}
         <span class="hero-kanji" aria-hidden="true">日本の味</span>
         <div class="hero-content">
             <span class="hero-badge">{{ t.hero.badge }}</span>
             <h1>{{ t.hero.title }}</h1>
             <p>{{ t.hero.lead }}</p>
             <div class="hero-ctas">
-                {%- comment -%} JA targets Japanese suppliers, who prefer email
-                for first contact; EN organizers get WhatsApp. {%- endcomment %}
+                {%- comment -%} JA targets Japanese suppliers, who prefer email for first
+                contact. EN leads with "Find Our Stall": the site has no live schedule
+                (evergreen policy), so "where is the stall this week" is answered by
+                Instagram; organizers get WhatsApp second. {%- endcomment %}
                 {% if lang == 'ja' %}
                 <a href="mailto:{{ site.email }}" class="btn btn-primary">
                     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     {{ t.hero.cta_primary }}
                 </a>
+                <a href="#season" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
                 {% else %}
-                <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta="instagram_find_stall_hero">{{ t.hero.cta_find }}</a>
+                <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
                     {% include icon-whatsapp.html %}
                     {{ t.hero.cta_primary }}
                 </a>
                 {% endif %}
-                <a href="#season" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
             </div>
 
             {%- comment -%} Proof line in the "first look" zone. Built from
             _data/stats.yml (the same floors as the numbers band), so the two
             can never disagree and nothing here needs a date. {%- endcomment %}
             <ul class="hero-proof" aria-label="{{ t.hero.proof_aria }}">
-                {%- for stat in site.data.stats limit: 3 %}
+                {%- if lang == 'ja' %}{% for stat in site.data.stats limit: 3 %}
                 <li><strong>{{ stat.value }}{{ stat.suffix }}</strong> {% if lang == 'ja' and stat.label_ja %}{{ stat.label_ja }}{% else %}{{ stat.label }}{% endif %}</li>
-                {%- endfor %}
+                {%- endfor %}{% endif %}
                 {%- if site.data.gbp.rating %}
                 <li><a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" data-cta="google_reviews_hero"><strong>{{ site.data.gbp.rating }}★</strong> {{ t.hero.proof_rating }}</a></li>
                 {%- endif %}
             </ul>
         </div>
+        {% if lang != 'ja' %}
+        <figure class="hero-photo">
+            <img src="/assets/img/takoyaki_griddle.webp" alt="Takoyaki cooking on the griddle at the stall" width="640" height="1138" fetchpriority="high">
+        </figure>
+        {% endif %}
         <a href="#about" class="hero-scroll" aria-label="{{ t.hero.cta_secondary }}"><span></span></a>
     </header>
 
@@ -74,6 +86,7 @@
         </div>
     </section>
 
+    {% if lang == 'ja' %}
     <section class="stats-section reveal" aria-label="Nyanmeshi JAPAN by the numbers">
         <div class="stats-grid">
             {% for stat in site.data.stats %}
@@ -84,6 +97,24 @@
             {% endfor %}
         </div>
     </section>
+    {% else %}
+    <section class="proof-section reveal" aria-labelledby="proof-title">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.proof.subtitle }}</span>
+            <h2 id="proof-title">{{ t.proof.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="proof-grid">
+            {% for p in site.data.proof %}
+            <div class="proof-item stagger">
+                <span class="proof-num" aria-hidden="true">0{{ forloop.index }}</span>
+                <h3>{{ p.title }}</h3>
+                <p>{{ p.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
 
     {%- comment -%} Replaces the old interactive map. The dot-matrix island is
     a static SVG (scripts/make_reach_map.py, URA region boundaries) with all
@@ -176,9 +207,13 @@
         </div>
         <div class="menu-grid">
             {% for item in site.data.menu %}
-            <article class="menu-card stagger">
+            <article class="menu-card stagger{% if item.photo %} menu-card--photo{% endif %}">
                 {% if item.signature %}<span class="menu-tag">{{ t.menu.signature_tag }}</span>{% endif %}
+                {% if item.photo %}
+                <img class="menu-photo" src="{{ item.photo }}" alt="{% if lang == 'ja' and item.photo_alt_ja %}{{ item.photo_alt_ja }}{% else %}{{ item.photo_alt }}{% endif %}" width="{{ item.photo_w }}" height="{{ item.photo_h }}" loading="lazy">
+                {% else %}
                 <span class="menu-icon" aria-hidden="true">{{ item.icon }}</span>
+                {% endif %}
                 {%- comment -%} Each page leads with the name its audience reads
                 first; the other name follows as the subtitle. Stacking them
                 (rather than sitting them side by side) keeps every card's title

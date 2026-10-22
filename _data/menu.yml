@@ -7,12 +7,22 @@
   desc: Osaka-style octopus balls griddled to order, our signature and best-seller.
   desc_ja: 大阪スタイルのたこ焼きを、ご注文ごとに焼き上げます。当店一番の看板メニュー。
   signature: true
+  photo: /assets/img/takoyaki_menu.webp
+  photo_w: 640
+  photo_h: 290
+  photo_alt: Takoyaki being turned on the griddle at the stall
+  photo_alt_ja: 屋台の鉄板でたこ焼きを返しているところ
 
 - name: Karaage
   jp: 唐揚げ
   icon: "🍗"
   desc: Japanese fried chicken, juicy inside and shatteringly crisp outside.
   desc_ja: 外はカリッと、中はジューシーな日本の唐揚げ。
+  photo: /assets/img/karaage_box.webp
+  photo_w: 800
+  photo_h: 600
+  photo_alt: A box of freshly fried karaage
+  photo_alt_ja: 揚げたての唐揚げ
 
 - name: Japanese Yakisoba
   jp: 焼きそば

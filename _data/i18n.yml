@@ -21,12 +21,13 @@ en:
     url: /ja/
     aria: 日本語版を見る
   hero:
-    badge: Singapore's Premier Japanese Pop-ups
-    title: 'The Taste of a Japanese <strong><em>Matsuri</em></strong>,<br>Brought to Your Doorstep.'
+    badge: Japanese-run · Cooked to order
+    title: 'Real Japan,<br><strong><em>Right here.</em></strong>'
     lead: >-
-      From prestigious department stores to high-traffic bank roadshows and
-      lively local Pasar Malams, Nyanmeshi JAPAN is your specialist partner for
-      unforgettable culinary experiences, in Singapore and Malaysia.
+      Nyanmeshi JAPAN brings the taste of a Japanese <em>Matsuri</em> to
+      Singapore's pasar malams, malls and festivals. Takoyaki and festival
+      favourites, cooked to order by a Japanese-run team.
+    cta_find: Find Our Stall
     cta_primary: Plan an Activation
     cta_secondary: See Our Track Record
     proof_aria: Nyanmeshi JAPAN track record
@@ -53,6 +54,9 @@ en:
       traditions and event organizers, providing our partners with seamless,
       high-performance F&amp;B solutions that shoppers love, proven across
       Singapore and, since August 2026, in Malaysia.
+  proof:
+    subtitle: Why Nyanmeshi
+    title: What Makes It Real
   reach:
     subtitle: Our Reach
     title: Island-wide in Singapore.<br>Proven in Malaysia.
