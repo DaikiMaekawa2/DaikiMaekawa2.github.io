@@ -2078,7 +2078,10 @@ nav.scrolled {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* contain, not cover: in Android fullscreen landscape (~20:9) cover
+       cropped the top and bottom of the 16:9 film, cutting the corner
+       badge and captions. Inline the frame is 16:9, so nothing changes. */
+    object-fit: contain;
     background: #000;
 }
 
