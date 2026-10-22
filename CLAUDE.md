@@ -44,7 +44,7 @@ When reviewing or improving this site, assess from all relevant perspectives bef
 - `index.html` (lang: en) and `ja/index.html` (lang: ja, permalink /ja/) are thin wrappers; an EN/日本語 toggle sits in the nav
 - `_data/i18n.yml` — UI strings per language; content data files carry `*_ja` fields next to English ones (fallback is English)
 - `_data/*.yml` — all editable content: `menu.yml`, `proof.yml`, `gallery.yml`, `reviews.yml`
-- Intro film (`#film`, both languages): `assets/video/nyanmeshi-intro.mp4` (web encode, ~24 MB, `preload="none"` + `assets/img/film_poster.webp`), chapters in `i18n.yml` `film.chapters` (seconds). The published cut was patched from the owner's master: a non-marquee venue name and a staff first name were replaced on screen; any new cut must get the same review before it ships
+- Intro film (`#film`, both languages): `assets/video/nyanmeshi-intro.mp4` (web encode, ~24 MB, `preload="none"` + `assets/img/film_poster.webp`), chapters in `i18n.yml` `film.chapters` (seconds). Source is the owner's own export (re-cut Oct 2026 so no non-marquee venue or non-CEO staff name appears on screen); any new cut gets the same review before it ships, and sensitive captions are fixed in her edit, never pixel-patched
 - Nav logo is the round badge `assets/img/nyanmeshi_badge.webp` (generated from `nyanmeshi_logo.jpg`); the square JPG stays only as the OG/JSON-LD image
 - Headings/body use Montserrat (+ Noto Sans JP for Japanese); do not introduce serif/display fonts — the owner prefers the original Montserrat look
 - `assets/css/style.css`, `assets/js/main.js`; images live in `assets/img/` (unused source photos in `assets/img/originals/`) — keep the root directory free of media files
