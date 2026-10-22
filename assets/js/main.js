@@ -71,7 +71,23 @@ if (film) {
     playBtn.hidden = false;
     chapterList.hidden = false;
     playBtn.addEventListener('click', play);
-    film.addEventListener('play', () => { playBtn.hidden = true; film.controls = true; });
+    // The fixed nav covers the top of the player when it sits high on a
+    // phone screen (the clip's corner badge got cut in half), so starting
+    // playback brings the whole frame into view just below the nav.
+    const frame = film.closest('.film-frame');
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealFrame = () => {
+        const navBottom = nav.getBoundingClientRect().bottom;
+        const r = frame.getBoundingClientRect();
+        if (r.top < navBottom + 8 || r.bottom > window.innerHeight) {
+            window.scrollBy({ top: r.top - navBottom - 16, behavior: smooth ? 'smooth' : 'auto' });
+        }
+    };
+    film.addEventListener('play', () => {
+        playBtn.hidden = true;
+        film.controls = true;
+        revealFrame();
+    });
     // With preload="none" a seek before metadata loads is discarded,
     // so the first chapter click waits for loadedmetadata.
     const seek = (t) => {
