@@ -1,0 +1,42 @@
+# Portfolio gallery. *_ja fields are used on the Japanese page.
+- image: bank_roadshow.webp
+  alt: Bank Roadshow Activation
+  title: OCBC & Maybank Roadshows
+  title_ja: OCBC・メイバンク ロードショー
+  desc: Agile one-day activations to drive customer engagement during promotions.
+  desc_ja: プロモーション期間の集客を支える、機動力の高い1日限定ブース。
+
+- image: Isetan_booth.webp
+  alt: Isetan Booth Activation
+  title: Isetan Scotts
+  title_ja: 伊勢丹スコッツ
+  desc: Strategic tenant management for premium retail environments.
+  desc_ja: プレミアムな百貨店環境でのテナント運営。
+
+- image: takashimaya_japan_matsuri.webp
+  alt: Takashimaya Japan Matsuri
+  title: Takashimaya Square
+  title_ja: 高島屋スクエア
+  desc: Annual Japan Food Matsuri curation and operational support.
+  desc_ja: 毎年恒例「ジャパン・フード祭」の企画・運営サポート。
+
+- image: gardens_by_the_bay.webp
+  alt: Gardens By The Bay
+  title: Gardens By The Bay
+  title_ja: ガーデンズ・バイ・ザ・ベイ
+  desc: Authentic cultural activation in Singapore's iconic tourist landmark.
+  desc_ja: シンガポールを代表する観光名所での文化イベント。
+
+- image: pasar_malam_sponsored_by_otafuku.webp
+  alt: Pasar Malam Otafuku
+  title: Pasar Malam Partnership
+  title_ja: パサマラム×オタフク
+  desc: Bringing big brands like Otafuku into the local heartland scene.
+  desc_ja: オタフクソースとともに、日本の大手ブランドを地域の夜市へ。
+
+- image: tenants_A_nyanmeshi_can_bring.webp
+  alt: Diverse Tenants
+  title: Diverse Content Engine
+  title_ja: 多彩なコンテンツ
+  desc: Sourcing high-performing live stations and unique regional concepts.
+  desc_ja: 集客力のあるライブ調理ブースや、地域色豊かなコンセプトを日本から。

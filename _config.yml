@@ -1,0 +1,36 @@
+title: Nyanmeshi JAPAN PTE. LTD.
+tagline: Authentic Japanese Culinary Events
+description: >-
+  Nyanmeshi JAPAN PTE. LTD. is Singapore's specialist for authentic Japanese
+  culinary pop-ups, F&B activations at department stores, bank roadshows, and
+  Pasar Malams island-wide.
+url: "https://nyanmeshi.com"
+email: emi.maekawa@nyanmeshi.com
+whatsapp: "6598615103"
+whatsapp_display: "+65 98615103"
+instagram: nyanmeshijp
+facebook: nyanmeshijp
+youtube: nyanmeshijp
+tiktok: nyanmeshijp
+google_reviews_url: "https://maps.app.goo.gl/r9tj8eW5YyuXsV6G6"
+
+# Analytics (free tier — GA4). See README.md "Analytics" for setup notes.
+# This ID is not a secret — it's meant to be public (every GA4 site ships
+# it in page source); it does not grant access to the GA4 account/reports.
+ga4_measurement_id: "G-3NDC185C2Y"
+
+# Search Console domain-verification meta tag. Leave blank until Search
+# Console issues a verification code (or use the DNS TXT method instead,
+# which needs no code here). See README.md "Search Console".
+google_site_verification: ""
+
+include:
+  - .well-known
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - .claude/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock

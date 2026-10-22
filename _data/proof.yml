@@ -1,0 +1,20 @@
+# "What makes it real" band (both languages). Replaces the numeric stats band
+# by owner decision (Oct 2026): proof points a lookalike stall cannot
+# claim, instead of counts. Every line is an Emi-confirmed fact; do not add a
+# claim here without her confirmation. Never name staff on the site.
+- title: 100% Japanese-run
+  desc: Founded and managed by Japanese owners.
+  title_ja: 100%日本人経営
+  desc_ja: 日本人オーナーが創業し、経営しています。
+- title: Cooked to order
+  desc: Takoyaki griddled fresh for every order, the way it is done at a festival in Japan.
+  title_ja: ご注文ごとに調理
+  desc_ja: たこ焼きは一つひとつのご注文ごとに焼き上げます。日本のお祭りと同じやり方です。
+- title: No pork, no lard
+  desc: Our takoyaki, wagyu burger and sweets are made without pork or lard.
+  title_ja: 豚肉・ラード不使用
+  desc_ja: たこ焼き、和牛バーガー、スイーツは豚肉・ラードを使わずに作っています。
+- title: 30 years of F&amp;B know-how
+  desc: A menu shaped by three decades of experience in ingredients, menus and festival cooking.
+  title_ja: F&amp;B経験30年
+  desc_ja: 食材選び、メニュー開発、祭の調理。30年の経験がメニューの土台です。

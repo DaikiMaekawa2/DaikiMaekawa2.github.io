@@ -1,0 +1,361 @@
+{% assign lang = page.lang | default: 'en' %}
+{% assign t = site.data.i18n[lang] %}
+<main>
+
+    <header class="hero{% if lang != 'ja' %} hero-split{% endif %}">
+        {%- comment -%} The EN hero is led by the stall photo on the right; the busy
+        event photo (with another company's banner in frame) stays on JA only. {%- endcomment %}
+        {% if lang == 'ja' %}
+        <img src="/assets/img/takashimaya_japan_matsuri.webp" alt="" class="hero-bg" width="1000" height="742" fetchpriority="high" aria-hidden="true">
+        {% endif %}
+        <span class="hero-kanji" aria-hidden="true">日本の味</span>
+        <div class="hero-content">
+            <span class="hero-badge">{{ t.hero.badge }}</span>
+            <h1>{{ t.hero.title }}</h1>
+            <p>{{ t.hero.lead }}</p>
+            <div class="hero-ctas">
+                {%- comment -%} JA targets Japanese suppliers, who prefer email for first
+                contact. EN leads with "Find Our Stall": the site has no live schedule
+                (evergreen policy), so "where is the stall this week" is answered by
+                Instagram; organizers get WhatsApp second. {%- endcomment %}
+                {% if lang == 'ja' %}
+                <a href="mailto:{{ site.email }}" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    {{ t.hero.cta_primary }}
+                </a>
+                <a href="#film" class="btn btn-ghost">{{ t.hero.cta_secondary }}</a>
+                {% else %}
+                <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta="instagram_find_stall_hero">{{ t.hero.cta_find }}</a>
+                <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                    {% include icon-whatsapp.html %}
+                    {{ t.hero.cta_primary }}
+                </a>
+                {% endif %}
+            </div>
+
+            {%- comment -%} Proof line in the "first look" zone: the live Google
+            rating only. Raw counts (venues, stall-days) are not shown on either
+            language by owner decision (Oct 2026): small floors read as weak. {%- endcomment %}
+            <ul class="hero-proof" aria-label="{{ t.hero.proof_aria }}">
+                {%- if site.data.gbp.rating %}
+                <li><a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" data-cta="google_reviews_hero"><strong>{{ site.data.gbp.rating }}★</strong> {{ t.hero.proof_rating }}</a></li>
+                {%- endif %}
+            </ul>
+        </div>
+        {% if lang != 'ja' %}
+        <figure class="hero-photo">
+            <img src="/assets/img/takoyaki_griddle.webp" alt="Takoyaki cooking on the griddle at the stall" width="640" height="1138" fetchpriority="high">
+        </figure>
+        {% endif %}
+        <a href="#film" class="hero-scroll" aria-label="{{ t.hero.cta_secondary }}"><span></span></a>
+    </header>
+
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            {%- comment -%} loop count must keep each half of the track wider
+    than any viewport, or the seamless scroll shows a gap {%- endcomment %}
+            {% for i in (1..4) %}{% for item in site.data.menu %}<span class="marquee-en">{{ item.name }}</span><span class="marquee-jp">{{ item.jp }}</span>{% endfor %}{% endfor %}
+        </div>
+    </div>
+
+    <div class="trust-bar reveal">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            {{ t.trust.sfa }}
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c-.96 1.66-2.49 2.93-4.33 3.56C5.35 8.45 5.81 7.25 6.13 6zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+            {{ t.trust.bilingual }}
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            {{ t.trust.locations }}
+        </div>
+    </div>
+
+    {%- comment -%} Corporate intro film. preload="none" + poster keeps the
+    page weight at one image until a visitor presses play. Without JS the
+    native controls work as usual; main.js swaps in the branded play button
+    and wires the chapter list (data-start in seconds). {%- endcomment %}
+    <section id="film" class="film-section" aria-labelledby="film-title">
+        <div class="film-inner">
+            <div class="film-head reveal">
+                <span class="section-subtitle">{{ t.film.subtitle }}</span>
+                <h2 id="film-title">{{ t.film.title }}</h2>
+                <p class="film-lead">{{ t.film.lead }}</p>
+            </div>
+            <figure class="film-frame reveal">
+                <video class="film-video" controls playsinline preload="none" poster="/assets/img/film_poster.webp" width="1920" height="1080" aria-label="{{ t.film.video_aria }}">
+                    <source src="/assets/video/nyanmeshi-intro.mp4" type="video/mp4">
+                </video>
+                <button class="film-play" type="button" hidden>
+                    <span class="film-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+                    <span class="film-play-text">{{ t.film.play }}<span class="film-play-time">{{ t.film.duration }}</span></span>
+                </button>
+            </figure>
+            <ol class="film-chapters reveal" aria-label="{{ t.film.chapters_aria }}" hidden>
+                {% for ch in t.film.chapters %}
+                <li><button type="button" class="film-chapter" data-start="{{ ch.start }}"><span class="film-chapter-time">{{ ch.time }}</span><span class="film-chapter-label">{{ ch.label }}</span></button></li>
+                {% endfor %}
+            </ol>
+            {% if t.film.note %}<p class="film-note">{{ t.film.note }}</p>{% endif %}
+        </div>
+    </section>
+
+    <section id="about" class="story-section reveal">
+        <div class="story-content">
+            <span class="section-subtitle">{{ t.story.subtitle }}</span>
+            <h2>{{ t.story.title }}</h2>
+            <p>{{ t.story.p1 }}</p>
+            <p>{{ t.story.p2 }}</p>
+            <p>{{ t.story.p3 }}</p>
+        </div>
+    </section>
+
+    <section class="proof-section reveal" aria-labelledby="proof-title">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.proof.subtitle }}</span>
+            <h2 id="proof-title">{{ t.proof.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="proof-grid">
+            {% for p in site.data.proof %}
+            <div class="proof-item stagger">
+                <span class="proof-num" aria-hidden="true">0{{ forloop.index }}</span>
+                <h3>{% if lang == 'ja' and p.title_ja %}{{ p.title_ja }}{% else %}{{ p.title }}{% endif %}</h3>
+                <p>{% if lang == 'ja' and p.desc_ja %}{{ p.desc_ja }}{% else %}{{ p.desc }}{% endif %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {%- comment -%} Replaces the old interactive map. The dot-matrix island is
+    a static SVG (scripts/make_reach_map.py, URA region boundaries) with all
+    five regions lit: region-level only, no venue positions, no JS, and it
+    never needs updating as the business grows. {%- endcomment %}
+    <section id="reach" class="reach-section reveal">
+        <div class="reach-grid">
+            <figure class="reach-visual">
+                {% include reach-map.svg %}
+                <div class="reach-route" aria-hidden="true">
+                    <span class="reach-stop"><span class="reach-dot"></span>{{ t.reach.route_from }}</span>
+                    <span class="reach-line"></span>
+                    <span class="reach-stop"><span class="reach-dot"></span>{{ t.reach.route_to }}</span>
+                </div>
+                <figcaption class="reach-credit">{{ t.reach.credit }}</figcaption>
+            </figure>
+            <div class="reach-copy">
+                <span class="section-subtitle">{{ t.reach.subtitle }}</span>
+                <h2>{{ t.reach.title }}</h2>
+                <p class="reach-lead">{{ t.reach.lead }}</p>
+                {% for market in t.reach.markets %}
+                <div class="reach-market">
+                    <h3><span class="reach-market-name">{{ market.name }}</span><span class="reach-market-scope">{{ market.scope }}</span></h3>
+                    <p>{{ market.detail }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.expertise.subtitle }}</span>
+            <h2>{{ t.expertise.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="services-grid">
+            {% for card in t.expertise.cards %}
+            <div class="service-card stagger">
+                <div class="service-icon">{{ card.icon }}</div>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="projects" class="gallery-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.gallery.subtitle }}</span>
+            <h2>{{ t.gallery.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="gallery-grid">
+            {% for item in site.data.gallery %}
+            <div class="gallery-item stagger">
+                <img src="/assets/img/{{ item.image }}" alt="{{ item.alt }}" loading="lazy" width="800" height="600">
+                <div class="gallery-overlay">
+                    <h4>{% if lang == 'ja' and item.title_ja %}{{ item.title_ja }}{% else %}{{ item.title }}{% endif %}</h4>
+                    <p>{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.menu.subtitle }}</span>
+            <h2>{{ t.menu.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="menu-grid">
+            {% for item in site.data.menu %}
+            <article class="menu-card stagger{% if item.photo %} menu-card--photo{% endif %}">
+                {% if item.signature %}<span class="menu-tag">{{ t.menu.signature_tag }}</span>{% endif %}
+                {% if item.photo %}
+                <img class="menu-photo" src="{{ item.photo }}" alt="{% if lang == 'ja' and item.photo_alt_ja %}{{ item.photo_alt_ja }}{% else %}{{ item.photo_alt }}{% endif %}" width="{{ item.photo_w }}" height="{{ item.photo_h }}" loading="lazy">
+                {% else %}
+                <span class="menu-icon" aria-hidden="true">{{ item.icon }}</span>
+                {% endif %}
+                {%- comment -%} Each page leads with the name its audience reads
+                first; the other name follows as the subtitle. Stacking them
+                (rather than sitting them side by side) keeps every card's title
+                on the same baseline however long the names are. {%- endcomment %}
+                {% if lang == 'ja' %}
+                <h3 lang="ja">{{ item.jp }}</h3>
+                <span class="menu-alt">{{ item.name }}</span>
+                {% else %}
+                <h3>{{ item.name }}</h3>
+                <span class="menu-alt" lang="ja">{{ item.jp }}</span>
+                {% endif %}
+                <p class="menu-desc">{% if lang == 'ja' and item.desc_ja %}{{ item.desc_ja }}{% else %}{{ item.desc }}{% endif %}</p>
+            </article>
+            {% endfor %}
+        </div>
+        <p class="menu-footnote">{{ t.menu.footnote }}</p>
+    </section>
+
+    <section id="partners" class="partners-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.partners.subtitle }}</span>
+            <h2>{{ t.partners.title }}</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="partner-flex">
+            <img src="/assets/img/otafuku.webp" alt="Otafuku Logo" class="partner-logo-img" loading="lazy" width="725" height="768">
+        </div>
+    </section>
+
+    {%- comment -%} Social proof sits immediately before the booking CTA:
+    organizers (EN) and suppliers (JA) read the reviews, then hit the buttons.
+    {%- endcomment -%}
+    {%- if site.data.reviews.size > 0 or site.data.press.size > 0 %}
+    <section id="trust" class="trust-block-section reveal">
+        <div class="section-header">
+            <span class="section-subtitle">{{ t.trust_block.subtitle }}</span>
+            <h2>{{ t.trust_block.title }}</h2>
+            <div class="divider"></div>
+        </div>
+
+        {%- comment -%} Rating + count come from _data/gbp.yml, generated by
+        scripts/sync_gbp.py from the marketing repo's live GBP snapshot. The
+        count is a floor (20+) so it stays true as reviews come in. {%- endcomment %}
+        {%- if site.data.gbp.rating %}
+        <div class="rating-summary">
+            <span class="rating-value">{{ site.data.gbp.rating }}</span>
+            <span class="rating-stars" role="img" aria-label="{{ site.data.gbp.rating }} / 5">
+                <span class="rating-stars-track" aria-hidden="true">★★★★★</span>
+                <span class="rating-stars-fill" aria-hidden="true" style="width: {{ site.data.gbp.rating | times: 20 }}%">★★★★★</span>
+            </span>
+            <span class="rating-count">{{ t.trust_block.rating_count | replace: '%n', site.data.gbp.review_floor }}</span>
+        </div>
+        {%- endif %}
+
+        {% if site.data.reviews.size > 0 %}
+        <div class="review-grid">
+            {% for review in site.data.reviews %}
+            {%- assign author = review.author | default: t.trust_block.anonymous -%}
+            <figure class="review-card stagger">
+                <span class="review-stars" role="img" aria-label="{{ review.rating }}/5">{% for i in (1..5) %}<span{% if i > review.rating %} class="is-empty"{% endif %}>★</span>{% endfor %}</span>
+                <blockquote>{% if lang == 'ja' and review.quote_ja %}{{ review.quote_ja }}{% else %}{{ review.quote }}{% endif %}</blockquote>
+                <figcaption>
+                    <span class="review-avatar" aria-hidden="true">{{ author | slice: 0 }}</span>
+                    <span class="review-who">
+                        <span class="review-author">{{ author }}{% if review.flag %} <span role="img" aria-label="{% if lang == 'ja' and review.flag_label_ja %}{{ review.flag_label_ja }}{% else %}{{ review.flag_label }}{% endif %}">{{ review.flag }}</span>{% endif %}{% if review.local_guide %} <span class="local-guide-badge">{{ t.trust_block.local_guide }}</span>{% endif %}</span>
+                        <span class="review-source">{{ t.trust_block.source }}</span>
+                    </span>
+                </figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+        <a href="{{ site.google_reviews_url }}" target="_blank" rel="noopener noreferrer" class="reviews-link" data-cta="google_reviews">
+            {{ t.trust_block.cta }}<span aria-hidden="true">→</span>
+        </a>
+        {% endif %}
+        {% if site.data.press.size > 0 %}
+        <div class="press-flex">
+            {% for outlet in site.data.press %}
+            <a href="{{ outlet.url }}" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/{{ outlet.logo }}" alt="{{ outlet.name }}" loading="lazy" width="{{ outlet.width }}" height="{{ outlet.height }}">
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+    {%- endif %}
+
+    <section id="book" class="cta-section reveal">
+        <div class="cta-content">
+            <span class="section-subtitle">{{ t.cta.subtitle }}</span>
+            <h2>{{ t.cta.title }}</h2>
+            <p>{{ t.cta.lead }}</p>
+
+            <div class="book-grid">
+                <div class="book-col">
+                    <h3>{{ t.cta.bring_title }}</h3>
+                    <ul class="book-list">
+                        {% for item in t.cta.bring_items %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="book-col">
+                    <h3>{{ t.cta.activations_title }}</h3>
+                    <ul class="book-list">
+                        {% for item in site.data.gallery limit: 3 %}
+                        <li>{% if lang == 'ja' and item.title_ja %}{{ item.title_ja }}{% else %}{{ item.title }}{% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="book-otafuku">
+                        <img src="/assets/img/otafuku.webp" alt="Otafuku" width="40" height="42" loading="lazy">
+                        {{ t.cta.otafuku_credit }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://wa.me/{{ site.whatsapp }}?text={{ t.cta.whatsapp_prefill | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta="book_whatsapp">
+                    {% include icon-whatsapp.html %}
+                    {{ t.cta.whatsapp }}
+                </a>
+                <a href="mailto:{{ site.email }}?subject={{ t.cta.email_subject | url_encode }}&body={{ t.cta.email_body | url_encode }}" class="btn btn-outline-light" data-cta="book_email">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    {{ t.cta.email }}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {%- comment -%} Evergreen by design: the site never lists current or
+    upcoming events (see CLAUDE.md). Shoppers looking for the stall are sent
+    to Instagram, which is updated as part of normal operations. {%- endcomment %}
+    <section id="find-us" class="follow-section reveal">
+        <div class="follow-container">
+            <div class="section-header">
+                <span class="section-subtitle">{{ t.follow.subtitle }}</span>
+                <h2>{{ t.follow.title }}</h2>
+                <div class="divider"></div>
+            </div>
+            <p class="follow-lead">{{ t.follow.lead }}</p>
+            <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener noreferrer" class="follow-cta" data-cta="instagram_find_us">
+                {% include icon-instagram.html %}
+                {{ t.follow.cta }}
+            </a>
+            <p class="follow-caption">{{ t.follow.caption }}</p>
+        </div>
+    </section>
+
+    </main>
+

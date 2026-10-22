@@ -1,0 +1,12 @@
+# Press/listing logos, added once a feature or listing goes live (marketing
+# repo issue #62's pitch list: Eatbook, SethLui, Mothership, Miss Tam Chiak,
+# Burpple). Kept empty until then — the trust block in sections.html only
+# renders once this file (or reviews.yml) is non-empty.
+# Schema, when populated (include width/height — actual logo pixel
+# dimensions — to avoid layout shift; CSS caps the display height at 32px):
+#   - name: "Eatbook"
+#     logo: press/eatbook.svg
+#     url: "https://..."
+#     width: 120
+#     height: 40
+[]
