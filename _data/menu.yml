@@ -4,8 +4,8 @@
 - name: Takoyaki
   jp: たこ焼き
   icon: "🐙"
-  desc: Osaka-style octopus balls griddled to order, our signature and best-seller.
-  desc_ja: 大阪スタイルのたこ焼きを、ご注文ごとに焼き上げます。当店一番の看板メニュー。
+  desc: Authentic Japanese takoyaki from a Japanese-run team, our signature and best-seller.
+  desc_ja: 日本人スタッフが焼き上げる本格たこ焼き。当店一番の看板メニュー。
   signature: true
   photo: /assets/img/takoyaki_menu.webp
   photo_w: 640
