@@ -52,6 +52,18 @@ CTA clicks (`data-cta="book_whatsapp"` / `"book_email"` in the Book Us
 section) fire a GA4 `cta_click` event once analytics is live; see
 `assets/js/analytics.js`.
 
+### Stall QR (`/ig`)
+
+The printed stall QR points at `https://nyanmeshi.com/ig`, not straight at
+Instagram, so scans can be counted. `ig/index.html` uses the bare
+`_layouts/redirect.html` layout: it records a GA4 `page_view` plus a
+`stall_qr_scan` event, then `assets/js/redirect.js` sends the visitor to
+`https://www.instagram.com/nyanmeshijp/` (on the GA callback, or after 800 ms
+if GA is blocked). No-JS visitors get a 3 s meta refresh and an "Open
+Instagram" button. The page is `noindex` and kept out of `sitemap.xml`
+(`check_site.py` enforces both). Ad blockers hide some scans, so treat the
+daily count as a floor.
+
 ## Search Console
 
 Verify the property at [search.google.com/search-console](https://search.google.com/search-console)

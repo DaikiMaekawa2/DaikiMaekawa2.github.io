@@ -1,0 +1,15 @@
+{%- comment -%} Shared by every layout so the CSP has one source of truth. {%- endcomment %}
+    {%- comment -%} GitHub Pages cannot set HTTP headers, so the CSP ships as a
+    meta tag. script-src is strict (no inline scripts anywhere — keep it that
+    way); 'unsafe-inline' applies to STYLES only (the star-rating fill widths). GA4
+    origins are appended only when ga4_measurement_id is set, so nothing is
+    allowlisted before it's actually used.
+    {%- endcomment %}
+    {%- assign csp_script = "'self'" -%}
+    {%- assign csp_connect = "'self'" -%}
+    {%- if site.ga4_measurement_id != "" -%}
+      {%- assign csp_script = csp_script | append: " https://www.googletagmanager.com" -%}
+      {%- assign csp_connect = csp_connect | append: " https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com" -%}
+    {%- endif -%}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src {{ csp_script }}; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src {{ csp_connect }}; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
