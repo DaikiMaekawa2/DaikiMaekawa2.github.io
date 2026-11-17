@@ -36,6 +36,9 @@ from pathlib import Path
 SITE_DIR = Path(__file__).resolve().parent.parent
 OUT = SITE_DIR / "_site"
 PAGES = ["index.html", "ja/index.html"]
+# Tracked short-link pages (_layouts/redirect.html), e.g. the stall QR target.
+# They must stay CSP-safe and out of search: noindex, absent from the sitemap.
+REDIRECT_PAGES = ["ig/index.html"]
 
 # Generic terms only — anything business-specific is derived at runtime.
 GENERIC_TERMS = ["rent", "commission", "payee", "salary", "wage", "cogs", "reconcile"]
@@ -207,6 +210,23 @@ def main():
         if re.search(r"<script(?![^>]*\bsrc=)(?![^>]*json)", html):
             failures.append(f"{page}: inline executable <script> found — breaks the CSP")
 
+    sitemap = (OUT / "sitemap.xml").read_text() if (OUT / "sitemap.xml").exists() else ""
+    for page in REDIRECT_PAGES:
+        path = OUT / page
+        if not path.exists():
+            failures.append(f"{page}: missing from _site/")
+            continue
+        html = path.read_text()
+        if 'http-equiv="Content-Security-Policy"' not in html:
+            failures.append(f"{page}: CSP meta tag missing")
+        if re.search(r"<script(?![^>]*\bsrc=)(?![^>]*json)", html):
+            failures.append(f"{page}: inline executable <script> found — breaks the CSP")
+        if 'name="robots" content="noindex, nofollow"' not in html:
+            failures.append(f"{page}: noindex robots meta missing")
+        url_path = "/" + page.removesuffix("index.html")
+        if f"nyanmeshi.com{url_path}<" in sitemap:
+            failures.append(f"{page}: listed in sitemap.xml (should be excluded)")
+
     gbp = subprocess.run(
         [sys.executable, "scripts/sync_gbp.py", "--check"],
         cwd=SITE_DIR, capture_output=True, text=True,
@@ -221,7 +241,7 @@ def main():
         for f in failures:
             print("FAIL:", f)
         sys.exit(1)
-    print(f"PASS: {len(PAGES)} pages checked")
+    print(f"PASS: {len(PAGES)} pages + {len(REDIRECT_PAGES)} redirect pages checked")
 
 
 if __name__ == "__main__":
