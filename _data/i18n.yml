@@ -119,17 +119,14 @@ en:
         title: Compliance, Handled
         desc: SFA-licensed and fully compliant. Hygiene, manpower and booth setup executed to department-store retail standards.
       - icon: "🤝"
-        title: Brand-Backed Activations
-        desc: Sponsored partnerships with established Japanese brands like Otafuku bring trusted names and their audiences to your event.
+        title: Turnkey Operations
+        desc: Our local team handles booth setup, selling and day-to-day running on site.
   follow:
     subtitle: Find Us
     title: Where's the stall this week?
     lead: Our pop-ups move with the season, from department stores to night markets. Every new location is announced on Instagram first.
     cta: Follow @nyanmeshijp on Instagram
     caption: 'For event organizers: a full list of past venues and references is available on request.'
-  partners:
-    subtitle: Collaborations
-    title: Official Partners &amp; Sponsors
   trust_block:
     subtitle: In Their Words
     title: What People Say
@@ -147,9 +144,7 @@ en:
       - Our own stall, equipment and a trained bilingual crew
       - A signature menu, cooked fresh at the stall
       - SFA-licensed hygiene and operational standards
-      - Sponsored brand partnerships (e.g. Otafuku) where relevant
     activations_title: Recent Activations
-    otafuku_credit: In partnership with Otafuku
     whatsapp: WhatsApp Us
     whatsapp_prefill: 'Hi Nyanmeshi, I''d like to enquire about booking a pop-up. Venue: ___ Dates: ___'
     email: Email Us
@@ -189,7 +184,7 @@ ja:
     aria: View in English
   hero:
     badge: 日本ブランドの海外進出パートナー
-    title: '日本の<strong>祭の味</strong>を、<br>シンガポールから東南アジアへ。'
+    title: '日本の<strong>祭の味</strong>を、<br>シンガポールで。'
     lead: "百貨店催事、銀行ロードショー、パサマラム（夜市）。シンガポール全域で日本の食を売り続けてきました。2026年8月にはマレーシアにも出店しました。御社の商品の海外販路づくりを、現地からお手伝いします。"
     cta_primary: 海外展開のご相談
     cta_secondary: 紹介動画を見る
@@ -261,23 +256,20 @@ ja:
         title: 現地で売り切る力
         desc: 百貨店催事、フェスティバル、ショッピングモール、夜市。シンガポール全域とクアラルンプールで、日本の味を売り続けています。
       - icon: "🌏"
-        title: 東南アジア市場への入り口
-        desc: シンガポールを起点に、マレーシアでの出店実績も。成長する東南アジアでのテストマーケティングの場をご提供します。
+        title: シンガポールでのテストマーケティング
+        desc: シンガポールを起点に、マレーシアでの出店実績も。現地の生活者に商品を試していただく場をご提供します。
       - icon: "✅"
         title: 許認可も運営も、現地で一貫対応
         desc: SFAライセンス取得済み。会場確保から設営・販売・衛生管理まで、日本語で相談できる現地チームが対応します。
       - icon: "🤝"
-        title: 日本ブランドとの協業実績
-        desc: オタフクソースとのスポンサード催事をはじめ、日本ブランドとの協業実績。御社の商品を現地の生活者に直接届けます。
+        title: 日本語で相談できる現地チーム
+        desc: 日本語で相談できる現地チームが、御社の商品を現地の生活者に直接届けます。
   follow:
     subtitle: 出店情報
     title: 今週はどこで出店している？
     lead: 出店場所は季節ごとに変わります。百貨店催事から夜市まで、最新の出店情報はInstagramでいち早くお知らせしています。
     cta: Instagram @nyanmeshijp をフォロー
     caption: これまでの出店会場リストは、お取引をご検討のパートナー様に個別にご案内しています。
-  partners:
-    subtitle: コラボレーション
-    title: パートナー・スポンサー
   trust_block:
     subtitle: お客様の声
     title: 評判・口コミ
@@ -295,9 +287,7 @@ ja:
       - 現地の屋台運営基盤とバイリンガルチーム
       - シンガポール全域とマレーシアでの販路
       - SFAライセンス取得済み、法令遵守の現地オペレーション
-      - オタフクソースなど日本ブランドとの協業実績
     activations_title: 主な出店実績
-    otafuku_credit: オタフクソースとの協業
     whatsapp: WhatsAppで相談
     whatsapp_prefill: 'Nyanmeshi様、商品の海外展開についてご相談させてください。商品:___ 希望市場:___'
     email: メールで相談
