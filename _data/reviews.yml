@@ -25,14 +25,9 @@
   rating: 5
   local_guide: true
 
-- quote: "Hygienic, friendly & sweet staff. 1st time trying their food."
-  quote_ja: "衛生的で、スタッフもフレンドリーで優しい。初めて食べました。"
-  author: Lxx Kxxxxxxxx
-  rating: 5
-
-- quote: "Lovely food. Love the vibe of the stall! Boss is very humble and kind. Delicious!!!"
-  quote_ja: "美味しい料理と、屋台の雰囲気が大好きです！オーナーはとても謙虚で優しい方。最高に美味しかった！"
-  author: Yxxxx Sxxxxx
+- quote: "Tried the takoyaki and fried chicken. Takoyaki was nice but we didn't expect the fried chicken to be da bombz! It was crispy, tasty, not oily, savoury and every bite was tender and crunchy. Boneless and perfect. Would come back for the fried chicken."
+  quote_ja: "たこ焼きと唐揚げを注文。たこ焼きも美味しかったけど、唐揚げがまさかの大当たり！サクサクで味もしっかり、油っぽくなくて、どこを食べても柔らかくてカリッとしていました。骨なしで完璧。唐揚げのためにまた来ます。"
+  author: Pxxx Txxx
   rating: 5
 
 - quote: "The takoyaki is delicious, with the flavor of dashi made by a Japanese chef! I was also happy with the takeaway portion size."
@@ -50,7 +45,30 @@
   rating: 5
   local_guide: true
 
-- quote: "If you're tired of eating bad takoyaki in Singapore and want the real thing at the same prices, try Emi's takoyaki! Great texture and flavor just like what you can get in Japan."
-  quote_ja: "シンガポールでイマイチなたこ焼きに飽きたなら、同じ価格で本物を味わえるEmiさんのたこ焼きをぜひ。食感も味も、日本で食べるものそのものです。"
-  author: Xxxxxxx Txx
+- quote: "Lovely food. Love the vibe of the stall! Boss is very humble and kind. Delicious!!!"
+  quote_ja: "美味しい料理と、屋台の雰囲気が大好きです！オーナーはとても謙虚で優しい方。最高に美味しかった！"
+  author: Yxxxx Sxxxxx
   rating: 5
+
+- quote: "Sorry guys. I demolished the takoyaki before I was able to take a photo because they were just so delicious."
+  quote_ja: "ごめんなさい。美味しすぎて、写真を撮る前にたこ焼きを完食してしまいました。"
+  author: Gxxxxx Lxx
+  rating: 5
+
+# Benched (Nov 2026): kept 6 so the 3/2/1-column grid fills every row.
+# Uncomment one to swap it back in; keep the live count at 6.
+
+# - quote: "If you're tired of eating bad takoyaki in Singapore and want the real thing at the same prices, try Emi's takoyaki! Great texture and flavor just like what you can get in Japan."
+#   quote_ja: "シンガポールでイマイチなたこ焼きに飽きたなら、同じ価格で本物を味わえるEmiさんのたこ焼きをぜひ。食感も味も、日本で食べるものそのものです。"
+#   author: Xxxxxxx Txx
+#   rating: 5
+
+# - quote: "Hygienic, friendly & sweet staff. 1st time trying their food."
+#   quote_ja: "衛生的で、スタッフもフレンドリーで優しい。初めて食べました。"
+#   author: Lxx Kxxxxxxxx
+#   rating: 5
+
+# - quote: "The best authentic Japanese takoyaki in SG! Super yum and affordable."
+#   quote_ja: "シンガポールで一番本格的な日本のたこ焼き！とても美味しくて、お手頃価格です。"
+#   author: Pxxxxxxx Axxxxxxxx
+#   rating: 5
